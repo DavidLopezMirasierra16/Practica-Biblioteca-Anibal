@@ -1,8 +1,8 @@
 package controlador;
 
 public class main {
-	public main() {
-		// TODO Auto-generated constructor stub
-		System.out.println("Hola");
-	}
+    
+    public static void main(String[] args) {
+        System.out.println("Este es el bueno");
+    }
 }
