@@ -139,6 +139,10 @@ public class RegistroSocios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static void main(String[] args) {
+        
+    }
+    
     public JButton getBtn_guardar() {
         return btn_guardar;
     }
