@@ -10,4 +10,8 @@ package modelo;
  */
 public class TrabajadorModelo {
     
+    public static void main(String[] args) {
+        System.out.println("Prueba 1");
+    }
+    
 }
