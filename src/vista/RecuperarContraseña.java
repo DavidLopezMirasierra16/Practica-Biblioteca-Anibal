@@ -4,6 +4,9 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +18,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
      */
     public RecuperarContraseña() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -36,6 +40,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Recuperar contraseña");
 
         jLabel2.setText("Usuario");
@@ -59,11 +64,13 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                         .addComponent(btnVolver))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2)
-                        .addComponent(jLabel1)
                         .addComponent(jLabel3)
                         .addComponent(txt_contraseña)
-                        .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addComponent(jLabel1))
+                        .addComponent(txt_usuario)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,7 +89,7 @@ public class RecuperarContraseña extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRecuperar)
                     .addComponent(btnVolver))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,6 +129,40 @@ public class RecuperarContraseña extends javax.swing.JFrame {
             }
         });
     }
+
+    public JButton getBtnRecuperar() {
+        return btnRecuperar;
+    }
+
+    public void setBtnRecuperar(JButton btnRecuperar) {
+        this.btnRecuperar = btnRecuperar;
+    }
+
+    public JButton getBtnVolver() {
+        return btnVolver;
+    }
+
+    public void setBtnVolver(JButton btnVolver) {
+        this.btnVolver = btnVolver;
+    }
+
+    public JTextField getTxt_contraseña() {
+        return txt_contraseña;
+    }
+
+    public void setTxt_contraseña(JTextField txt_contraseña) {
+        this.txt_contraseña = txt_contraseña;
+    }
+
+    public JTextField getTxt_usuario() {
+        return txt_usuario;
+    }
+
+    public void setTxt_usuario(JTextField txt_usuario) {
+        this.txt_usuario = txt_usuario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRecuperar;

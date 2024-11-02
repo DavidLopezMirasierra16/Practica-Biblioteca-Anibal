@@ -4,6 +4,9 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +18,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -37,6 +41,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Iniciar Sesión");
 
         jLabel2.setText("Usuario");
@@ -69,11 +74,13 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(btnRecuperar1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_contraseña)
-                    .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1)))
                 .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
@@ -91,11 +98,11 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIniciar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRecuperar1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -144,6 +151,40 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnIniciar() {
+        return btnIniciar;
+    }
+
+    public void setBtnIniciar(JButton btnIniciar) {
+        this.btnIniciar = btnIniciar;
+    }
+
+    public JButton getBtnRecuperar1() {
+        return btnRecuperar1;
+    }
+
+    public void setBtnRecuperar1(JButton btnRecuperar1) {
+        this.btnRecuperar1 = btnRecuperar1;
+    }
+
+    public JTextField getTxt_contraseña() {
+        return txt_contraseña;
+    }
+
+    public void setTxt_contraseña(JTextField txt_contraseña) {
+        this.txt_contraseña = txt_contraseña;
+    }
+
+    public JTextField getTxt_usuario() {
+        return txt_usuario;
+    }
+
+    public void setTxt_usuario(JTextField txt_usuario) {
+        this.txt_usuario = txt_usuario;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnRecuperar1;
