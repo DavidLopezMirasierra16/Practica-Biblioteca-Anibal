@@ -4,6 +4,9 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +18,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
      */
     public RegistrarLibro() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -26,17 +30,87 @@ public class RegistrarLibro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_nombre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_editorial = new javax.swing.JTextField();
+        txt_isbn = new javax.swing.JTextField();
+        txt_autor = new javax.swing.JTextField();
+        btn_agregar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Registro de Libros");
+
+        jLabel2.setText("Nombre:");
+
+        jLabel6.setText("Editorial:");
+
+        jLabel7.setText("ISBN:");
+
+        jLabel8.setText("Autor:");
+
+        btn_agregar.setText("Agregar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(137, 137, 137))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_agregar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_editorial)
+                                .addComponent(txt_isbn)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_agregar)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,6 +151,58 @@ public class RegistrarLibro extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtn_agregar() {
+        return btn_agregar;
+    }
+
+    public void setBtn_agregar(JButton btn_agregar) {
+        this.btn_agregar = btn_agregar;
+    }
+
+    public JTextField getTxt_autor() {
+        return txt_autor;
+    }
+
+    public void setTxt_autor(JTextField txt_autor) {
+        this.txt_autor = txt_autor;
+    }
+
+    public JTextField getTxt_editorial() {
+        return txt_editorial;
+    }
+
+    public void setTxt_editorial(JTextField txt_editorial) {
+        this.txt_editorial = txt_editorial;
+    }
+
+    public JTextField getTxt_isbn() {
+        return txt_isbn;
+    }
+
+    public void setTxt_isbn(JTextField txt_isbn) {
+        this.txt_isbn = txt_isbn;
+    }
+
+    public JTextField getTxt_nombre() {
+        return txt_nombre;
+    }
+
+    public void setTxt_nombre(JTextField txt_nombre) {
+        this.txt_nombre = txt_nombre;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txt_autor;
+    private javax.swing.JTextField txt_editorial;
+    private javax.swing.JTextField txt_isbn;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
