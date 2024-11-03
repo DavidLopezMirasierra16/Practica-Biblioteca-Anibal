@@ -32,7 +32,7 @@
                           <Component id="btnConsulta" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
                           <Component id="btnRegistrar" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="53" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
