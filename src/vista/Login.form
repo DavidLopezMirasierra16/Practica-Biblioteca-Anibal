@@ -30,19 +30,16 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_contraseña" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txt_usuario" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="btnIniciar" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="btnRecuperar1" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="btnIniciar" max="32767" attributes="0"/>
+                  <Component id="txt_usuario" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
           </Group>
