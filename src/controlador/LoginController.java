@@ -15,7 +15,7 @@ import vista.Login;
 public class LoginController implements ActionListener{
  
     private Login login_vista;
-
+    
     public LoginController() {
         //Clases
         this.login_vista = new Login();
@@ -40,7 +40,5 @@ public class LoginController implements ActionListener{
         }
         
     }
-    
-    
     
 }
