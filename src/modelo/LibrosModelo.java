@@ -8,9 +8,9 @@ package modelo;
  *
  * @author 34662
  */
-public class SocioModelo {
+public class LibrosModelo {
 
-    public SocioModelo() {
+    public LibrosModelo() {
     }
     
     
