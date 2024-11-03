@@ -4,6 +4,10 @@
  */
 package vista;
 
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +19,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
      */
     public ConsultarPrestamos() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -137,6 +142,32 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         });
     }
 
+    public JComboBox<String> getCbFiltro() {
+        return cbFiltro;
+    }
+
+    public void setCbFiltro(JComboBox<String> cbFiltro) {
+        this.cbFiltro = cbFiltro;
+    }
+
+    public JTable getTablaPrestamos() {
+        return tablaPrestamos;
+    }
+
+    public void setTablaPrestamos(JTable tablaPrestamos) {
+        this.tablaPrestamos = tablaPrestamos;
+    }
+
+    public JTextField getTxtBusqueda() {
+        return txtBusqueda;
+    }
+
+    public void setTxtBusqueda(JTextField txtBusqueda) {
+        this.txtBusqueda = txtBusqueda;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
