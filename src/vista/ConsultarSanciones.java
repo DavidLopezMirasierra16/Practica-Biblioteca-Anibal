@@ -4,6 +4,10 @@
  */
 package vista;
 
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +19,7 @@ public class ConsultarSanciones extends javax.swing.JFrame {
      */
     public ConsultarSanciones() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -137,6 +142,32 @@ public class ConsultarSanciones extends javax.swing.JFrame {
             }
         });
     }
+
+    public JComboBox<String> getCbFiltro() {
+        return cbFiltro;
+    }
+
+    public void setCbFiltro(JComboBox<String> cbFiltro) {
+        this.cbFiltro = cbFiltro;
+    }
+
+    public JTable getTablaSanciones() {
+        return tablaSanciones;
+    }
+
+    public void setTablaSanciones(JTable tablaSanciones) {
+        this.tablaSanciones = tablaSanciones;
+    }
+
+    public JTextField getTxtBusqueda() {
+        return txtBusqueda;
+    }
+
+    public void setTxtBusqueda(JTextField txtBusqueda) {
+        this.txtBusqueda = txtBusqueda;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbFiltro;

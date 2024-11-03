@@ -2,36 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
-    </open-files>
-</project-private>
-
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/Autor.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/RegistrarAutor.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/Socio.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/RecuperarContraseña.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/AutorModelo.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/RegistrarLibro.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/MenuAdministrador.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/ConsultarPrestamos.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/ControlLibros.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/RegistroTrabajadores.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/RegistroSocios.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/ConsultarSanciones.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/ConsultarSocios.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/Trabajador.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/MenuAdministrativo.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/modelo/Libros.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/Login.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Practica-Biblioteca-Anibal/src/vista/ConsultarLibros.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/vista/ConsultarPrestamos.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/vista/ConsultarLibros.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/vista/ConsultarSocios.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/vista/ConsultarSanciones.java</file>
         </group>
     </open-files>
 </project-private>
