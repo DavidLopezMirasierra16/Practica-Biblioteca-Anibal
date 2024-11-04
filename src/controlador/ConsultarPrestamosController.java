@@ -16,6 +16,7 @@ public class ConsultarPrestamosController implements ActionListener{
     private ConsultarPrestamos consultaprestamos_vista;
     private ConsultarPrestamosController(){
         this.consultaprestamos_vista.getBtnBuscar().addActionListener(this);
+        this.consultaprestamos_vista.getBtnDevilver().addActionListener(this);
         this.consultaprestamos_vista.setVisible(true);
     }
 
