@@ -4,10 +4,25 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import vista.ConsultarPrestamos;
+
 /**
  *
  * @author pablo
  */
-public class ConsultarPrestamosController {
-    
+public class ConsultarPrestamosController implements ActionListener{
+    private ConsultarPrestamos consultaprestamos_vista;
+    private ConsultarPrestamosController(){
+        this.consultaprestamos_vista.getBtnBuscar().addActionListener(this);
+        this.consultaprestamos_vista.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == consultaprestamos_vista.getBtnBuscar()){
+            //Metodo para consultar prestamos
+        }
+    }
 }

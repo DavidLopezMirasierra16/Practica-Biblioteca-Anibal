@@ -4,10 +4,33 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import vista.RecuperarContraseña;
+
 /**
  *
  * @author pablo
  */
-public class RecuperarContraseñaController {
+public class RecuperarContraseñaController implements ActionListener{
+    private RecuperarContraseña recuperar_vista;
     
+    public RecuperarContraseñaController(){
+        this.recuperar_vista = new RecuperarContraseña();
+        this.recuperar_vista.getBtnRecuperar().addActionListener(this);
+        this.recuperar_vista.getBtnVolver().addActionListener(this);
+        this.recuperar_vista.setVisible(true);
+        this.recuperar_vista.setResizable(false);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == recuperar_vista.getBtnRecuperar()){
+            //Metodo que recoge el usuario y la nueva contraseña y actualiza su contraseña
+        }
+        
+        if(e.getSource() == recuperar_vista.getBtnVolver()){
+            recuperar_vista.dispose();
+        }
+    }
 }

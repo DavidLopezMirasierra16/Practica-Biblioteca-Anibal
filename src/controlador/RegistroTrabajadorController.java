@@ -4,10 +4,26 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import vista.RegistroTrabajadores;
+
 /**
  *
  * @author pablo
  */
-public class RegistroTrabajadorController {
-    
+public class RegistroTrabajadorController implements ActionListener{
+    private RegistroTrabajadores registrotrabajadores_vista;
+    public RegistroTrabajadorController(){
+        this.registrotrabajadores_vista = new RegistroTrabajadores();
+        this.registrotrabajadores_vista.getBtn_guardar().addActionListener(this);
+        this.registrotrabajadores_vista.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == registrotrabajadores_vista.getBtn_guardar()){
+            //Metodo que registra autor
+        }
+    }
 }

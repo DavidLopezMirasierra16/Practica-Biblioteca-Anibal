@@ -4,10 +4,26 @@
  */
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import vista.RegistroSocios;
+
 /**
  *
  * @author pablo
  */
-public class RegistroSocioController {
-    
+public class RegistroSocioController implements ActionListener{
+    private RegistroSocios registrosocio_vista;
+    public RegistroSocioController(){
+        this.registrosocio_vista = new RegistroSocios();
+        this.registrosocio_vista.getBtn_guardar().addActionListener(this);
+        this.registrosocio_vista.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == registrosocio_vista.getBtn_guardar()){
+            //Metodo que registra autor
+        }
+    }
 }

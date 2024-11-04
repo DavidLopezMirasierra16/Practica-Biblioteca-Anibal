@@ -4,6 +4,9 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author pablo
@@ -15,6 +18,7 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
      */
     public ModLocalidadSocio() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -123,4 +127,28 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
     private javax.swing.JTextField txtLocalidad;
     private javax.swing.JTextField txtSocio;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JTextField getTxtLocalidad() {
+        return txtLocalidad;
+    }
+
+    public void setTxtLocalidad(JTextField txtLocalidad) {
+        this.txtLocalidad = txtLocalidad;
+    }
+
+    public JTextField getTxtSocio() {
+        return txtSocio;
+    }
+
+    public void setTxtSocio(JTextField txtSocio) {
+        this.txtSocio = txtSocio;
+    }
 }
