@@ -6,7 +6,7 @@ public class main {
 
         new LoginController();
 
-        System.out.println("Hola");
+        System.out.println("");
         
     }
 }
