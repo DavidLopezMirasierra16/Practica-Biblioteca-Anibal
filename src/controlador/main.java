@@ -1,3 +1,4 @@
+
 package controlador;
 
 public class main {
@@ -6,7 +7,5 @@ public class main {
 
         new LoginController();
 
-        System.out.println("");
-        
     }
 }
