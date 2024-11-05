@@ -39,6 +39,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
+        btnDevilver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,8 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
 
         btnBuscar.setText("Buscar");
 
+        btnDevilver.setText("Devolver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,6 +97,10 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDevilver)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +115,9 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDevilver)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,6 +166,14 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         this.cbFiltro = cbFiltro;
     }
 
+    public JButton getBtnDevilver() {
+        return btnDevilver;
+    }
+
+    public void setBtnDevilver(JButton btnDevilver) {
+        this.btnDevilver = btnDevilver;
+    }
+
     public JButton getBtnBuscar() {
         return btnBuscar;
     }
@@ -185,6 +202,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDevilver;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
