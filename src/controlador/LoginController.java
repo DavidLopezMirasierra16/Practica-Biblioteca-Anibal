@@ -34,7 +34,9 @@ public class LoginController implements ActionListener{
         if (button == this.login_vista.getBtnIniciar()) {
             //Controller inciar
             
-        }else if (button == this.login_vista.getBtnRecuperar1()){
+        }
+        
+        if (button == this.login_vista.getBtnRecuperar1()){
             //Controller recuperar cuenta
             
         }
