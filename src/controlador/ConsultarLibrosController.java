@@ -13,9 +13,10 @@ public class ConsultarLibrosController implements ActionListener {
     public ConsultarLibrosController() {
         this.consultalibros_vista = new ConsultarLibros();
         this.consultalibros_vista.getBtnBuscar().addActionListener(this);
+        this.consultalibros_vista.getBtnReestablecer().addActionListener(this); // Escuchar evento reestablecer
         this.consultalibros_vista.setVisible(true);
         LibrosModelo librosModelo = new LibrosModelo();
-        librosModelo.consultarLibros(consultalibros_vista.getTablaLibros());
+        librosModelo.consultarLibros(consultalibros_vista.getTablaLibros()); // Cargar los libros completos al inicio
     }
 
     @Override
@@ -25,6 +26,9 @@ public class ConsultarLibrosController implements ActionListener {
             String busqueda = consultalibros_vista.getTxtBusqueda().getText();
             LibrosModelo librosModelo = new LibrosModelo();
             librosModelo.filtrarLibros(consultalibros_vista); // Filtrar según la búsqueda
+        } else if (e.getSource() == consultalibros_vista.getBtnReestablecer()) {
+            LibrosModelo librosModelo = new LibrosModelo();
+            librosModelo.consultarLibros(consultalibros_vista.getTablaLibros()); // Reestablecer la tabla con todos los libros
         }
     }
 }

@@ -12,6 +12,7 @@ public class LibrosModelo {
 
     public LibrosModelo() {}
 
+    // En LibrosModelo.java
     public void consultarLibros(JTable table) {
         String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros";
         BaseDatosController baseDatosController = new BaseDatosController();
@@ -48,8 +49,9 @@ public class LibrosModelo {
             e.printStackTrace();
         }
     }
+
     
-public void filtrarLibros(ConsultarLibros consultarLibros) {  // Cambio: Se añade ConsultarLibros como parámetro
+    public void filtrarLibros(ConsultarLibros consultarLibros) {  // Cambio: Se añade ConsultarLibros como parámetro
         String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
         String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
 
