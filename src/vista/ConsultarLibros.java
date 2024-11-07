@@ -44,10 +44,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
         tablaLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ISBN", "Nombre", "Editorial", "Autor"
