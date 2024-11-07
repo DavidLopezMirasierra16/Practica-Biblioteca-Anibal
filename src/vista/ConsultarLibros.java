@@ -72,7 +72,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
         jLabel2.setText("Introduzca el dato a buscar");
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "ISBN", "Nombre", "Editorial", "Autor" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Nombre", "Editorial", "Autor" }));
 
         btnBuscar.setText("Buscar");
 

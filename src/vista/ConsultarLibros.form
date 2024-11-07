@@ -126,12 +126,11 @@
     <Component class="javax.swing.JComboBox" name="cbFiltro">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
-            <StringItem index="1" value="ISBN"/>
-            <StringItem index="2" value="Nombre"/>
-            <StringItem index="3" value="Editorial"/>
-            <StringItem index="4" value="Autor"/>
+            <StringItem index="1" value="Nombre"/>
+            <StringItem index="2" value="Editorial"/>
+            <StringItem index="3" value="Autor"/>
           </StringArray>
         </Property>
       </Properties>

@@ -4,15 +4,11 @@ import controlador.BaseDatosController;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import vista.ConsultarLibros;
 
 public class LibrosModelo {
 
-    public LibrosModelo() {}
-
-    // En LibrosModelo.java
+    // Método para consultar todos los libros y mostrar en la tabla
     public void consultarLibros(JTable table) {
         String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros";
         BaseDatosController baseDatosController = new BaseDatosController();
@@ -21,37 +17,35 @@ public class LibrosModelo {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
+            // Definir las columnas de la tabla
+            String[] columnNames = {"ID", "Título", "ISBN", "Género", "Año", "Editorial", "Autor"};
+            // Crear un modelo para la tabla
+            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-            List<String> columnNames = new ArrayList<>();
-            for (int i = 1; i <= columnCount; i++) {
-                columnNames.add(metaData.getColumnName(i));
-            }
-
-            List<Object[]> data = new ArrayList<>();
+            // Agregar las filas a la tabla
             while (rs.next()) {
-                Object[] row = new Object[columnCount];
-                for (int i = 0; i < columnCount; i++) {
-                    row[i] = rs.getObject(i + 1);
-                }
-                data.add(row);
+                Object[] row = {
+                    rs.getInt("ID_Libros"),
+                    rs.getString("Titulo"),
+                    rs.getString("ISBN"),
+                    rs.getString("Genero"),
+                    rs.getString("Year"),
+                    rs.getString("Editorial"),
+                    rs.getInt("ID_AUTOR")
+                };
+                model.addRow(row);
             }
 
-            String[] columnNamesArray = columnNames.toArray(new String[0]);
-            Object[][] dataArray = data.toArray(new Object[0][]);
-
-            DefaultTableModel model = new DefaultTableModel(dataArray, columnNamesArray);
+            // Establecer el modelo en la tabla
             table.setModel(model);
-            table.repaint();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    
-    public void filtrarLibros(ConsultarLibros consultarLibros) {  // Cambio: Se añade ConsultarLibros como parámetro
+    // Método para filtrar libros según el filtro y la búsqueda
+    public void filtrarLibros(ConsultarLibros consultarLibros) {
         String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
         String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
 
@@ -60,11 +54,8 @@ public class LibrosModelo {
             return;
         }
 
-        String columna;
+        String columna = "";
         switch (filtro) {
-            case "ISBN":
-                columna = "ISBN";
-                break;
             case "Nombre":
                 columna = "Titulo";
                 break;
@@ -74,48 +65,41 @@ public class LibrosModelo {
             case "Autor":
                 columna = "ID_AUTOR";
                 break;
-            default:
-                System.out.println("Filtro no válido.");
-                return;
         }
 
-        String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros WHERE " + columna + " = ?";
+        String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros WHERE " + columna + " LIKE ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, busqueda);
+            stmt.setString(1, "%" + busqueda + "%");  // Usamos % para buscar coincidencias parciales
 
             try (ResultSet rs = stmt.executeQuery()) {
-                ResultSetMetaData metaData = rs.getMetaData();
-                int columnCount = metaData.getColumnCount();
+                String[] columnNames = {"ID", "Título", "ISBN", "Género", "Año", "Editorial", "Autor"};
+                DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-                List<String> columnNames = new ArrayList<>();
-                for (int i = 1; i <= columnCount; i++) {
-                    columnNames.add(metaData.getColumnName(i));
-                }
-
-                List<Object[]> data = new ArrayList<>();
+                // Agregar las filas a la tabla
                 while (rs.next()) {
-                    Object[] row = new Object[columnCount];
-                    for (int i = 0; i < columnCount; i++) {
-                        row[i] = rs.getObject(i + 1);
-                    }
-                    data.add(row);
+                    Object[] row = {
+                        rs.getInt("ID_Libros"),
+                        rs.getString("Titulo"),
+                        rs.getString("ISBN"),
+                        rs.getString("Genero"),
+                        rs.getString("Year"),
+                        rs.getString("Editorial"),
+                        rs.getInt("ID_AUTOR")
+                    };
+                    model.addRow(row);
                 }
 
-                String[] columnNamesArray = columnNames.toArray(new String[0]);
-                Object[][] dataArray = data.toArray(new Object[0][]);
-
-                DefaultTableModel model = new DefaultTableModel(dataArray, columnNamesArray);
+                // Establecer el modelo en la tabla
                 consultarLibros.getTablaLibros().setModel(model);
-                consultarLibros.getTablaLibros().repaint();
+
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }
