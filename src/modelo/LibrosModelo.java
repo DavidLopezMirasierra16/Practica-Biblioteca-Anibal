@@ -10,24 +10,22 @@ public class LibrosModelo {
 
     // Método para consultar todos los libros y mostrar en la tabla
     public void consultarLibros(JTable table) {
-        String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros";
+        String sql = "SELECT ID_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR FROM libros";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            // Definir las columnas de la tabla
-            String[] columnNames = {"ID", "Título", "ISBN", "Género", "Año", "Editorial", "Autor"};
             // Crear un modelo para la tabla
-            DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            // Hacer que las celdas no sean editables
 
             // Agregar las filas a la tabla
             while (rs.next()) {
                 Object[] row = {
                     rs.getInt("ID_Libros"),
                     rs.getString("Titulo"),
-                    rs.getString("ISBN"),
                     rs.getString("Genero"),
                     rs.getString("Year"),
                     rs.getString("Editorial"),
@@ -38,6 +36,11 @@ public class LibrosModelo {
 
             // Establecer el modelo en la tabla
             table.setModel(model);
+
+            // No permitir redimensionar las columnas
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                table.getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +70,7 @@ public class LibrosModelo {
                 break;
         }
 
-        String sql = "SELECT ID_Libros, Titulo, ISBN, Genero, Year, Editorial, ID_AUTOR FROM libros WHERE " + columna + " LIKE ?";
+        String sql = "SELECT ID_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR FROM libros WHERE " + columna + " LIKE ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
@@ -76,15 +79,20 @@ public class LibrosModelo {
             stmt.setString(1, "%" + busqueda + "%");  // Usamos % para buscar coincidencias parciales
 
             try (ResultSet rs = stmt.executeQuery()) {
-                String[] columnNames = {"ID", "Título", "ISBN", "Género", "Año", "Editorial", "Autor"};
-                DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+                String[] columnNames = {"ID", "Título", "Género", "Año", "Editorial", "Autor"};
+                DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+                    // Hacer que las celdas no sean editables
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return false;  // Ninguna celda es editable
+                    }
+                };
 
                 // Agregar las filas a la tabla
                 while (rs.next()) {
                     Object[] row = {
                         rs.getInt("ID_Libros"),
                         rs.getString("Titulo"),
-                        rs.getString("ISBN"),
                         rs.getString("Genero"),
                         rs.getString("Year"),
                         rs.getString("Editorial"),
@@ -95,6 +103,11 @@ public class LibrosModelo {
 
                 // Establecer el modelo en la tabla
                 consultarLibros.getTablaLibros().setModel(model);
+
+                // No permitir redimensionar las columnas
+                for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
+                    consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
+                }
 
             }
 

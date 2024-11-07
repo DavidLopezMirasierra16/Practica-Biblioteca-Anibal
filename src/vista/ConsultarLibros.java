@@ -48,11 +48,11 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ISBN", "Nombre", "Editorial", "Autor"
+                "ISBN", "Título", "Género", "Año", "Editorial", "Autor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -64,8 +64,12 @@ public class ConsultarLibros extends javax.swing.JFrame {
         if (tablaLibros.getColumnModel().getColumnCount() > 0) {
             tablaLibros.getColumnModel().getColumn(0).setResizable(false);
             tablaLibros.getColumnModel().getColumn(1).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(1).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(2).setResizable(false);
             tablaLibros.getColumnModel().getColumn(3).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(4).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(4).setPreferredWidth(125);
+            tablaLibros.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jLabel1.setText("Filtrar Por");
@@ -82,7 +86,6 @@ public class ConsultarLibros extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
@@ -97,6 +100,9 @@ public class ConsultarLibros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReestablecer)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
