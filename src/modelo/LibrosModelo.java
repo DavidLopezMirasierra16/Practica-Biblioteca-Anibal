@@ -17,9 +17,9 @@ public class LibrosModelo {
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            // Crear un modelo para la tabla
+            // Crear un modelo para la tabla y limpiar las filas actuales
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            // Hacer que las celdas no sean editables
+            model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
 
             // Agregar las filas a la tabla
             while (rs.next()) {
@@ -79,16 +79,10 @@ public class LibrosModelo {
             stmt.setString(1, "%" + busqueda + "%");  // Usamos % para buscar coincidencias parciales
 
             try (ResultSet rs = stmt.executeQuery()) {
-                String[] columnNames = {"ID", "Título", "Género", "Año", "Editorial", "Autor"};
-                DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
-                    // Hacer que las celdas no sean editables
-                    @Override
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return false;  // Ninguna celda es editable
-                    }
-                };
+                DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
+                model.setRowCount(0); // Limpiar las filas actuales antes de filtrar
 
-                // Agregar las filas a la tabla
+                // Agregar las filas filtradas a la tabla
                 while (rs.next()) {
                     Object[] row = {
                         rs.getInt("ID_Libros"),
