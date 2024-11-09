@@ -40,6 +40,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         tablaPrestamos = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         btnDevilver = new javax.swing.JButton();
+        btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,21 +48,21 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
 
         jLabel2.setText("Introduzca el dato a buscar");
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Nombre Socio", "Libro" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "ID_Prestamo", "ID_Socio", "ID_Libro" }));
 
         tablaPrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre Socio", "Libro", "Fecha Prestamo", "Fecha Límite"
+                "ID_Prestamo", "ID_Libro", "ID_Socio", "Fecha Prestamo", "Fecha Límite"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -73,20 +74,28 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         if (tablaPrestamos.getColumnModel().getColumnCount() > 0) {
             tablaPrestamos.getColumnModel().getColumn(0).setResizable(false);
             tablaPrestamos.getColumnModel().getColumn(1).setResizable(false);
+            tablaPrestamos.getColumnModel().getColumn(2).setResizable(false);
             tablaPrestamos.getColumnModel().getColumn(3).setResizable(false);
+            tablaPrestamos.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnBuscar.setText("Buscar");
 
         btnDevilver.setText("Devolver");
 
+        btnReestablecer.setText("Reestablecer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDevilver)
+                .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,28 +105,27 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(btnBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(btnReestablecer)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDevilver)
-                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscar))
+                        .addComponent(btnBuscar)
+                        .addComponent(btnReestablecer))
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDevilver)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,6 +170,14 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         return cbFiltro;
     }
 
+    public JButton getBtnReestablecer() {
+        return btnReestablecer;
+    }
+
+    public void setBtnReestablecer(JButton btnReestablecer) {
+        this.btnReestablecer = btnReestablecer;
+    }
+
     public void setCbFiltro(JComboBox<String> cbFiltro) {
         this.cbFiltro = cbFiltro;
     }
@@ -203,6 +219,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDevilver;
+    private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
