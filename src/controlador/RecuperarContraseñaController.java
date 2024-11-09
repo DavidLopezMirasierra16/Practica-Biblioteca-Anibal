@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.SocioModelo;
 import vista.RecuperarContraseña;
 
 /**
@@ -14,8 +15,9 @@ import vista.RecuperarContraseña;
  */
 public class RecuperarContraseñaController implements ActionListener{
     private RecuperarContraseña recuperar_vista;
-    
+    private SocioModelo modelo;
     public RecuperarContraseñaController(){
+        this.modelo = new SocioModelo();
         this.recuperar_vista = new RecuperarContraseña();
         this.recuperar_vista.getBtnRecuperar().addActionListener(this);
         this.recuperar_vista.getBtnVolver().addActionListener(this);
@@ -27,6 +29,7 @@ public class RecuperarContraseñaController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == recuperar_vista.getBtnRecuperar()){
             //Metodo que recoge el usuario y la nueva contraseña y actualiza su contraseña
+            modelo.cambiarContraseña(recuperar_vista);
         }
         
         if(e.getSource() == recuperar_vista.getBtnVolver()){

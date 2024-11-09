@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
+import vista.RecuperarContraseña;
 
 /**
  * Modelo para realizar operaciones de base de datos sobre los socios.
@@ -119,6 +120,38 @@ public class SocioModelo {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
+        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
+        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
+        
+        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
+            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
+            return;
+        }
+
+        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
+        BaseDatosController baseDatosController = new BaseDatosController();
+
+        try (Connection conn = baseDatosController.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nuevaContraseña);
+            stmt.setString(2, usuario);
+
+            int filasActualizadas = stmt.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
         }
     }
 }
