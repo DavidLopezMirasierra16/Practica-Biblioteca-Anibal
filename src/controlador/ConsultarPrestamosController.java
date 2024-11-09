@@ -35,6 +35,9 @@ public class ConsultarPrestamosController implements ActionListener{
         } else if (e.getSource() == consultalibros_vista.getBtnReestablecer()) {
             PrestamosModelo prestamosModelo = new PrestamosModelo();
             prestamosModelo.consultarPrestamos(consultalibros_vista.getTablaPrestamos()); // Reestablecer la tabla con todos los libros
+        } else if(e.getSource() == consultalibros_vista.getBtnDevilver()){
+            PrestamosModelo prestamosModelo = new PrestamosModelo();
+            prestamosModelo.devolver(consultalibros_vista.getTablaPrestamos());
         }
     }
 }

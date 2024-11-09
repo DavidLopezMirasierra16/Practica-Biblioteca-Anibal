@@ -117,4 +117,44 @@ public class PrestamosModelo {
             e.printStackTrace();
         }
     }
+    
+    public void devolver(JTable tabla) {
+        // Verifica si hay una fila seleccionada
+        int filaSeleccionada = tabla.getSelectedRow();
+
+        if (filaSeleccionada != -1) { // -1 significa que no hay selección
+            // Obtiene el modelo de la tabla
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+
+            // Obtener el ID del préstamo de la fila seleccionada
+            int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0);  // Asume que el ID está en la primera columna
+
+            // Actualizar la base de datos para marcar el préstamo como devuelto
+            String sql = "DELETE FROM prestamos WHERE ID_Prestamo = ?";
+            BaseDatosController baseDatosController = new BaseDatosController();
+
+            try (Connection conn = baseDatosController.conectar();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                // Configurar el ID del préstamo en la consulta
+                stmt.setInt(1, idPrestamo);
+
+                // Ejecutar la eliminación en la base de datos
+                int filasAfectadas = stmt.executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    // Si la eliminación fue exitosa, eliminar la fila del modelo de la tabla
+                    modelo.removeRow(filaSeleccionada);
+                    System.out.println("Préstamo devuelto exitosamente.");
+                } else {
+                    System.out.println("Error: No se pudo devolver el préstamo.");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No hay ninguna fila seleccionada.");
+        }
+    }
 }
