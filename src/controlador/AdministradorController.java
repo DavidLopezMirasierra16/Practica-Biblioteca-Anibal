@@ -20,7 +20,7 @@ public class AdministradorController implements ActionListener{
 
     public AdministradorController(MenuAdministrador menu_administrador_vista, SocioModelo socio_modelo) {
         //Clases
-        this.menu_administrador_vista = new MenuAdministrador();
+        this.menu_administrador_vista = menu_administrador_vista;
         this.socio_modelo = new SocioModelo();
         //Botones
         this.menu_administrador_vista.getBtnConsulta().addActionListener(this);
