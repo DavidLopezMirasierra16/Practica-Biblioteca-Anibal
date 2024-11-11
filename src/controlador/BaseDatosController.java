@@ -14,4 +14,5 @@ public class BaseDatosController {
     public Connection conectar() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
 }

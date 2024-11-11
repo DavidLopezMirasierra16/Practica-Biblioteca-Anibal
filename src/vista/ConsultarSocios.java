@@ -23,6 +23,14 @@ public class ConsultarSocios extends javax.swing.JFrame {
         setLocationRelativeTo(this);
     }
 
+    public JButton getBtnReestablecer() {
+        return btnReestablecer;
+    }
+
+    public void setBtnReestablecer(JButton btnReestablecer) {
+        this.btnReestablecer = btnReestablecer;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,22 +47,20 @@ public class ConsultarSocios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tablaSocios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Nombre", "Apellidos", "Fecha de Nacimiento", "Correo", "Cuenta Bancaria", "Localidad"
+                "ID", "Nombre", "Apellidos", "Dirección", "Teléfono", "Fecha Alta", "Correo", "Cuenta Bancaria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -71,9 +77,10 @@ public class ConsultarSocios extends javax.swing.JFrame {
             tablaSocios.getColumnModel().getColumn(4).setResizable(false);
             tablaSocios.getColumnModel().getColumn(5).setResizable(false);
             tablaSocios.getColumnModel().getColumn(6).setResizable(false);
+            tablaSocios.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Nombre", "Apellidos", "Correo", "Localidad", "ID" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Nombre", "Apellidos", "Correo", "ID" }));
 
         jLabel1.setText("Filtrar Por");
 
@@ -81,13 +88,15 @@ public class ConsultarSocios extends javax.swing.JFrame {
 
         btnBuscar.setText("Buscar");
 
+        btnReestablecer.setText("Reestablecer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(80, 80, 80)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,7 +106,9 @@ public class ConsultarSocios extends javax.swing.JFrame {
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnBuscar)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(btnReestablecer)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +119,8 @@ public class ConsultarSocios extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnReestablecer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -188,6 +200,7 @@ public class ConsultarSocios extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

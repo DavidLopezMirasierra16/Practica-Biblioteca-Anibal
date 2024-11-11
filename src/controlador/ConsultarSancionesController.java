@@ -6,23 +6,19 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.SancionesModelo;
 import vista.ConsultarSanciones;
 
 /**
  *
  * @author pablo
  */
-public class ConsultarSancionesController implements ActionListener{
+public class ConsultarSancionesController{
     private ConsultarSanciones consultasanciones_vista;
-    private ConsultarSancionesController(){
-        this.consultasanciones_vista.getBtnBuscar().addActionListener(this);
+    public ConsultarSancionesController() {
+        this.consultasanciones_vista = new ConsultarSanciones();
         this.consultasanciones_vista.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == consultasanciones_vista.getBtnBuscar()){
-            //Metodo para consultar sanciones
-        }
+        SancionesModelo sancionesModelo = new SancionesModelo();
+        sancionesModelo.consultarSanciones(consultasanciones_vista.getTablaSanciones()); // Cargar los libros completos al inicio
     }
 }

@@ -23,9 +23,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="677" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnDevilver" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="cbFiltro" min="-2" max="-2" attributes="0"/>
@@ -35,12 +40,9 @@
               <Component id="txtBusqueda" min="-2" pref="112" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnReestablecer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnDevilver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,20 +50,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnReestablecer" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="cbFiltro" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnDevilver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,10 +85,11 @@
     <Component class="javax.swing.JComboBox" name="cbFiltro">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="Seleccione una opci&#xf3;n"/>
-            <StringItem index="1" value="Nombre Socio"/>
-            <StringItem index="2" value="Libro"/>
+            <StringItem index="1" value="ID_Prestamo"/>
+            <StringItem index="2" value="ID_Socio"/>
+            <StringItem index="3" value="ID_Libro"/>
           </StringArray>
         </Property>
       </Properties>
@@ -103,9 +107,10 @@
         <Component class="javax.swing.JTable" name="tablaPrestamos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="false" title="Nombre Socio" type="java.lang.Object"/>
-                <Column editable="false" title="Libro" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="4">
+                <Column editable="false" title="ID_Prestamo" type="java.lang.Object"/>
+                <Column editable="false" title="ID_Libro" type="java.lang.Object"/>
+                <Column editable="false" title="ID_Socio" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha Prestamo" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha L&#xed;mite" type="java.lang.Object"/>
               </Table>
@@ -122,7 +127,12 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -149,6 +159,11 @@
     <Component class="javax.swing.JButton" name="btnDevilver">
       <Properties>
         <Property name="text" type="java.lang.String" value="Devolver"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReestablecer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reestablecer"/>
       </Properties>
     </Component>
   </SubComponents>

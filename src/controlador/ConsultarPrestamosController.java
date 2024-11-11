@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.PrestamosModelo;
 import vista.ConsultarPrestamos;
 
 /**
@@ -13,17 +14,30 @@ import vista.ConsultarPrestamos;
  * @author pablo
  */
 public class ConsultarPrestamosController implements ActionListener{
-    private ConsultarPrestamos consultaprestamos_vista;
-    private ConsultarPrestamosController(){
-        this.consultaprestamos_vista.getBtnBuscar().addActionListener(this);
-        this.consultaprestamos_vista.getBtnDevilver().addActionListener(this);
-        this.consultaprestamos_vista.setVisible(true);
+    private ConsultarPrestamos consultalibros_vista;
+
+    public ConsultarPrestamosController() {
+        this.consultalibros_vista = new ConsultarPrestamos();
+        this.consultalibros_vista.getBtnBuscar().addActionListener(this);
+        this.consultalibros_vista.getBtnReestablecer().addActionListener(this); // Escuchar evento reestablecer
+        this.consultalibros_vista.setVisible(true);
+        PrestamosModelo prestamosModelo = new PrestamosModelo();
+        prestamosModelo.consultarPrestamos(consultalibros_vista.getTablaPrestamos()); // Cargar los libros completos al inicio
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == consultaprestamos_vista.getBtnBuscar()){
-            //Metodo para consultar prestamos
+        if (e.getSource() == consultalibros_vista.getBtnBuscar()) {
+            String filtro = consultalibros_vista.getCbFiltro().getSelectedItem().toString();
+            String busqueda = consultalibros_vista.getTxtBusqueda().getText();
+            PrestamosModelo prestamosModelo = new PrestamosModelo();
+            prestamosModelo.filtrarLibros(consultalibros_vista); // Filtrar según la búsqueda
+        } else if (e.getSource() == consultalibros_vista.getBtnReestablecer()) {
+            PrestamosModelo prestamosModelo = new PrestamosModelo();
+            prestamosModelo.consultarPrestamos(consultalibros_vista.getTablaPrestamos()); // Reestablecer la tabla con todos los libros
+        } else if(e.getSource() == consultalibros_vista.getBtnDevilver()){
+            PrestamosModelo prestamosModelo = new PrestamosModelo();
+            prestamosModelo.devolver(consultalibros_vista.getTablaPrestamos());
         }
     }
 }
