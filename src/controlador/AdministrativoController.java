@@ -6,8 +6,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import modelo.LibrosModelo;
 import modelo.SocioModelo;
+import vista.ControlLibros;
 import vista.MenuAdministrativo;
 
 /**
@@ -20,7 +22,7 @@ public class AdministrativoController implements ActionListener{
     private LibrosModelo libros_modelo;
     private SocioModelo socio_modelo;
 
-    public AdministrativoController() {
+    public AdministrativoController() throws SQLException {
         //Clases
         this.menu_administrativo_vista = new MenuAdministrativo();
         this.libros_modelo = new LibrosModelo();
@@ -38,7 +40,7 @@ public class AdministrativoController implements ActionListener{
         
         if (button == this.menu_administrativo_vista.getBtnLibros()) {
             //Abre el controlador de libros
-            
+            new LibrosController(new ControlLibros());
         }else if (button == this.menu_administrativo_vista.getBtnConsulta()){
             //Abre el controlador de consultas
             

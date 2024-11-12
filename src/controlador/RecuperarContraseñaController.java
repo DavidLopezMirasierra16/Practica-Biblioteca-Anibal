@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import modelo.SocioModelo;
 import vista.RecuperarContraseña;
 
@@ -16,7 +17,7 @@ import vista.RecuperarContraseña;
 public class RecuperarContraseñaController implements ActionListener{
     private RecuperarContraseña recuperar_vista;
     private SocioModelo modelo;
-    public RecuperarContraseñaController(){
+    public RecuperarContraseñaController() throws SQLException{
         this.modelo = new SocioModelo();
         this.recuperar_vista = new RecuperarContraseña();
         this.recuperar_vista.getBtnRecuperar().addActionListener(this);

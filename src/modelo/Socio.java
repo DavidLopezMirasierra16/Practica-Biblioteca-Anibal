@@ -11,6 +11,7 @@ package modelo;
 public class Socio {
     
     private int ID_Socios;
+    private String dni;
     private String nombre;
     private String apellidos;
     private String direccion;
@@ -20,8 +21,47 @@ public class Socio {
     private String cuenta_banco;
     private String ID_Biblioteca;
 
-    public Socio(int ID_Socios, String nombre, String apellidos, String direccion, String telefono, String correo, String fecha_alta, String cuenta_banco, String ID_Biblioteca) {
+    /**
+     * Este constructor sirve para consultar el socio con el ID.
+     * @param ID_Socios
+     * @param dni
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param telefono
+     * @param correo
+     * @param fecha_alta
+     * @param cuenta_banco
+     * @param ID_Biblioteca 
+     */
+    public Socio(int ID_Socios, String dni, String nombre, String apellidos, String direccion, String telefono, String correo, String fecha_alta, String cuenta_banco, String ID_Biblioteca) {
         this.ID_Socios = ID_Socios;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.fecha_alta = fecha_alta;
+        this.cuenta_banco = cuenta_banco;
+        this.ID_Biblioteca = ID_Biblioteca;
+    }
+
+    /**
+     * Este constructor sirve para agregar un socio sin necesidad de pasarle 
+     * el ID, ya que es autoincrementable en la BD.
+     * @param dni
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param telefono
+     * @param correo
+     * @param fecha_alta
+     * @param cuenta_banco
+     * @param ID_Biblioteca 
+     */
+    public Socio(String dni, String nombre, String apellidos, String direccion, String telefono, String correo, String fecha_alta, String cuenta_banco, String ID_Biblioteca) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
@@ -38,6 +78,14 @@ public class Socio {
 
     public void setID_Socios(int ID_Socios) {
         this.ID_Socios = ID_Socios;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getNombre() {

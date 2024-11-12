@@ -30,49 +30,49 @@ public class ControlLibros extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
-        btnSanciones = new javax.swing.JButton();
-        btnConsulta = new javax.swing.JButton();
-        btnAutor = new javax.swing.JButton();
-        btnPrestamos = new javax.swing.JButton();
+        btn_registrar_libros = new javax.swing.JButton();
+        btn_consulta_sanciones = new javax.swing.JButton();
+        btn_consulta_libros = new javax.swing.JButton();
+        btn_registrar_autor = new javax.swing.JButton();
+        btn_consultar_prestamos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Menú Libros");
 
-        btnRegistrar.setText("Registrar Libro");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar_libros.setText("Registrar Libro");
+        btn_registrar_libros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btn_registrar_librosActionPerformed(evt);
             }
         });
 
-        btnSanciones.setText("Consultar Sanciones");
-        btnSanciones.addActionListener(new java.awt.event.ActionListener() {
+        btn_consulta_sanciones.setText("Consultar Sanciones");
+        btn_consulta_sanciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSancionesActionPerformed(evt);
+                btn_consulta_sancionesActionPerformed(evt);
             }
         });
 
-        btnConsulta.setText("Consultar Libros");
-        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+        btn_consulta_libros.setText("Consultar Libros");
+        btn_consulta_libros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaActionPerformed(evt);
+                btn_consulta_librosActionPerformed(evt);
             }
         });
 
-        btnAutor.setText("Registrar Autor");
-        btnAutor.addActionListener(new java.awt.event.ActionListener() {
+        btn_registrar_autor.setText("Registrar Autor");
+        btn_registrar_autor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAutorActionPerformed(evt);
+                btn_registrar_autorActionPerformed(evt);
             }
         });
 
-        btnPrestamos.setText("Consultar Préstamos");
-        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
+        btn_consultar_prestamos.setText("Consultar Préstamos");
+        btn_consultar_prestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrestamosActionPerformed(evt);
+                btn_consultar_prestamosActionPerformed(evt);
             }
         });
 
@@ -84,11 +84,11 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addContainerGap(136, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPrestamos)
+                        .addComponent(btn_consulta_sanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_consulta_libros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_registrar_libros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_registrar_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_consultar_prestamos)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)
@@ -101,40 +101,40 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrar)
+                .addComponent(btn_registrar_libros)
                 .addGap(12, 12, 12)
-                .addComponent(btnConsulta)
+                .addComponent(btn_consulta_libros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSanciones)
+                .addComponent(btn_consulta_sanciones)
                 .addGap(12, 12, 12)
-                .addComponent(btnAutor)
+                .addComponent(btn_registrar_autor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPrestamos)
+                .addComponent(btn_consultar_prestamos)
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btn_registrar_librosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_librosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btn_registrar_librosActionPerformed
 
-    private void btnSancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSancionesActionPerformed
+    private void btn_consulta_sancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulta_sancionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSancionesActionPerformed
+    }//GEN-LAST:event_btn_consulta_sancionesActionPerformed
 
-    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+    private void btn_consulta_librosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consulta_librosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultaActionPerformed
+    }//GEN-LAST:event_btn_consulta_librosActionPerformed
 
-    private void btnAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutorActionPerformed
+    private void btn_registrar_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_autorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAutorActionPerformed
+    }//GEN-LAST:event_btn_registrar_autorActionPerformed
 
-    private void btnPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestamosActionPerformed
+    private void btn_consultar_prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultar_prestamosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrestamosActionPerformed
+    }//GEN-LAST:event_btn_consultar_prestamosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,34 +171,36 @@ public class ControlLibros extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnAutor() {
-        return btnAutor;
+    public JButton getBtn_consulta_libros() {
+        return btn_consulta_libros;
     }
 
-    public JButton getBtnConsulta() {
-        return btnConsulta;
+    public JButton getBtn_consulta_sanciones() {
+        return btn_consulta_sanciones;
     }
 
-    public JButton getBtnPrestamos() {
-        return btnPrestamos;
+    public JButton getBtn_consultar_prestamos() {
+        return btn_consultar_prestamos;
     }
 
-    public JButton getBtnRegistrar() {
-        return btnRegistrar;
+    public JButton getBtn_registrar_autor() {
+        return btn_registrar_autor;
     }
 
-    public JButton getBtnSanciones() {
-        return btnSanciones;
+    public JButton getBtn_registrar_libros() {
+        return btn_registrar_libros;
     }
+
+    
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAutor;
-    private javax.swing.JButton btnConsulta;
-    private javax.swing.JButton btnPrestamos;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnSanciones;
+    private javax.swing.JButton btn_consulta_libros;
+    private javax.swing.JButton btn_consulta_sanciones;
+    private javax.swing.JButton btn_consultar_prestamos;
+    private javax.swing.JButton btn_registrar_autor;
+    private javax.swing.JButton btn_registrar_libros;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

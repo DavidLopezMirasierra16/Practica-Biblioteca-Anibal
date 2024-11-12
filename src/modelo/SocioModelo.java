@@ -1,10 +1,12 @@
 package modelo;
 
 import controlador.BaseDatosController;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
@@ -15,6 +17,106 @@ import vista.RecuperarContraseña;
  */
 public class SocioModelo {
 
+    private BaseDatosController bd_controller;
+    
+    private Connection conexion;
+    private Statement sentencia;
+    private ResultSet resultado;
+    private PreparedStatement prepare;
+    private CallableStatement consultas_funciones;
+
+    public SocioModelo() throws SQLException {
+        this.bd_controller = new BaseDatosController();
+        this.conexion = this.bd_controller.conectar();
+    }
+    
+    //--------------------------------INSERTAR----------------------------------
+    
+    /**
+     * Nos crea un socio en funcion de los parámetros que nosotros le pasamos.
+     * @param dni
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param telefono
+     * @param correo
+     * @param fecha_alta
+     * @param cuenta_banco
+     * @param ID_Biblioteca
+     * @return 
+     */
+    public Socio crearSocio(String dni, String nombre, String apellidos, String direccion, String telefono, String correo, String fecha_alta, String cuenta_banco, String ID_Biblioteca){
+        Socio socio = new Socio(dni, nombre, apellidos, direccion, telefono, correo, fecha_alta, cuenta_banco, ID_Biblioteca);
+        
+        if (!comprobarDNI(dni)) {
+            ingresarUsuarioBd(socio);
+            return socio;
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Comprueba que un DNI no esté ya registrado.
+     * @param dni
+     * @return 
+     */
+    public boolean comprobarDNI(String dni){
+        try {
+            //this.bd_controller.conectarBd();
+            
+            String buscar_email = "SELECT dni FROM bd_biblioteca.socios WHERE dni=?;";
+            
+            prepare = conexion.prepareStatement(buscar_email);
+            
+            prepare.setString(1, dni);
+            
+            resultado = prepare.executeQuery();
+            
+            //Si me devueve algo será un true
+            return resultado.next();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        
+    }
+    
+    /**
+     * Nos inserta un socio en la BD.
+     * @param socio 
+     */
+    public void ingresarUsuarioBd(Socio socio){
+        try {
+            //this.bd_controller.conectarBd();
+
+            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (Dni, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+
+            prepare = conexion.prepareStatement(sentencia_slq);
+            
+            prepare.setString(1, socio.getDni());
+            prepare.setString(2, socio.getNombre());
+            prepare.setString(3, socio.getApellidos());
+            prepare.setString(4, socio.getDireccion());
+            prepare.setString(5, socio.getTelefono());
+            prepare.setString(6, socio.getCorreo());
+            prepare.setString(7, socio.getFecha_alta());
+            prepare.setString(8, socio.getCuenta_banco());
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Usuario " + socio.getNombre() + " agregado correctamente a la BD");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    //--------------------------------CONSULTAR---------------------------------
+    
     public void consultarSocios(JTable table) {
         String sql = "SELECT ID_Socios, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios";
         BaseDatosController baseDatosController = new BaseDatosController();
