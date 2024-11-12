@@ -30,6 +30,7 @@ public class AdministradorController implements ActionListener{
         this.menu_administrador_vista.getBtnConsulta().addActionListener(this);
         this.menu_administrador_vista.getBtnModificar().addActionListener(this);
         this.menu_administrador_vista.getBtnRegistrar().addActionListener(this);
+        this.menu_administrador_vista.getBtn_registrar_trabajador().addActionListener(this);
         //-----------------------------------------------
         this.menu_administrador_vista.setVisible(true);
     }
@@ -51,6 +52,9 @@ public class AdministradorController implements ActionListener{
             
         }else if (button == this.menu_administrador_vista.getBtnModificar()){
             //Controller editar socio
+            
+        }else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
+            //Controller registrar trabajador
             
         }
         

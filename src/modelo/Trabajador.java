@@ -10,22 +10,59 @@ package modelo;
  */
 public class Trabajador {
     
+    private int id_permiso;
+    private int id;
     private String nombre;
     private String apellido;
+    private String dni;
     private String fecha_nacimiento;
     private String correo;
     private String cuenta_banco;
     private String seguridad_social;
     private String localidad;
+    private String contraseña;
 
-    public Trabajador(String nombre, String apellido, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad) {
+    public Trabajador(int id_permiso, int id, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña) {
+        this.id_permiso = id_permiso;
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.dni = dni;
         this.fecha_nacimiento = fecha_nacimiento;
         this.correo = correo;
         this.cuenta_banco = cuenta_banco;
         this.seguridad_social = seguridad_social;
         this.localidad = localidad;
+        this.contraseña = contraseña;
+    }
+
+    public Trabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña) {
+        this.id_permiso = id_permiso;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.correo = correo;
+        this.cuenta_banco = cuenta_banco;
+        this.seguridad_social = seguridad_social;
+        this.localidad = localidad;
+        this.contraseña = contraseña;
+    }
+
+    public int getId_permiso() {
+        return id_permiso;
+    }
+
+    public void setId_permiso(int id_permiso) {
+        this.id_permiso = id_permiso;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -42,6 +79,14 @@ public class Trabajador {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getFecha_nacimiento() {
@@ -83,7 +128,13 @@ public class Trabajador {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-    
-    
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
     
 }
