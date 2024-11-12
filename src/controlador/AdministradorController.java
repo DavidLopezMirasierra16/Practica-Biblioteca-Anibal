@@ -6,8 +6,12 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.SocioModelo;
 import vista.MenuAdministrador;
+import vista.RegistroSocios;
 
 /**
  *
@@ -18,7 +22,7 @@ public class AdministradorController implements ActionListener{
     private MenuAdministrador menu_administrador_vista;
     private SocioModelo socio_modelo;
 
-    public AdministradorController(MenuAdministrador menu_administrador_vista, SocioModelo socio_modelo) {
+    public AdministradorController(MenuAdministrador menu_administrador_vista, SocioModelo socio_modelo) throws SQLException {
         //Clases
         this.menu_administrador_vista = menu_administrador_vista;
         this.socio_modelo = new SocioModelo();
@@ -36,8 +40,12 @@ public class AdministradorController implements ActionListener{
         Object button = e.getSource();
         
         if (button == this.menu_administrador_vista.getBtnRegistrar()) {
-            //COntrolador de registrar usuario
-            
+            try {
+                //COntrolador de registrar usuario
+                new RegistroSocioController(new RegistroSocios());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_administrador_vista.getBtnConsulta()){
             //Controller consultar socios
             

@@ -27,12 +27,12 @@
               <EmptySpace pref="136" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnSanciones" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnConsulta" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnRegistrar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnAutor" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="btn_consulta_sanciones" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_consulta_libros" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_registrar_libros" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_registrar_autor" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnPrestamos" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_consultar_prestamos" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="23" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -49,15 +49,15 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_registrar_libros" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnConsulta" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_consulta_libros" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnSanciones" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_consulta_sanciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnAutor" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_registrar_autor" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnPrestamos" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_consultar_prestamos" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -72,44 +72,44 @@
         <Property name="text" type="java.lang.String" value="Men&#xfa; Libros"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRegistrar">
+    <Component class="javax.swing.JButton" name="btn_registrar_libros">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar Libro"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_registrar_librosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSanciones">
+    <Component class="javax.swing.JButton" name="btn_consulta_sanciones">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Sanciones"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSancionesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consulta_sancionesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnConsulta">
+    <Component class="javax.swing.JButton" name="btn_consulta_libros">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Libros"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consulta_librosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAutor">
+    <Component class="javax.swing.JButton" name="btn_registrar_autor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar Autor"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAutorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_registrar_autorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPrestamos">
+    <Component class="javax.swing.JButton" name="btn_consultar_prestamos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Pr&#xe9;stamos"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrestamosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consultar_prestamosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

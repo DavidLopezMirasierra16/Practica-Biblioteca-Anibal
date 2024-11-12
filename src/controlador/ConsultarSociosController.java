@@ -6,6 +6,9 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.SocioModelo;
 import vista.ConsultarSocios;
 
@@ -15,7 +18,7 @@ import vista.ConsultarSocios;
 public class ConsultarSociosController implements ActionListener {
     private ConsultarSocios consultasocios_vista;
 
-    public ConsultarSociosController() {
+    public ConsultarSociosController() throws SQLException {
         this.consultasocios_vista = new ConsultarSocios();
         this.consultasocios_vista.getBtnBuscar().addActionListener(this);
         this.consultasocios_vista.getBtnReestablecer().addActionListener(this);
@@ -27,13 +30,17 @@ public class ConsultarSociosController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        SocioModelo sociosModelo = new SocioModelo();
-        if (e.getSource() == consultasocios_vista.getBtnBuscar()) {
-            String filtro = consultasocios_vista.getCbFiltro().getSelectedItem().toString();
-            String busqueda = consultasocios_vista.getTxtBusqueda().getText();
-            sociosModelo.filtrarSocios(consultasocios_vista, consultasocios_vista.getTablaSocios());
-        } else if (e.getSource() == consultasocios_vista.getBtnReestablecer()) {
-            sociosModelo.consultarSocios(consultasocios_vista.getTablaSocios());
+        try {
+            SocioModelo sociosModelo = new SocioModelo();
+            if (e.getSource() == consultasocios_vista.getBtnBuscar()) {
+                String filtro = consultasocios_vista.getCbFiltro().getSelectedItem().toString();
+                String busqueda = consultasocios_vista.getTxtBusqueda().getText();
+                sociosModelo.filtrarSocios(consultasocios_vista, consultasocios_vista.getTablaSocios());
+            } else if (e.getSource() == consultasocios_vista.getBtnReestablecer()) {
+                sociosModelo.consultarSocios(consultasocios_vista.getTablaSocios());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarSociosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
