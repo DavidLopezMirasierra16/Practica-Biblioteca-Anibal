@@ -5,10 +5,12 @@
 package modelo;
 
 import controlador.BaseDatosController;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +19,20 @@ import javax.swing.table.DefaultTableModel;
  * @author pablo
  */
 public class SancionesModelo {
-        public void consultarSanciones(JTable table) {
+    
+    private BaseDatosController bd_controller;
+    private Connection conexion;
+    private Statement sentencia;
+    private ResultSet resultado;
+    private PreparedStatement prepare;
+    private CallableStatement consultas_funciones;
+    
+    public SancionesModelo() throws SQLException {
+        this.bd_controller = new BaseDatosController();
+        this.conexion = this.bd_controller.conectar();
+    }
+    
+    public void consultarSanciones(JTable table) {
         String sql = "SELECT * FROM sanciones";
         BaseDatosController baseDatosController = new BaseDatosController();
 
@@ -50,6 +65,30 @@ public class SancionesModelo {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    
+        public void ingresarSancionBD(Sanciones sancion){
+
+        try {
+            //this.bd_controller.conectarBd();
+
+            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (ID_Socio_FK, ID_Prestamo_FK, Tipo_Sancion)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+
+            prepare = conexion.prepareStatement(sentencia_slq);
+            
+            prepare.setInt(1, sancion.getID_Socio_FK());
+            prepare.setInt(2, sancion.getID_Prestamo_FK());
+            prepare.setString(3, sancion.getTipo_Sancion());
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Sanción agregada correctamente a la BD");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }
