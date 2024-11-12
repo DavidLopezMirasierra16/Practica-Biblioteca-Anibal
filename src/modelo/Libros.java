@@ -10,6 +10,16 @@ public class Libros {
     private String editorial;
     private int idAutor; // Se ajusta a `idAutor` (ID_AUTOR)
 
+    /**
+     * Este consulta los libros
+     * @param idLibros
+     * @param titulo
+     * @param isbn
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor 
+     */
     public Libros(int idLibros, String titulo, String isbn, String genero, String year, String editorial, int idAutor) {
         this.idLibros = idLibros;
         this.titulo = titulo;
@@ -20,6 +30,26 @@ public class Libros {
         this.idAutor = idAutor;
     }
 
+    /**
+     * Este sirve para ingesar los datos.
+     * @param titulo
+     * @param isbn
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor 
+     */
+    public Libros(String titulo, String isbn, String genero, String year, String editorial, int idAutor) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.genero = genero;
+        this.year = year;
+        this.editorial = editorial;
+        this.idAutor = idAutor;
+    }
+
+    
+    
     public int getIdLibros() {
         return idLibros;
     }

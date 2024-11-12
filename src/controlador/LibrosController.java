@@ -6,7 +6,11 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vista.ControlLibros;
+import vista.RegistrarAutor;
 
 /**
  *
@@ -41,7 +45,11 @@ public class LibrosController implements ActionListener{
         }else if (button == this.menu_libros_vista.getBtn_consulta_sanciones()) {
             
         }else if (button == this.menu_libros_vista.getBtn_registrar_autor()) {
-            
+            try {
+                new RegistroAutorController(new RegistrarAutor());
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_libros_vista.getBtn_consultar_prestamos()) {
             
         }
