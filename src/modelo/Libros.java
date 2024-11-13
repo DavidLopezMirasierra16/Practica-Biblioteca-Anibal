@@ -2,60 +2,28 @@ package modelo;
 
 public class Libros {
     
-    private int idLibros; // Se ajusta a `idLibros` (ID_Libros)
+    private int ISBN; // Se ajusta a `idLibros` (ID_Libros)
     private String titulo;
-    private String isbn;
     private String genero;
     private String year;
     private String editorial;
     private int idAutor; // Se ajusta a `idAutor` (ID_AUTOR)
 
-    /**
-     * Este consulta los libros
-     * @param idLibros
-     * @param titulo
-     * @param isbn
-     * @param genero
-     * @param year
-     * @param editorial
-     * @param idAutor 
-     */
-    public Libros(int idLibros, String titulo, String isbn, String genero, String year, String editorial, int idAutor) {
-        this.idLibros = idLibros;
+    public Libros(int ISBN, String titulo, String genero, String year, String editorial, int idAutor) {
+        this.ISBN = ISBN;
         this.titulo = titulo;
-        this.isbn = isbn;
         this.genero = genero;
         this.year = year;
         this.editorial = editorial;
         this.idAutor = idAutor;
     }
 
-    /**
-     * Este sirve para ingesar los datos.
-     * @param titulo
-     * @param isbn
-     * @param genero
-     * @param year
-     * @param editorial
-     * @param idAutor 
-     */
-    public Libros(String titulo, String isbn, String genero, String year, String editorial, int idAutor) {
-        this.titulo = titulo;
-        this.isbn = isbn;
-        this.genero = genero;
-        this.year = year;
-        this.editorial = editorial;
-        this.idAutor = idAutor;
-    }
-
-    
-    
     public int getIdLibros() {
-        return idLibros;
+        return ISBN;
     }
 
     public void setIdLibros(int idLibros) {
-        this.idLibros = idLibros;
+        this.ISBN = idLibros;
     }
 
     public String getTitulo() {
@@ -64,14 +32,6 @@ public class Libros {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getGenero() {
@@ -105,4 +65,15 @@ public class Libros {
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
-}
+
+    /**
+     * Este consulta los libros
+     * @param idLibros
+     * @param titulo
+     * @param isbn
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor 
+     */
+    }

@@ -1,45 +1,130 @@
 package modelo;
 
 import controlador.BaseDatosController;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.sql.*;
 import vista.ConsultarLibros;
 
 public class LibrosModelo {
 
-    // Método para consultar todos los libros y mostrar en la tabla
+    private BaseDatosController bd_controller;
+    private Connection conexion;
+    private PreparedStatement prepare;
+    private ResultSet resultado;
+
+    public LibrosModelo() throws SQLException {
+        this.bd_controller = new BaseDatosController();
+        this.conexion = this.bd_controller.conectar();
+    }
+
+    /**
+     * Registra un libro en la base de datos si no existe previamente.
+     * 
+     * @param ISBN El ISBN del libro
+     * @param titulo El título del libro
+     * @param genero El género del libro
+     * @param year El año de publicación del libro
+     * @param editorial La editorial del libro
+     * @param idAutor El ID del autor del libro
+     * @return el libro registrado o null si ya existe
+     */
+    public Libros registrarLibro(int ISBN, String titulo, String genero, String year, String editorial, int idAutor) {
+        Libros libro = new Libros(ISBN, titulo, genero, year, editorial, idAutor);
+
+        if (!comprobarLibroExistente(ISBN)) {
+            ingresarLibroEnBd(libro);
+            return libro;
+        }
+        
+        return null; // Retorna null si el libro ya está registrado
+    }
+
+    /**
+     * Verifica si un libro con el ISBN especificado ya está registrado en la base de datos.
+     * 
+     * @param ISBN El ISBN del libro
+     * @return true si el libro existe, false en caso contrario
+     */
+    public boolean comprobarLibroExistente(int ISBN) {
+        try {
+            String query = "SELECT ISBN_Libros FROM bd_biblioteca.libros WHERE ISBN_Libros = ?;";
+            prepare = conexion.prepareStatement(query);
+            prepare.setInt(1, ISBN);
+            
+            resultado = prepare.executeQuery();
+            
+            return resultado.next(); // Retorna true si encuentra el libro
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Inserta un nuevo libro en la base de datos.
+     * 
+     * @param libro el objeto Libros que queremos registrar en la base de datos
+     */
+    public void ingresarLibroEnBd(Libros libro) {
+        try {
+            String sql = "INSERT INTO bd_biblioteca.libros (ISBN_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR) " +
+                         "VALUES (?, ?, ?, ?, ?, ?);";
+
+            prepare = conexion.prepareStatement(sql);
+            prepare.setInt(1, libro.getIdLibros());
+            prepare.setString(2, libro.getTitulo());
+            prepare.setString(3, libro.getGenero());
+            prepare.setString(4, libro.getYear());
+            prepare.setString(5, libro.getEditorial());
+            prepare.setInt(6, libro.getIdAutor());
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Libro '" + libro.getTitulo() + "' agregado correctamente a la BD");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Métodos adicionales para consultar y filtrar libros...
+    
     public void consultarLibros(JTable table) {
-        String sql = "SELECT ID_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR FROM libros";
+        String sql = "CALL mostrarLibrosConUbicacion()"; // Llamamos al procedimiento almacenado
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-            // Crear un modelo para la tabla y limpiar las filas actuales
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
 
-            // Agregar las filas a la tabla
             while (rs.next()) {
                 Object[] row = {
-                    rs.getInt("ID_Libros"),
+                    rs.getInt("ISBN_Libros"),
                     rs.getString("Titulo"),
                     rs.getString("Genero"),
-                    rs.getString("Year"),
+                    rs.getString("Anio"),
                     rs.getString("Editorial"),
-                    rs.getInt("ID_AUTOR")
+                    rs.getInt("ID_Autor_FK"),
+                    rs.getString("Estanteria"),
+                    rs.getString("Seccion"),
+                    rs.getString("Piso"),
+                    rs.getInt("Cantidad")
                 };
                 model.addRow(row);
             }
 
-            // Establecer el modelo en la tabla
             table.setModel(model);
 
-            // No permitir redimensionar las columnas
             for (int i = 0; i < table.getColumnCount(); i++) {
-                table.getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
+                table.getColumnModel().getColumn(i).setResizable(false);
             }
 
         } catch (SQLException e) {
@@ -47,66 +132,67 @@ public class LibrosModelo {
         }
     }
 
-    // Método para filtrar libros según el filtro y la búsqueda
+
     public void filtrarLibros(ConsultarLibros consultarLibros) {
-        String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
-        String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
+    String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
+    String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
 
-        if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
-            System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
-            return;
-        }
+    if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
+        System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
+        return;
+    }
 
-        String columna = "";
-        switch (filtro) {
-            case "Nombre":
-                columna = "Titulo";
-                break;
-            case "Editorial":
-                columna = "Editorial";
-                break;
-            case "Autor":
-                columna = "ID_AUTOR";
-                break;
-        }
+    String columna = "";
+    switch (filtro) {
+        case "Nombre":
+            columna = "Titulo";
+            break;
+        case "Editorial":
+            columna = "Editorial";
+            break;
+        case "Autor":
+            columna = "ID_AUTOR";
+            break;
+    }
 
-        String sql = "SELECT ID_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR FROM libros WHERE " + columna + " LIKE ?";
+    String sql = "CALL mostrarLibrosConUbicacion()"; // Llamada al procedimiento con ubicación
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-            stmt.setString(1, "%" + busqueda + "%");  // Usamos % para buscar coincidencias parciales
+            DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
+            model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
-                model.setRowCount(0); // Limpiar las filas actuales antes de filtrar
-
-                // Agregar las filas filtradas a la tabla
-                while (rs.next()) {
+            while (rs.next()) {
+                // Filtramos las filas basadas en el filtro seleccionado y la búsqueda
+                if (rs.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
                     Object[] row = {
-                        rs.getInt("ID_Libros"),
+                        rs.getInt("ISBN_Libros"),
                         rs.getString("Titulo"),
                         rs.getString("Genero"),
-                        rs.getString("Year"),
+                        rs.getString("Anio"),
                         rs.getString("Editorial"),
-                        rs.getInt("ID_AUTOR")
+                        rs.getInt("ID_Autor_FK"),
+                        rs.getString("Estanteria"),
+                        rs.getString("Seccion"),
+                        rs.getString("Piso"),
+                        rs.getInt("Cantidad")
                     };
                     model.addRow(row);
                 }
+            }
 
-                // Establecer el modelo en la tabla
-                consultarLibros.getTablaLibros().setModel(model);
+            consultarLibros.getTablaLibros().setModel(model);
 
-                // No permitir redimensionar las columnas
-                for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
-                    consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
-                }
-
+            for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
+                consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }

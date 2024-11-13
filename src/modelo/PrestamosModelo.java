@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import controlador.BaseDatosController;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarPrestamos;
@@ -18,6 +19,104 @@ import vista.ConsultarPrestamos;
  * @author pablo
  */
 public class PrestamosModelo {
+    
+    private BaseDatosController bd_controller;
+    private Connection conexion;
+    private PreparedStatement prepare;
+    private ResultSet resultado;
+
+    public PrestamosModelo() throws SQLException {
+        this.bd_controller = new BaseDatosController();
+        this.conexion = this.bd_controller.conectar();
+    }
+
+    /**
+     * Registra un préstamo en la base de datos.
+     * @param ID_Libro_FK ID del libro
+     * @param ID_Socio_FK ID del socio
+     * @param Fecha_Prestamo Fecha del préstamo
+     * @param Fecha_Devolucion Fecha de devolución prevista
+     * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
+     */
+    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
+        if (!comprobarDisponibilidadLibro(ID_Libro_FK) && comprobarLimitePrestamos(ID_Socio_FK)) {
+            Prestamos prestamo = new Prestamos(0, ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo, Fecha_Devolucion); // ID_Prestamo = 0 ya que será autogenerado
+            ingresarPrestamoEnBd(prestamo);
+            return prestamo;
+        }
+        
+        return null; // Retorna null si el libro ya está prestado o el socio tiene 3 préstamos activos
+    }
+
+    /**
+     * Verifica si un libro está disponible para préstamo.
+     * @param ID_Libro_FK ID del libro a verificar
+     * @return true si el libro está disponible, false si ya está prestado
+     */
+    public boolean comprobarDisponibilidadLibro(int ID_Libro_FK) {
+        try {
+            String query = "SELECT * FROM bd_biblioteca.prestamos WHERE ID_Libro_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            prepare = conexion.prepareStatement(query);
+            prepare.setInt(1, ID_Libro_FK);
+            
+            resultado = prepare.executeQuery();
+            
+            return !resultado.next(); // Retorna true si no encuentra un préstamo activo para el libro
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Verifica si un socio tiene menos de 3 préstamos activos.
+     * @param ID_Socio_FK ID del socio a verificar
+     * @return true si el socio tiene menos de 3 préstamos activos, false si ya tiene 3
+     */
+    public boolean comprobarLimitePrestamos(int ID_Socio_FK) {
+        try {
+            String query = "SELECT COUNT(*) AS total_prestamos FROM bd_biblioteca.prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            prepare = conexion.prepareStatement(query);
+            prepare.setInt(1, ID_Socio_FK);
+            
+            resultado = prepare.executeQuery();
+            
+            if (resultado.next()) {
+                int totalPrestamos = resultado.getInt("total_prestamos");
+                return totalPrestamos < 3; // Retorna true si el socio tiene menos de 3 préstamos
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false; // Retorna false en caso de error o si ya tiene 3 préstamos
+    }
+
+    /**
+     * Inserta un préstamo en la base de datos.
+     * @param prestamo el objeto Prestamos que queremos registrar en la base de datos
+     */
+    public void ingresarPrestamoEnBd(Prestamos prestamo) {
+        try {
+            String sql = "INSERT INTO bd_biblioteca.prestamos (ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo, Fecha_Devolucion)" +
+                         "VALUES (?, ?, ?, ?);";
+
+            prepare = conexion.prepareStatement(sql);
+            prepare.setInt(1, prestamo.getID_Libro_FK());
+            prepare.setInt(2, prestamo.getID_Socio_FK());
+            prepare.setDate(3, new java.sql.Date(prestamo.getFecha_Prestamo().getTime()));
+            prepare.setDate(4, new java.sql.Date(prestamo.getFecha_Devolucion().getTime()));
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Préstamo registrado correctamente para el libro con ID: " + prestamo.getID_Libro_FK());
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     // Método para consultar todos los libros y mostrar en la tabla
     public void consultarPrestamos(JTable table) {
         String sql = "SELECT * FROM prestamos";
