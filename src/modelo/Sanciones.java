@@ -23,6 +23,12 @@ public class Sanciones {
         this.Tipo_Sancion = Tipo_Sancion;
     }
 
+    public Sanciones(int ID_Socio_FK, int ID_Prestamo_FK, String Tipo_Sancion) {
+        this.ID_Socio_FK = ID_Socio_FK;
+        this.ID_Prestamo_FK = ID_Prestamo_FK;
+        this.Tipo_Sancion = Tipo_Sancion;
+    }
+
     public int getID_Sancion() {
         return ID_Sancion;
     }

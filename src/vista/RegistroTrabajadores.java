@@ -46,6 +46,8 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
         txt_seguridad_social = new javax.swing.JTextField();
         txt_localidad = new javax.swing.JTextField();
         btn_guardar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txt_dni = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +69,8 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
         jLabel8.setText("Localidad:");
 
         btn_guardar.setText("Guardar");
+
+        jLabel9.setText("DNI");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +111,11 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
                             .addComponent(txt_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel1)
-                            .addGap(17, 17, 17))))
+                            .addGap(17, 17, 17))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
@@ -123,6 +131,10 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -145,7 +157,7 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
                     .addComponent(txt_localidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_guardar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,6 +165,14 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
     
     public JButton getBtn_guardar() {
         return btn_guardar;
+    }
+
+    public JTextField getTxt_dni() {
+        return txt_dni;
+    }
+
+    public void setTxt_dni(JTextField txt_dni) {
+        this.txt_dni = txt_dni;
     }
     /**
      * @param args the command line arguments
@@ -261,9 +281,11 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_cuenta;
+    private javax.swing.JTextField txt_dni;
     private javax.swing.JTextField txt_localidad;
     private javax.swing.JTextField txt_nacimiento;
     private javax.swing.JTextField txt_nombre;
