@@ -38,9 +38,9 @@ public class PrestamosModelo {
      * @param Fecha_Devolucion Fecha de devolución prevista
      * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
      */
-    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
+    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo) {
         if (!comprobarDisponibilidadLibro(ID_Libro_FK) && comprobarLimitePrestamos(ID_Socio_FK)) {
-            Prestamos prestamo = new Prestamos(0, ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo, Fecha_Devolucion); // ID_Prestamo = 0 ya que será autogenerado
+            Prestamos prestamo = new Prestamos(0, ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo); // ID_Prestamo = 0 ya que será autogenerado
             ingresarPrestamoEnBd(prestamo);
             return prestamo;
         }

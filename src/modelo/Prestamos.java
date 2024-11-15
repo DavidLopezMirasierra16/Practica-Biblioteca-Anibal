@@ -32,6 +32,13 @@ public class Prestamos {
         this.Fecha_Devolucion = Fecha_Devolucion;
     }
 
+    public Prestamos(int ID_Prestamo, int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo) {
+        this.ID_Prestamo = ID_Prestamo;
+        this.ID_Libro_FK = ID_Libro_FK;
+        this.ID_Socio_FK = ID_Socio_FK;
+        this.Fecha_Prestamo = Fecha_Prestamo;
+    }
+
     public int getID_Prestamo() {
         return ID_Prestamo;
     }
