@@ -6,7 +6,14 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.TrabajadorModelo;
 import vista.Login;
+import vista.MenuAdministrador;
+import vista.MenuAdministrativo;
 
 /**
  *
@@ -15,10 +22,12 @@ import vista.Login;
 public class LoginController implements ActionListener{
  
     private Login login_vista;
+    private TrabajadorModelo trabajador_modelo;
     
-    public LoginController() {
+    public LoginController() throws SQLException {
         //Clases
         this.login_vista = new Login();
+        this.trabajador_modelo = new TrabajadorModelo();
         //Botones
         this.login_vista.getBtnIniciar().addActionListener(this);
         this.login_vista.getBtnRecuperar1().addActionListener(this);
@@ -33,12 +42,33 @@ public class LoginController implements ActionListener{
         
         if (button == this.login_vista.getBtnIniciar()) {
             //Controller inciar
+            int id = this.trabajador_modelo.comporbarRolFuncion(this.login_vista.getTxt_usuario().getText(), this.login_vista.getTxt_contraseña().getText());
+            
+            if (id>0) {
+                try {
+                    mostrarVentana(id);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
+            }
             
         }
         
         if (button == this.login_vista.getBtnRecuperar1()){
             //Controller recuperar cuenta
             
+        }
+        
+    }
+    
+    public void mostrarVentana(int id) throws SQLException{
+        
+        if (id==1) {
+            new AdministradorController(new MenuAdministrador());
+        }else{
+            new AdministrativoController(new MenuAdministrativo());
         }
         
     }

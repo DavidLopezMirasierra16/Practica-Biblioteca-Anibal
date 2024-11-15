@@ -118,4 +118,30 @@ public class TrabajadorModelo {
         }
     }
     
+    public int comporbarRolFuncion(String nombre, String contraseña){
+        
+        int id_trabajador = 0;
+        
+        try {
+            //this.bd_controller.conectarBd();
+            
+            String comprobar_rol = "{? = call obtener_id_trabajador(?, ?)}";
+            
+            consultas_funciones = conexion.prepareCall(comprobar_rol);
+            
+            consultas_funciones.registerOutParameter(1, Integer.BYTES);
+            consultas_funciones.setString(2, nombre);
+            consultas_funciones.setString(3, contraseña);
+
+            consultas_funciones.execute();
+            
+            id_trabajador = consultas_funciones.getInt(1);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id_trabajador;
+        
+    }
+    
 }

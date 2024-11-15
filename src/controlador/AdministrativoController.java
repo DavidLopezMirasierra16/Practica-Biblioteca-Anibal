@@ -22,9 +22,9 @@ public class AdministrativoController implements ActionListener{
     private LibrosModelo libros_modelo;
     private SocioModelo socio_modelo;
 
-    public AdministrativoController() throws SQLException {
+    public AdministrativoController(MenuAdministrativo menu_administrativo_vista) throws SQLException {
         //Clases
-        this.menu_administrativo_vista = new MenuAdministrativo();
+        this.menu_administrativo_vista = menu_administrativo_vista;
         this.libros_modelo = new LibrosModelo();
         this.socio_modelo = new SocioModelo();
         //Botones

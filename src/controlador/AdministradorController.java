@@ -22,10 +22,10 @@ public class AdministradorController implements ActionListener{
     private MenuAdministrador menu_administrador_vista;
     private SocioModelo socio_modelo;
 
-    public AdministradorController(MenuAdministrador menu_administrador_vista, SocioModelo socio_modelo) throws SQLException {
+    public AdministradorController(MenuAdministrador menu_administrador_vista/*, SocioModelo socio_modelo*/) throws SQLException {
         //Clases
         this.menu_administrador_vista = menu_administrador_vista;
-        this.socio_modelo = new SocioModelo();
+        //this.socio_modelo = new SocioModelo();
         //Botones
         this.menu_administrador_vista.getBtnConsulta().addActionListener(this);
         this.menu_administrador_vista.getBtnModificar().addActionListener(this);
