@@ -1,24 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
+import modelo.Libros;
 import modelo.LibrosModelo;
 import vista.RegistrarLibro;
 
 /**
- *
- * @author pablo
+ * Controlador para el registro de libros.
  */
-public class RegistroLibroController implements ActionListener{
+public class RegistroLibroController implements ActionListener {
     private LibrosModelo modelo_libros;
     private RegistrarLibro registro_libro_vista;
-    
+
     public RegistroLibroController(RegistrarLibro registro_libro_vista) throws SQLException{
         //Clases
         this.modelo_libros = new LibrosModelo();
@@ -94,14 +91,8 @@ public class RegistroLibroController implements ActionListener{
         
         if (this.registro_libro_vista.getTxt_autor().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un autor. \n";
-            resultado = false;
         }
-
-        if (!resultado) {
-            JOptionPane.showMessageDialog(registro_libro_vista, mensaje, "Faltan datos", JOptionPane.ERROR_MESSAGE);
-        }
-
+        
         return resultado;
     }
-    
 }

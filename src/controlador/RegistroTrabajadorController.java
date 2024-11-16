@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -11,59 +7,66 @@ import javax.swing.JOptionPane;
 import modelo.TrabajadorModelo;
 import vista.RegistroTrabajadores;
 
-/**
- *
- * @author pablo
- */
-public class RegistroTrabajadorController implements ActionListener{
-    private TrabajadorModelo trabajadores_modelo;
-    private RegistroTrabajadores registrotrabajadores_vista;
+public class RegistroTrabajadorController implements ActionListener {
     
-    public RegistroTrabajadorController(RegistroTrabajadores registrotrabajadores_vista) throws SQLException{
-        //Clases
-        this.trabajadores_modelo = new TrabajadorModelo();
-        this.registrotrabajadores_vista = registrotrabajadores_vista;
-        //Botones
-        this.registrotrabajadores_vista.getBtn_guardar().addActionListener(this);
-        //-------------------------------------------------
-        this.registrotrabajadores_vista.setVisible(true);
+    private TrabajadorModelo trabajadorModelo;
+    private RegistroTrabajadores registroTrabajadoresVista;
+
+    public RegistroTrabajadorController(RegistroTrabajadores registroTrabajadoresVista) throws SQLException {
+        // Inicialización de la clase de modelo y vista
+        this.trabajadorModelo = new TrabajadorModelo();
+        this.registroTrabajadoresVista = registroTrabajadoresVista;
+        
+        // Configuración del botón de guardar
+        this.registroTrabajadoresVista.getBtn_guardar().addActionListener(this);
+        
+        // Mostrar la vista
+        this.registroTrabajadoresVista.setVisible(true);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // Acción de guardar trabajador
+
         agregarDatos();
-    }
-    
-    /**
-     * Funcion que agrega todos los datos que escribimos.
+    }          
+
+     /* Método que agrega los datos del trabajador a la base de datos.
      */
-    public void agregarDatos(){
+    public void agregarDatos() {
+        
+        // Validación de datos
         if (validarDatos()) {
-            
-            int id = this.trabajadores_modelo.añadirPermiso(this.registrotrabajadores_vista.getCombo_roles().getSelectedItem().toString());
-            
-            if (this.trabajadores_modelo.crearTrabajador(id, 
-                    this.registrotrabajadores_vista.getTxt_nombre().getText(), 
-                    this.registrotrabajadores_vista.getTxt_apellidos().getText(), 
-                    this.registrotrabajadores_vista.getTxt_dni().getText(), 
-                    this.registrotrabajadores_vista.getTxt_nacimiento().getText(), 
-                    this.registrotrabajadores_vista.getTxt_correo().getText(), 
-                    this.registrotrabajadores_vista.getTxt_cuenta().getText(), 
-                    this.registrotrabajadores_vista.getTxt_seguridad_social().getText(), 
-                    this.registrotrabajadores_vista.getTxt_localidad().getText(), 
-                    this.registrotrabajadores_vista.getTxt_contraseña().getText())!=null) {
-                JOptionPane.showMessageDialog(registrotrabajadores_vista, "Trabajador con dni " + this.registrotrabajadores_vista.getTxt_dni().getText() + " registrado correctamente", "Trabajador dado de alta", JOptionPane.INFORMATION_MESSAGE);
-                this.registrotrabajadores_vista.dispose();
-            }else{
-                JOptionPane.showMessageDialog(registrotrabajadores_vista, "Trabajador con dni " + this.registrotrabajadores_vista.getTxt_dni().getText() + " ya registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
+            String nombre = this.registroTrabajadoresVista.getTxt_nombre().getText();
+            String apellido = this.registroTrabajadoresVista.getTxt_apellidos().getText();
+            String dni = this.registroTrabajadoresVista.getTxt_dni().getText();
+            String fechaNacimiento = this.registroTrabajadoresVista.getTxt_nacimiento().getText();
+            String correo = this.registroTrabajadoresVista.getTxt_correo().getText();
+            String cuentaBanco = this.registroTrabajadoresVista.getTxt_cuenta().getText();
+            String seguridadSocial = this.registroTrabajadoresVista.getTxt_seguridad_social().getText();
+            String localidad = this.registroTrabajadoresVista.getTxt_localidad().getText();
+            String contraseña = "contraseñaEjemplo"; // Cambiar por una fuente segura
+
+            int idPermiso = obtenerIdPermiso();
+
+            if (this.trabajadorModelo.crearTrabajador(idPermiso, nombre, apellido, dni, fechaNacimiento, correo, cuentaBanco, seguridadSocial, localidad, contraseña) != null) {
+                JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador " + nombre + " registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                this.registroTrabajadoresVista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(registroTrabajadoresVista, "El DNI " + dni + " ya está registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         }
     }
     
     /**
+
      * Funcion que nos valida si los campos estan correctamente rellenados.
      * @return 
+     * Método que valida los datos ingresados en la vista.
+     * @return true si los datos son válidos, false si no lo son.
      */
     public boolean validarDatos() {
         boolean resultado = true;
@@ -115,13 +118,11 @@ public class RegistroTrabajadorController implements ActionListener{
             mensaje = mensaje + "Debe introducir una contraseña. \n";
             resultado = false;
         }
-        
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(registrotrabajadores_vista, mensaje, "Faltan datos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(registroTrabajadoresVista, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
         }
 
         return resultado;
     }
-    
 }

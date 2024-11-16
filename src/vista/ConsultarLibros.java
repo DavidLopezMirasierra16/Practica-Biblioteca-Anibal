@@ -40,6 +40,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
         cbFiltro = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         btnReestablecer = new javax.swing.JButton();
+        btnPrestar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,11 +49,11 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ISBN", "Título", "Género", "Año", "Editorial", "Autor"
+                "ISBN", "Título", "Género", "Año", "Editorial", "Autor", "Estantería", "Sección", "Piso", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -63,13 +64,25 @@ public class ConsultarLibros extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaLibros);
         if (tablaLibros.getColumnModel().getColumnCount() > 0) {
             tablaLibros.getColumnModel().getColumn(0).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(0).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(1).setResizable(false);
             tablaLibros.getColumnModel().getColumn(1).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(2).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(2).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(3).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(3).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(4).setResizable(false);
-            tablaLibros.getColumnModel().getColumn(4).setPreferredWidth(125);
+            tablaLibros.getColumnModel().getColumn(4).setPreferredWidth(170);
             tablaLibros.getColumnModel().getColumn(5).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(5).setPreferredWidth(170);
+            tablaLibros.getColumnModel().getColumn(6).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(6).setPreferredWidth(170);
+            tablaLibros.getColumnModel().getColumn(7).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(7).setPreferredWidth(170);
+            tablaLibros.getColumnModel().getColumn(8).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(8).setPreferredWidth(170);
+            tablaLibros.getColumnModel().getColumn(9).setResizable(false);
+            tablaLibros.getColumnModel().getColumn(9).setPreferredWidth(170);
         }
 
         jLabel1.setText("Filtrar Por");
@@ -82,14 +95,16 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
         btnReestablecer.setText("Reestablecer");
 
+        btnPrestar.setText("Prestar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,11 +114,13 @@ public class ConsultarLibros extends javax.swing.JFrame {
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(btnReestablecer))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(17, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPrestar)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,9 +135,11 @@ public class ConsultarLibros extends javax.swing.JFrame {
                         .addComponent(btnBuscar)
                         .addComponent(btnReestablecer))
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrestar)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,6 +184,14 @@ public class ConsultarLibros extends javax.swing.JFrame {
         return cbFiltro;
     }
 
+    public JButton getBtnPrestar() {
+        return btnPrestar;
+    }
+
+    public void setBtnPrestar(JButton btnPrestar) {
+        this.btnPrestar = btnPrestar;
+    }
+
     public JButton getBtnReestablecer() {
         return btnReestablecer;
     }
@@ -205,6 +232,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnPrestar;
     private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
