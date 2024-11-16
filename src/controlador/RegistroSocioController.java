@@ -29,6 +29,7 @@ public class RegistroSocioController implements ActionListener{
         this.biblioteca_modelo = new BibliotecaModelo();
         //Botones
         this.registro_socio_vista.getBtn_guardar().addActionListener(this);
+        this.registro_socio_vista.getTxt_alta().setText(this.socio_modelo.fecha());
         //------------------------------------------
         this.registro_socio_vista.setVisible(true);
     }

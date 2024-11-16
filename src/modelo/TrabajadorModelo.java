@@ -46,6 +46,8 @@ public class TrabajadorModelo {
             // Codificar el hash en Base64 para hacerlo legible
             String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
 
+            contraseña = hashedPassword;
+            
             System.out.println("Contraseña hasheada: " + hashedPassword);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -92,11 +94,11 @@ public class TrabajadorModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (ID_Permisos_FK, Nombre, Apellidos, DNI, Nacimiento, Correo, Cuenta_bancaria, SeguridadSocial, Localidad, Contraseña)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.trabajadores (ID_Permisos_FK, Nombre, Apellidos, DNI, Nacimiento, Correo, Cuenta_bancaria, SeguridadSocial, Localidad, Contraseña)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
-            prepare.setString(1, Integer.toString(trabajador.getId_permiso()));
+            prepare.setInt(1, trabajador.getId_permiso());
             prepare.setString(2, trabajador.getNombre());
             prepare.setString(3, trabajador.getApellido());
             prepare.setString(4, trabajador.getDni());
@@ -106,6 +108,32 @@ public class TrabajadorModelo {
             prepare.setString(8, trabajador.getSeguridad_social());
             prepare.setString(9, trabajador.getLocalidad());
             prepare.setString(10, trabajador.getContraseña());
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Trabajador " + trabajador.getNombre() + " agregado correctamente a la BD");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    /**
+     * Nos ingresa la contraseña en la bd de contraseñas
+     * @param trabajador 
+     */
+    public void ingresarContraseña(Trabajador trabajador){
+        try {
+            //this.bd_controller.conectarBd();
+
+            String sentencia_slq = "INSERT INTO bd_biblioteca.mbappe (Contrasenia, ID_Trabajador_FK)" + "VALUES (?, ?);";
+
+            prepare = conexion.prepareStatement(sentencia_slq);
+            
+            prepare.setString(1, trabajador.getContraseña());
+            prepare.setInt(2, trabajador.getId());
             
             int ejecutar = prepare.executeUpdate();
             
@@ -131,6 +159,22 @@ public class TrabajadorModelo {
             
             consultas_funciones.registerOutParameter(1, Integer.BYTES);
             consultas_funciones.setString(2, nombre);
+            
+            try {
+                // Obtener una instancia del algoritmo SHA-256
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+                // Convertir la contraseña a un arreglo de bytes
+                byte[] hashBytes = digest.digest(contraseña.getBytes());
+
+                // Codificar el hash en Base64 para hacerlo legible
+                String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
+
+                contraseña = hashedPassword;
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            
             consultas_funciones.setString(3, contraseña);
 
             consultas_funciones.execute();
@@ -141,6 +185,33 @@ public class TrabajadorModelo {
             ex.printStackTrace();
         }
         return id_trabajador;
+        
+    }
+    
+    /**
+     * Funcion que nos recoje el id del rol que se seleccion
+     */ 
+    public int añadirPermiso(String rol){
+        int id = 0;
+        
+        try {
+            
+            String comprobar_id_biblioteca = "SELECT ID_Pernisos from bd_biblioteca.permisos WHERE Permiso = ?;";
+            
+            prepare=conexion.prepareStatement(comprobar_id_biblioteca);
+            
+            prepare.setString(1, rol);
+            
+            resultado = prepare.executeQuery();
+            
+            if (resultado.next()) {
+                id=resultado.getInt("ID_Pernisos");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id;
         
     }
     

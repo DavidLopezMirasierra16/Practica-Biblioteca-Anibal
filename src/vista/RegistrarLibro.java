@@ -43,9 +43,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
         txt_genero = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_año = new javax.swing.JTextField();
-        combo_autores = new javax.swing.JComboBox<>();
+        txt_autor = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Registro de Libros");
@@ -63,8 +63,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel3.setText("Género:");
 
         jLabel4.setText("Año:");
-
-        combo_autores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,8 +98,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(combo_autores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txt_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,10 +130,10 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(combo_autores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                    .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(btn_agregar)
-                .addGap(31, 31, 31))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,6 +182,30 @@ public class RegistrarLibro extends javax.swing.JFrame {
         this.btn_agregar = btn_agregar;
     }
 
+    public JTextField getTxt_autor() {
+        return txt_autor;
+    }
+
+    public void setTxt_autor(JTextField txt_autor) {
+        this.txt_autor = txt_autor;
+    }
+
+    public JTextField getTxt_año() {
+        return txt_año;
+    }
+
+    public void setTxt_año(JTextField txt_año) {
+        this.txt_año = txt_año;
+    }
+
+    public JTextField getTxt_genero() {
+        return txt_genero;
+    }
+
+    public void setTxt_genero(JTextField txt_genero) {
+        this.txt_genero = txt_genero;
+    }
+
     
 
     public JTextField getTxt_editorial() {
@@ -214,7 +236,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
-    private javax.swing.JComboBox<String> combo_autores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,6 +243,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txt_autor;
     private javax.swing.JTextField txt_año;
     private javax.swing.JTextField txt_editorial;
     private javax.swing.JTextField txt_genero;

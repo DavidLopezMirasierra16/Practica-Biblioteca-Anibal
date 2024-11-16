@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import modelo.SocioModelo;
 import vista.MenuAdministrador;
 import vista.RegistroSocios;
+import vista.RegistroTrabajadores;
 
 /**
  *
@@ -54,8 +55,12 @@ public class AdministradorController implements ActionListener{
             //Controller editar socio
             
         }else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
-            //Controller registrar trabajador
-            
+            try {
+                //Controller registrar trabajador
+                new RegistroTrabajadorController(new RegistroTrabajadores());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }

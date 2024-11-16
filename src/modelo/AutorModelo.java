@@ -58,7 +58,7 @@ public class AutorModelo {
         try {
             //this.bd_controller.conectarBd();
             
-            String buscar_nombre = "SELECT dni FROM bd_biblioteca.socios WHERE nombre_autor=?;";
+            String buscar_nombre = "SELECT nombre_autor FROM bd_biblioteca.autores WHERE nombre_autor=?;";
             
             prepare = conexion.prepareStatement(buscar_nombre);
             

@@ -67,8 +67,10 @@ public class LoginController implements ActionListener{
         
         if (id==1) {
             new AdministradorController(new MenuAdministrador());
+            this.login_vista.dispose();
         }else{
             new AdministrativoController(new MenuAdministrativo());
+            this.login_vista.dispose();
         }
         
     }
