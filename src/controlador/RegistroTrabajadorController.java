@@ -72,49 +72,49 @@ public class RegistroTrabajadorController implements ActionListener {
         boolean resultado = true;
         String mensaje = " ";
 
-        if (this.registrotrabajadores_vista.getTxt_nombre().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_nombre().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un nombre. \n";
             resultado = false;
         }
 
-        if (this.registrotrabajadores_vista.getTxt_apellidos().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_apellidos().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir unos apellidos. \n";
             resultado = false;
         }
 
-        if (this.registrotrabajadores_vista.getTxt_nacimiento().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_nacimiento().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir una fecha de nacimiento. \n";
             resultado = false;
         }
         
-        if (this.registrotrabajadores_vista.getTxt_correo().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_correo().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un correo. \n";
             resultado = false;
         }
         
-        if (this.registrotrabajadores_vista.getTxt_cuenta().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_cuenta().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir una cuenta bancaria. \n";
             resultado = false;
         }
         
-        if (this.registrotrabajadores_vista.getTxt_seguridad_social().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_seguridad_social().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un numero de la seguridad social. \n";
             resultado = false;
         }
         
         
-        if (this.registrotrabajadores_vista.getTxt_localidad().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_localidad().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir una fecha de alta. \n";
             resultado = false;
         }
         
-        if (this.registrotrabajadores_vista.getTxt_dni().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_dni().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un DNI. \n";
             resultado = false;
         }
         
         
-        if (this.registrotrabajadores_vista.getTxt_contraseña().getText().trim().length() == 0) {
+        if (this.registroTrabajadoresVista.getTxt_contraseña().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir una contraseña. \n";
             resultado = false;
         }

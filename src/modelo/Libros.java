@@ -18,6 +18,8 @@ public class Libros {
         this.idAutor = idAutor;
     }
 
+    
+    
     public int getIdLibros() {
         return ISBN;
     }
@@ -66,14 +68,5 @@ public class Libros {
         this.idAutor = idAutor;
     }
 
-    /**
-     * Este consulta los libros
-     * @param idLibros
-     * @param titulo
-     * @param isbn
-     * @param genero
-     * @param year
-     * @param editorial
-     * @param idAutor 
-     */
-    }
+    
+}

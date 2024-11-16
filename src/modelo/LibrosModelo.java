@@ -1,5 +1,7 @@
 package modelo;
 
+import com.mysql.cj.jdbc.CallableStatement;
+import com.mysql.cj.xdevapi.Statement;
 import controlador.BaseDatosController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
