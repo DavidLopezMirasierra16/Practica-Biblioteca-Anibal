@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
@@ -91,7 +93,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (Dni, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (Dni, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
@@ -103,6 +105,7 @@ public class SocioModelo {
             prepare.setString(6, socio.getCorreo());
             prepare.setString(7, socio.getFecha_alta());
             prepare.setString(8, socio.getCuenta_banco());
+            prepare.setString(9, socio.getID_Biblioteca());
             
             int ejecutar = prepare.executeUpdate();
             
@@ -113,6 +116,18 @@ public class SocioModelo {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    /**
+     * Fucion que nos genera la fecha del dia de hoy
+     * @return 
+     */
+    public String fecha(){
+        LocalDateTime dia = LocalDateTime.now();
+        
+        DateTimeFormatter formatear = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        String formateada = dia.format(formatear);
+        return formateada;
     }
     
     //--------------------------------CONSULTAR---------------------------------

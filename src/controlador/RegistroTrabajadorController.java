@@ -7,10 +7,6 @@ import javax.swing.JOptionPane;
 import modelo.TrabajadorModelo;
 import vista.RegistroTrabajadores;
 
-/**
- *
- * Controlador para el registro de trabajadores.
- */
 public class RegistroTrabajadorController implements ActionListener {
     
     private TrabajadorModelo trabajadorModelo;
@@ -26,16 +22,18 @@ public class RegistroTrabajadorController implements ActionListener {
         
         // Mostrar la vista
         this.registroTrabajadoresVista.setVisible(true);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         // Acción de guardar trabajador
+
         agregarDatos();
-    }
-    
-    /**
-     * Método que agrega los datos del trabajador a la base de datos.
+    }          
+
+     /* Método que agrega los datos del trabajador a la base de datos.
      */
     public void agregarDatos() {
         
@@ -59,10 +57,14 @@ public class RegistroTrabajadorController implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(registroTrabajadoresVista, "El DNI " + dni + " ya está registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);
             }
+
         }
     }
     
     /**
+
+     * Funcion que nos valida si los campos estan correctamente rellenados.
+     * @return 
      * Método que valida los datos ingresados en la vista.
      * @return true si los datos son válidos, false si no lo son.
      */
@@ -70,43 +72,50 @@ public class RegistroTrabajadorController implements ActionListener {
         boolean resultado = true;
         String mensaje = " ";
 
-        if (this.registroTrabajadoresVista.getTxt_nombre().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir un nombre. \n";
+        if (this.registrotrabajadores_vista.getTxt_nombre().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un nombre. \n";
             resultado = false;
         }
 
-        if (this.registroTrabajadoresVista.getTxt_apellidos().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir unos apellidos. \n";
+        if (this.registrotrabajadores_vista.getTxt_apellidos().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir unos apellidos. \n";
             resultado = false;
         }
 
-        if (this.registroTrabajadoresVista.getTxt_dni().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir un DNI. \n";
+        if (this.registrotrabajadores_vista.getTxt_nacimiento().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una fecha de nacimiento. \n";
             resultado = false;
         }
-
-        if (this.registroTrabajadoresVista.getTxt_nacimiento().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir una fecha de nacimiento. \n";
+        
+        if (this.registrotrabajadores_vista.getTxt_correo().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un correo. \n";
             resultado = false;
         }
-
-        if (this.registroTrabajadoresVista.getTxt_correo().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir un correo. \n";
+        
+        if (this.registrotrabajadores_vista.getTxt_cuenta().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una cuenta bancaria. \n";
             resultado = false;
         }
-
-        if (this.registroTrabajadoresVista.getTxt_cuenta().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir una cuenta bancaria. \n";
+        
+        if (this.registrotrabajadores_vista.getTxt_seguridad_social().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un numero de la seguridad social. \n";
             resultado = false;
         }
-
-        if (this.registroTrabajadoresVista.getTxt_seguridad_social().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir un número de Seguridad Social. \n";
+        
+        
+        if (this.registrotrabajadores_vista.getTxt_localidad().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una fecha de alta. \n";
             resultado = false;
         }
-
-        if (this.registroTrabajadoresVista.getTxt_localidad().getText().trim().isEmpty()) {
-            mensaje += "Debe introducir una localidad. \n";
+        
+        if (this.registrotrabajadores_vista.getTxt_dni().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un DNI. \n";
+            resultado = false;
+        }
+        
+        
+        if (this.registrotrabajadores_vista.getTxt_contraseña().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una contraseña. \n";
             resultado = false;
         }
 
@@ -115,15 +124,5 @@ public class RegistroTrabajadorController implements ActionListener {
         }
 
         return resultado;
-    }
-
-    /**
-     * Método que obtiene el ID de permiso, simulado aquí como ejemplo.
-     * En un entorno real, obtendría este valor de una fuente confiable.
-     * @return el ID de permiso del trabajador.
-     */
-    private int obtenerIdPermiso() {
-        // Simulación de obtención de ID de permiso
-        return 1;  // Cambiar según el contexto de permisos
     }
 }

@@ -52,7 +52,7 @@ public class RegistroSocios extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         combo_biblioteca = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel8.setText("Direccion:");
 
@@ -68,6 +68,8 @@ public class RegistroSocios extends javax.swing.JFrame {
         jLabel4.setText("Fecha de Alta:");
 
         jLabel5.setText("Correo:");
+
+        txt_alta.setEditable(false);
 
         jLabel6.setText("Cuenta bancaria:");
 
@@ -95,7 +97,7 @@ public class RegistroSocios extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_alta, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_alta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel9)

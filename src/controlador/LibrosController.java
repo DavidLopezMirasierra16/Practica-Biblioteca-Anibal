@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import vista.ControlLibros;
 import vista.RegistrarAutor;
+import vista.RegistrarLibro;
 
 /**
  *
@@ -39,7 +40,11 @@ public class LibrosController implements ActionListener{
         Object button = e.getSource();
         
         if (button == this.menu_libros_vista.getBtn_registrar_libros()) {
-            
+            try {
+                new RegistroLibroController(new RegistrarLibro());
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_libros_vista.getBtn_consulta_libros()) {
             
         }else if (button == this.menu_libros_vista.getBtn_consulta_sanciones()) {

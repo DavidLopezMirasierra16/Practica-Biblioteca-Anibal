@@ -12,14 +12,56 @@ import vista.ConsultarLibros;
 public class LibrosModelo {
 
     private BaseDatosController bd_controller;
+    
     private Connection conexion;
-    private PreparedStatement prepare;
+    private Statement sentencia;
     private ResultSet resultado;
+    private PreparedStatement prepare;
+    private CallableStatement consultas_funciones;
 
     public LibrosModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
         this.conexion = this.bd_controller.conectar();
     }
+        
+    //---------------------------INSERTAR---------------------------
+    
+    /**
+     * Nos crea un libro en funcion de los datos que nosotros le pasamos
+     * @param titulo
+     * @param isbn
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor
+     * @return 
+     */
+    public Libros crearLibro(String titulo, String isbn, String genero, String year, String editorial, int idAutor){
+        Libros libro = new Libros(titulo, isbn, genero, year, editorial, idAutor);
+        
+        insertarDatos(libro);
+        
+        return null;
+    }    
+    
+    /**
+     * Funcion que nos inserta en la bd un libro
+     * @param libro
+     */ 
+    public void insertarDatos(Libros libro){
+        try {
+            //this.bd_controller.conectarBd();
+
+            String sentencia_slq = "INSERT INTO bd_biblioteca.libros (Titulo, ISBN, Genero, Anio, Editorial, ID_Autor_FK)" + "VALUES (?, ?, ?, ?, ?, ?);";
+
+            prepare = conexion.prepareStatement(sentencia_slq);
+            
+            prepare.setString(1, libro.getTitulo());
+            prepare.setString(2, libro.getIsbn());
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }    
 
     /**
      * Registra un libro en la base de datos si no existe previamente.
@@ -85,14 +127,43 @@ public class LibrosModelo {
             int ejecutar = prepare.executeUpdate();
             
             if (ejecutar == 1) {
-                System.out.println("Libro '" + libro.getTitulo() + "' agregado correctamente a la BD");
+                System.out.println("Libro " + libro.getTitulo() + " agregado correctamente a la BD");
             }
-        } catch (SQLException ex) {
+                System.out.println("Libro '" + libro.getTitulo() + "' agregado correctamente a la BD");
+            }catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
-    // Métodos adicionales para consultar y filtrar libros...
+    
+    /**
+     * Selecciona el ID del autor que nosotros le pasamos.
+     * @param autor
+     * @return 
+     */
+    public int seleccionarAutor(String autor){
+        int id = 0;
+        
+        try {
+            
+            String comprobar_id_autor = "SELECT id_autor from bd_biblioteca.autores WHERE nombre_autor = ?;";
+            
+            prepare=conexion.prepareStatement(comprobar_id_autor);
+            
+            prepare.setString(1, autor);
+            
+            resultado = prepare.executeQuery();
+            
+            if (resultado.next()) {
+                id=resultado.getInt("id_autor");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id;
+    }
+    
+    //---------------------------CONSULTAS---------------------------
     
     public void consultarLibros(JTable table) {
         String sql = "CALL mostrarLibrosConUbicacion()"; // Llamamos al procedimiento almacenado
@@ -134,65 +205,64 @@ public class LibrosModelo {
 
 
     public void filtrarLibros(ConsultarLibros consultarLibros) {
-    String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
-    String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
+        String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
+        String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
 
-    if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
-        System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
-        return;
-    }
-
-    String columna = "";
-    switch (filtro) {
-        case "Nombre":
-            columna = "Titulo";
-            break;
-        case "Editorial":
-            columna = "Editorial";
-            break;
-        case "Autor":
-            columna = "ID_AUTOR";
-            break;
-    }
-
-    String sql = "CALL mostrarLibrosConUbicacion()"; // Llamada al procedimiento con ubicación
-        BaseDatosController baseDatosController = new BaseDatosController();
-
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
-            model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
-
-            while (rs.next()) {
-                // Filtramos las filas basadas en el filtro seleccionado y la búsqueda
-                if (rs.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
-                    Object[] row = {
-                        rs.getInt("ISBN_Libros"),
-                        rs.getString("Titulo"),
-                        rs.getString("Genero"),
-                        rs.getString("Anio"),
-                        rs.getString("Editorial"),
-                        rs.getInt("ID_Autor_FK"),
-                        rs.getString("Estanteria"),
-                        rs.getString("Seccion"),
-                        rs.getString("Piso"),
-                        rs.getInt("Cantidad")
-                    };
-                    model.addRow(row);
-                }
-            }
-
-            consultarLibros.getTablaLibros().setModel(model);
-
-            for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
-                consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
+            System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
+            return;
         }
-    }
 
+        String columna = "";
+        switch (filtro) {
+            case "Nombre":
+                columna = "Titulo";
+                break;
+            case "Editorial":
+                columna = "Editorial";
+                break;
+            case "Autor":
+                columna = "ID_AUTOR";
+                break;
+        }
+
+        String sql = "CALL mostrarLibrosConUbicacion()"; // Llamada al procedimiento con ubicación
+            BaseDatosController baseDatosController = new BaseDatosController();
+
+            try (Connection conn = baseDatosController.conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+                DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
+                model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
+
+                while (rs.next()) {
+                    // Filtramos las filas basadas en el filtro seleccionado y la búsqueda
+                    if (rs.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
+                        Object[] row = {
+                            rs.getInt("ISBN_Libros"),
+                            rs.getString("Titulo"),
+                            rs.getString("Genero"),
+                            rs.getString("Anio"),
+                            rs.getString("Editorial"),
+                            rs.getInt("ID_Autor_FK"),
+                            rs.getString("Estanteria"),
+                            rs.getString("Seccion"),
+                            rs.getString("Piso"),
+                            rs.getInt("Cantidad")
+                        };
+                        model.addRow(row);
+                    }
+                }
+
+                consultarLibros.getTablaLibros().setModel(model);
+
+                for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
+                    consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
 }

@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
 import modelo.Libros;
 import modelo.LibrosModelo;
@@ -11,105 +13,86 @@ import vista.RegistrarLibro;
  * Controlador para el registro de libros.
  */
 public class RegistroLibroController implements ActionListener {
+    private LibrosModelo modelo_libros;
+    private RegistrarLibro registro_libro_vista;
 
-    private LibrosModelo librosModelo;
-    private RegistrarLibro registroLibroVista;
-
-    public RegistroLibroController(RegistrarLibro registroLibroVista) {
-        try {
-            // Inicializar el modelo y la vista
-            this.librosModelo = new LibrosModelo();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        this.registroLibroVista = registroLibroVista;
-
-        // Agregar listener al botón "Agregar"
-        this.registroLibroVista.getBtn_agregar().addActionListener(this);
-
-        // Mostrar la vista de registro de libros
-        this.registroLibroVista.setVisible(true);
+    public RegistroLibroController(RegistrarLibro registro_libro_vista) throws SQLException{
+        //Clases
+        this.modelo_libros = new LibrosModelo();
+        this.registro_libro_vista = registro_libro_vista;
+        //Botones
+        this.registro_libro_vista.getBtn_agregar().addActionListener(this);
+        //-------------------------------------------
+        JOptionPane.showMessageDialog(registro_libro_vista, "Cuando vaya a INSERTAR el autor recuerde escribir la primera letra del NOMBRE y del APELLIDO/S en MAYÚSCULA", "Recordatorio", JOptionPane.INFORMATION_MESSAGE);
+        this.registro_libro_vista.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         agregarDatos();
     }
-
-    /**
-     * Método para agregar datos del libro a la base de datos.
-     */
-    public void agregarDatos() {
+    
+    public void agregarDatos(){
+        
         if (validarDatos()) {
-            try {
-                // Obtener datos desde la vista
-                int isbn = Integer.parseInt(registroLibroVista.getTxt_isbn().getText());
-                String titulo = registroLibroVista.getTxt_nombre().getText();
-                String genero = registroLibroVista.getTxt_genero().getText();
-                String año = registroLibroVista.getTxt_año().getText();
-                String editorial = registroLibroVista.getTxt_editorial().getText();
-                int idAutor = Integer.parseInt(registroLibroVista.getTxt_autor().getText());
+            int id = this.modelo_libros.seleccionarAutor(this.registro_libro_vista.getTxt_autor().getText());
 
-                // Registrar el libro en el modelo
-                Libros nuevoLibro = librosModelo.registrarLibro(isbn, titulo, genero, año, editorial, idAutor);
-                
-                if (nuevoLibro != null) {
-                    JOptionPane.showMessageDialog(registroLibroVista, "Libro '" + titulo + "' registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    registroLibroVista.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(registroLibroVista, "El libro ya existe en la base de datos.", "Error", JOptionPane.WARNING_MESSAGE);
+            if (id==0) {
+                JOptionPane.showMessageDialog(registro_libro_vista, "Autor no registrado", "Error autor", JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                if (this.modelo_libros.crearLibro(this.registro_libro_vista.getTxt_nombre().getText(), 
+                        this.registro_libro_vista.getTxt_isbn().getText(), 
+                        this.registro_libro_vista.getTxt_genero().getText(), 
+                        this.registro_libro_vista.getTxt_año().getText(), 
+                        this.registro_libro_vista.getTxt_editorial().getText(), id)!=null) {
+                    JOptionPane.showMessageDialog(registro_libro_vista, "Libro con ISBN " + this.registro_libro_vista.getTxt_isbn().getText() + " registrado correctamente", "Libro dado de alta", JOptionPane.INFORMATION_MESSAGE);
+                    this.registro_libro_vista.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(registro_libro_vista, "Autor " + this.registro_libro_vista.getTxt_autor().getText() + " no registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
                 }
-
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(registroLibroVista, "Error en el formato de los datos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+            } 
+        }   
+        
     }
-
+    
     /**
-     * Valida que los campos necesarios estén completados.
-     * @return true si los datos son válidos, false en caso contrario.
+     * Funcion que nos valida si los campos estan correctamente rellenados.
+     * @return 
      */
     public boolean validarDatos() {
         boolean resultado = true;
-        StringBuilder mensaje = new StringBuilder(" ");
+        String mensaje = " ";
 
-        if (registroLibroVista.getTxt_nombre().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir un nombre.\n");
+        if (this.registro_libro_vista.getTxt_nombre().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un nombre. \n";
             resultado = false;
         }
 
-        if (registroLibroVista.getTxt_isbn().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir un ISBN.\n");
+        if (this.registro_libro_vista.getTxt_isbn().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir uno ISBN. \n";
             resultado = false;
         }
 
-        if (registroLibroVista.getTxt_genero().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir un género.\n");
+        if (this.registro_libro_vista.getTxt_genero().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un género. \n";
             resultado = false;
         }
-
-        if (registroLibroVista.getTxt_año().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir un año.\n");
+        
+        if (this.registro_libro_vista.getTxt_año().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un año. \n";
             resultado = false;
         }
-
-        if (registroLibroVista.getTxt_editorial().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir una editorial.\n");
+        
+        if (this.registro_libro_vista.getTxt_editorial().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una editorial. \n";
             resultado = false;
         }
-
-        if (registroLibroVista.getTxt_autor().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir un autor.\n");
-            resultado = false;
+        
+        if (this.registro_libro_vista.getTxt_autor().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un autor. \n";
         }
-
-        if (!resultado) {
-            JOptionPane.showMessageDialog(registroLibroVista, mensaje.toString(), "Faltan datos", JOptionPane.ERROR_MESSAGE);
-        }
-
+        
         return resultado;
     }
 }
