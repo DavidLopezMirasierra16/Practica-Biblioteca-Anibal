@@ -49,7 +49,7 @@ public class RegistroTrabajadorController implements ActionListener {
             String localidad = this.registroTrabajadoresVista.getTxt_localidad().getText();
             String contraseña = "contraseñaEjemplo"; // Cambiar por una fuente segura
 
-            int idPermiso = obtenerIdPermiso();
+            int idPermiso = /*obtenerIdPermiso()*/0;
 
             if (this.trabajadorModelo.crearTrabajador(idPermiso, nombre, apellido, dni, fechaNacimiento, correo, cuentaBanco, seguridadSocial, localidad, contraseña) != null) {
                 JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador " + nombre + " registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);

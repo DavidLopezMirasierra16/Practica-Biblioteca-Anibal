@@ -16,9 +16,7 @@ public class Libros {
         this.year = year;
         this.editorial = editorial;
         this.idAutor = idAutor;
-    }
-
-    
+    }   
     
     public int getIdLibros() {
         return ISBN;
@@ -66,6 +64,14 @@ public class Libros {
 
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
+    }
+
+    public int getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(int ISBN) {
+        this.ISBN = ISBN;
     }
 
     

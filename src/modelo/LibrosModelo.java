@@ -38,8 +38,8 @@ public class LibrosModelo {
      * @param idAutor
      * @return 
      */
-    public Libros crearLibro(String titulo, String isbn, String genero, String year, String editorial, int idAutor){
-        Libros libro = new Libros(titulo, isbn, genero, year, editorial, idAutor);
+    public Libros crearLibro(int ISBN, String titulo, String genero, String year, String editorial, int idAutor){
+        Libros libro = new Libros(idAutor, titulo, genero, year, editorial, idAutor);
         
         insertarDatos(libro);
         
@@ -59,7 +59,7 @@ public class LibrosModelo {
             prepare = conexion.prepareStatement(sentencia_slq);
             
             prepare.setString(1, libro.getTitulo());
-            prepare.setString(2, libro.getIsbn());
+            prepare.setInt(2, libro.getIdAutor());
         }catch(SQLException ex){
             ex.printStackTrace();
         }
