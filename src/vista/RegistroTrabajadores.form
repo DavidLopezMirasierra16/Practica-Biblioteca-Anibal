@@ -81,11 +81,6 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txt_contraseña" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txt_dni" min="-2" pref="155" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -154,7 +149,6 @@
               </Group>
               <EmptySpace pref="51" max="32767" attributes="0"/>
               <Component id="btn_guardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -225,7 +219,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="DNI:"/>
         <Property name="text" type="java.lang.String" value="DNI"/>
       </Properties>
     </Component>
