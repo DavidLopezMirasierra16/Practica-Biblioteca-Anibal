@@ -215,4 +215,28 @@ public class TrabajadorModelo {
         
     }
     
+    public void cambiarContraseña(String usuario, String nueva_contraseña) {
+        try{
+
+            String sql = "UPDATE trabajadores SET Contraseña = ? WHERE Nombre = ?";
+            
+            prepare = conexion.prepareStatement(sql);
+            
+            prepare.setString(1, nueva_contraseña);
+            prepare.setString(2, usuario);
+
+            int filasActualizadas = prepare.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }
+    
 }

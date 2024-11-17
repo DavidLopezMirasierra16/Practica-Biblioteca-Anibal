@@ -14,6 +14,7 @@ import modelo.TrabajadorModelo;
 import vista.Login;
 import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
+import vista.RecuperarContraseña;
 
 /**
  *
@@ -57,8 +58,12 @@ public class LoginController implements ActionListener{
         }
         
         if (button == this.login_vista.getBtnRecuperar1()){
-            //Controller recuperar cuenta
-            
+            try {
+                //Controller recuperar cuenta
+                new RecuperarContraseñaController(new RecuperarContraseña());
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
