@@ -52,7 +52,7 @@ public class LoginController implements ActionListener{
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
-                JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(login_vista, "Ese usuario o contraseña incorrectos", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
             }
             
         }
