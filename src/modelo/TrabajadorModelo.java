@@ -126,7 +126,7 @@ public class TrabajadorModelo {
      */
     public void ingresarContraseña(Trabajador trabajador){
         try {
-            //this.bd_controller.conectarBd();
+            
 
             String sentencia_slq = "INSERT INTO bd_biblioteca.mbappe (Contrasenia, ID_Trabajador_FK)" + "VALUES (?, ?);";
 
@@ -213,6 +213,43 @@ public class TrabajadorModelo {
         }
         return id;
         
+    }
+    
+    public void cambiarContraseña(String usuario, String nueva_contraseña) throws NoSuchAlgorithmException {
+        try{
+
+            // Obtener una instancia del algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            
+            // Convertir la contraseña a un arreglo de bytes
+            byte[] hashBytes = digest.digest(nueva_contraseña.getBytes());
+
+            // Codificar el hash en Base64 para hacerlo legible
+            String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
+
+            nueva_contraseña = hashedPassword;
+            
+            System.out.println("Contraseña hasheada: " + hashedPassword);
+            
+            String sql = "UPDATE trabajadores SET Contraseña = ? WHERE Nombre = ?";
+            
+            prepare = conexion.prepareStatement(sql);
+            
+            prepare.setString(1, nueva_contraseña);
+            prepare.setString(2, usuario);
+
+            int filasActualizadas = prepare.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
     }
     
 }

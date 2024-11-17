@@ -7,7 +7,9 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.SocioModelo;
+import modelo.TrabajadorModelo;
 import vista.RecuperarContraseña;
 
 /**
@@ -16,25 +18,70 @@ import vista.RecuperarContraseña;
  */
 public class RecuperarContraseñaController implements ActionListener{
     private RecuperarContraseña recuperar_vista;
-    private SocioModelo modelo;
-    public RecuperarContraseñaController() throws SQLException{
-        this.modelo = new SocioModelo();
-        this.recuperar_vista = new RecuperarContraseña();
+    private TrabajadorModelo modelo;
+    
+    public RecuperarContraseñaController(RecuperarContraseña recuperar_vista) throws SQLException{
+        //Clases
+        this.modelo = new TrabajadorModelo();
+        this.recuperar_vista = recuperar_vista;
+        //Botones
         this.recuperar_vista.getBtnRecuperar().addActionListener(this);
         this.recuperar_vista.getBtnVolver().addActionListener(this);
+        //--------------------------------------
         this.recuperar_vista.setVisible(true);
         this.recuperar_vista.setResizable(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == recuperar_vista.getBtnRecuperar()){
-            //Metodo que recoge el usuario y la nueva contraseña y actualiza su contraseña
-            modelo.cambiarContraseña(recuperar_vista);
+        
+        Object button = e.getSource();
+        
+        if(button == recuperar_vista.getBtnRecuperar()){
+            cambiarContraseña();
         }
         
         if(e.getSource() == recuperar_vista.getBtnVolver()){
             recuperar_vista.dispose();
         }
     }
+    
+    /**
+     * Funcion que nos cambia la contraseña de un usuario
+     */
+    public void cambiarContraseña(){
+        
+        if (validarDatos()) {
+            
+            this.modelo.cambiarContraseña(this.recuperar_vista.getTxt_usuario().getText(), 
+                    this.recuperar_vista.getTxt_contraseña().getText());
+        }
+        
+    }
+    
+    /**
+     * Funcion que nos valida los campos
+     * @return 
+     */
+    public boolean validarDatos(){
+        boolean resultado = true;
+        String mensaje = " ";
+
+        if (this.recuperar_vista.getTxt_usuario().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir un nombre. \n";
+            resultado = false;
+        }
+
+        if (this.recuperar_vista.getTxt_contraseña().getText().trim().length() == 0) {
+            mensaje = mensaje + "Debe introducir una contraseña nueva. \n";
+            resultado = false;
+        }
+
+        if (!resultado) {
+            JOptionPane.showMessageDialog(recuperar_vista, mensaje, "Faltan datos", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return resultado;
+    }
+    
 }
