@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
+import vista.ModLocalidadSocio;
 import vista.RecuperarContraseña;
 
 /**
@@ -240,4 +241,67 @@ public class SocioModelo {
         }
     }
     
+    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
+        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
+        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
+        
+        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
+            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
+            return;
+        }
+
+        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
+        BaseDatosController baseDatosController = new BaseDatosController();
+
+        try (Connection conn = baseDatosController.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nuevaContraseña);
+            stmt.setString(2, usuario);
+
+            int filasActualizadas = stmt.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }
+    
+    // Método para modificar el ID_Biblioteca_FK de un socio usando nombre, apellidos y localidad
+    public void modificarIdBiblioteca(ModLocalidadSocio modificar) {
+        String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
+        String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
+        String localidad = modificar.getTxtLocalidad().getText().trim();  // Localidad de la biblioteca
+
+        // Consulta SQL para llamar al procedimiento almacenado
+        String sql = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?)";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores para el PreparedStatement
+            stmt.setString(1, nombre);  // Establece el nombre del socio
+            stmt.setString(2, apellidos);  // Establece los apellidos del socio
+            stmt.setString(3, localidad);  // Establece la localidad de la biblioteca
+
+            // Ejecutar la llamada al procedimiento almacenado
+            boolean resultado = stmt.execute();
+
+            // Si la llamada es exitosa, el procedimiento interno se encargará de la actualización
+            if (resultado) {
+                System.out.println("La modificación se ha realizado correctamente.");
+            } else {
+                System.out.println("No se encontró un socio o una biblioteca correspondiente.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
+        }
+    }
 }
