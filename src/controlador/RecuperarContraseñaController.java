@@ -6,7 +6,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.SocioModelo;
 import modelo.TrabajadorModelo;
@@ -38,7 +41,11 @@ public class RecuperarContraseñaController implements ActionListener{
         Object button = e.getSource();
         
         if(button == recuperar_vista.getBtnRecuperar()){
-            cambiarContraseña();
+            try {
+                cambiarContraseña();
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(RecuperarContraseñaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if(e.getSource() == recuperar_vista.getBtnVolver()){
@@ -49,7 +56,7 @@ public class RecuperarContraseñaController implements ActionListener{
     /**
      * Funcion que nos cambia la contraseña de un usuario
      */
-    public void cambiarContraseña(){
+    public void cambiarContraseña() throws NoSuchAlgorithmException{
         
         if (validarDatos()) {
             
