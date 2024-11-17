@@ -215,9 +215,22 @@ public class TrabajadorModelo {
         
     }
     
-    public void cambiarContraseña(String usuario, String nueva_contraseña) {
+    public void cambiarContraseña(String usuario, String nueva_contraseña) throws NoSuchAlgorithmException {
         try{
 
+            // Obtener una instancia del algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            
+            // Convertir la contraseña a un arreglo de bytes
+            byte[] hashBytes = digest.digest(nueva_contraseña.getBytes());
+
+            // Codificar el hash en Base64 para hacerlo legible
+            String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
+
+            nueva_contraseña = hashedPassword;
+            
+            System.out.println("Contraseña hasheada: " + hashedPassword);
+            
             String sql = "UPDATE trabajadores SET Contraseña = ? WHERE Nombre = ?";
             
             prepare = conexion.prepareStatement(sql);
