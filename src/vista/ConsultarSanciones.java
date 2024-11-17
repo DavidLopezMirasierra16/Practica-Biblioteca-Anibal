@@ -34,6 +34,7 @@ public class ConsultarSanciones extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSanciones = new javax.swing.JTable();
+        btnResolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,18 +66,26 @@ public class ConsultarSanciones extends javax.swing.JFrame {
             tablaSanciones.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        btnResolver.setText("Resolver Sanción");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnResolver)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnResolver)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -124,9 +133,18 @@ public class ConsultarSanciones extends javax.swing.JFrame {
     public void setTablaSanciones(JTable tablaSanciones) {
         this.tablaSanciones = tablaSanciones;
     }
+
+    public JButton getBtnResolver() {
+        return btnResolver;
+    }
+
+    public void setBtnResolver(JButton btnResolver) {
+        this.btnResolver = btnResolver;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnResolver;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaSanciones;
+    public javax.swing.JTable tablaSanciones;
     // End of variables declaration//GEN-END:variables
 }

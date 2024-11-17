@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
+import vista.ModLocalidadSocio;
 import vista.RecuperarContraseña;
 
 /**
@@ -269,6 +270,38 @@ public class SocioModelo {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }
+    
+    // Método para modificar el ID_Biblioteca_FK de un socio usando nombre, apellidos y localidad
+    public void modificarIdBiblioteca(ModLocalidadSocio modificar) {
+        String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
+        String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
+        String localidad = modificar.getTxtLocalidad().getText().trim();  // Localidad de la biblioteca
+
+        // Consulta SQL para llamar al procedimiento almacenado
+        String sql = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?)";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores para el PreparedStatement
+            stmt.setString(1, nombre);  // Establece el nombre del socio
+            stmt.setString(2, apellidos);  // Establece los apellidos del socio
+            stmt.setString(3, localidad);  // Establece la localidad de la biblioteca
+
+            // Ejecutar la llamada al procedimiento almacenado
+            boolean resultado = stmt.execute();
+
+            // Si la llamada es exitosa, el procedimiento interno se encargará de la actualización
+            if (resultado) {
+                System.out.println("La modificación se ha realizado correctamente.");
+            } else {
+                System.out.println("No se encontró un socio o una biblioteca correspondiente.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
         }
     }
 }

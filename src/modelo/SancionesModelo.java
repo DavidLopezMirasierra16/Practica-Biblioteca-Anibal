@@ -11,8 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import vista.ConsultarSanciones;
 
 /**
  *
@@ -33,7 +35,7 @@ public class SancionesModelo {
     }
     
     public void consultarSanciones(JTable table) {
-        String sql = "SELECT * FROM sanciones";
+        String sql = "SELECT sanciones.ID_Sancion, CONCAT(socios.Nombre, ' ', socios.Apellidos) AS Nombre_Completo_Socio, sanciones.ID_Prestamo_FK, sanciones.Tipo_Sancion FROM sanciones JOIN socios ON sanciones.ID_Socio_FK = socios.ID_Socio;";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
@@ -89,6 +91,61 @@ public class SancionesModelo {
             
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+        
+            // Método para resolver (eliminar) la sanción
+    private void resolverSancion(ConsultarSanciones consultar) {
+        // Obtener la fila seleccionada en la tabla
+        int row = consultar.tablaSanciones.getSelectedRow();
+
+        if (row != -1) { // Si hay una fila seleccionada
+            // Obtener el ID de la sanción (asumimos que está en la primera columna)
+            int idSancion = (int) consultar.tablaSanciones.getValueAt(row, 0);
+
+            // Confirmar la acción de eliminación
+            int confirm = JOptionPane.showConfirmDialog(null, 
+                "¿Estás seguro de que deseas eliminar esta sanción?", 
+                "Confirmar eliminación", 
+                JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Eliminar la sanción de la base de datos
+                eliminarSancionDeBD(idSancion);
+
+                // Eliminar la fila de la tabla
+                DefaultTableModel model = (DefaultTableModel) consultar.tablaSanciones.getModel();
+                model.removeRow(row);
+
+                // Mostrar un mensaje de éxito
+                JOptionPane.showMessageDialog(null, "Sanción eliminada correctamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona una sanción.");
+        }
+    }
+
+    // Método para eliminar la sanción de la base de datos
+    private void eliminarSancionDeBD(int idSancion) {
+        String sql = "DELETE FROM sanciones WHERE ID_Sancion = ?";
+
+        try (Connection conexion = bd_controller.conectar(); 
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer el valor del ID de la sanción
+            stmt.setInt(1, idSancion);
+
+            // Ejecutar la consulta de eliminación
+            int filasAfectadas = stmt.executeUpdate();
+
+            // Si no se eliminó ninguna fila, mostrar un mensaje de error
+            if (filasAfectadas == 0) {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar la sanción. Por favor, intente nuevamente.");
+            }
+
+        } catch (SQLException e) {
+            // Si ocurre un error, mostrar el mensaje de error
+            JOptionPane.showMessageDialog(null, "Error al eliminar la sanción: " + e.getMessage());
         }
     }
 }

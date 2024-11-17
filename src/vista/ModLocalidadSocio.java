@@ -36,16 +36,20 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtLocalidad = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Modificar localidad socio");
 
-        jLabel2.setText("Introduzca el id del socio");
+        jLabel2.setText("Introduzca el nombre del socio");
 
         jLabel3.setText("Introduzca la nueva localidad");
 
         btnAceptar.setText("Aceptar");
+
+        jLabel4.setText("Introduzca el apellido del socio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,8 +64,10 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
-                        .addComponent(txtSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(txtSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,12 +79,16 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(txtSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(12, 12, 12)
+                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(12, 12, 12)
                 .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAceptar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -124,6 +134,8 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtLocalidad;
     private javax.swing.JTextField txtSocio;
     // End of variables declaration//GEN-END:variables
@@ -134,6 +146,14 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
 
     public void setBtnAceptar(JButton btnAceptar) {
         this.btnAceptar = btnAceptar;
+    }
+
+    public JTextField getTxtApellido() {
+        return txtApellido;
+    }
+
+    public void setTxtApellido(JTextField txtApellido) {
+        this.txtApellido = txtApellido;
     }
 
     public JTextField getTxtLocalidad() {
