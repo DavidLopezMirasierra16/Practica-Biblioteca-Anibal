@@ -59,7 +59,18 @@ public class LibrosModelo {
             prepare = conexion.prepareStatement(sentencia_slq);
             
             prepare.setString(1, libro.getTitulo());
-            prepare.setInt(2, libro.getIdAutor());
+            prepare.setInt(2, libro.getISBN());
+            prepare.setString(3, libro.getGenero());
+            prepare.setString(4, libro.getYear());
+            prepare.setString(5, libro.getEditorial());
+            prepare.setInt(6, libro.getIdAutor());
+            
+            int ejecutar = prepare.executeUpdate();
+            
+            if (ejecutar == 1) {
+                System.out.println("Libro " + libro.getTitulo() + " agregado correctamente a la BD");
+            }
+            
         }catch(SQLException ex){
             ex.printStackTrace();
         }

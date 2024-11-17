@@ -93,6 +93,10 @@ public class RegistroLibroController implements ActionListener {
             mensaje = mensaje + "Debe introducir un autor. \n";
         }
         
+        if (!resultado) {
+            JOptionPane.showMessageDialog(registro_libro_vista, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+        }
+        
         return resultado;
     }
 }
