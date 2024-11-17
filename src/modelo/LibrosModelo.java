@@ -43,7 +43,7 @@ public class LibrosModelo {
         
         insertarDatos(libro);
         
-        return null;
+        return libro;
     }    
     
     /**
