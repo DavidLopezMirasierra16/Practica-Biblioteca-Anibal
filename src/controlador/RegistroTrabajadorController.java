@@ -29,7 +29,6 @@ public class RegistroTrabajadorController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         // Acción de guardar trabajador
-
         agregarDatos();
     }          
 
@@ -39,25 +38,25 @@ public class RegistroTrabajadorController implements ActionListener {
         
         // Validación de datos
         if (validarDatos()) {
-            String nombre = this.registroTrabajadoresVista.getTxt_nombre().getText();
-            String apellido = this.registroTrabajadoresVista.getTxt_apellidos().getText();
-            String dni = this.registroTrabajadoresVista.getTxt_dni().getText();
-            String fechaNacimiento = this.registroTrabajadoresVista.getTxt_nacimiento().getText();
-            String correo = this.registroTrabajadoresVista.getTxt_correo().getText();
-            String cuentaBanco = this.registroTrabajadoresVista.getTxt_cuenta().getText();
-            String seguridadSocial = this.registroTrabajadoresVista.getTxt_seguridad_social().getText();
-            String localidad = this.registroTrabajadoresVista.getTxt_localidad().getText();
-            String contraseña = "contraseñaEjemplo"; // Cambiar por una fuente segura
-
-            int idPermiso = /*obtenerIdPermiso()*/0;
-
-            if (this.trabajadorModelo.crearTrabajador(idPermiso, nombre, apellido, dni, fechaNacimiento, correo, cuentaBanco, seguridadSocial, localidad, contraseña) != null) {
-                JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador " + nombre + " registrado correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+            
+            int id = this.trabajadorModelo.añadirPermiso(this.registroTrabajadoresVista.getCombo_roles().getSelectedItem().toString());
+            
+            if (this.trabajadorModelo.crearTrabajador(id, 
+                    this.registroTrabajadoresVista.getTxt_nombre().getText(), 
+                    this.registroTrabajadoresVista.getTxt_apellidos().getText(), 
+                    this.registroTrabajadoresVista.getTxt_dni().getText(), 
+                    this.registroTrabajadoresVista.getTxt_nacimiento().getText(), 
+                    this.registroTrabajadoresVista.getTxt_correo().getText(), 
+                    this.registroTrabajadoresVista.getTxt_cuenta().getText(), 
+                    this.registroTrabajadoresVista.getTxt_seguridad_social().getText(), 
+                    this.registroTrabajadoresVista.getTxt_localidad().getText(), 
+                    this.registroTrabajadoresVista.getTxt_contraseña().getText())!=null) {
+                JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador con dni " + this.registroTrabajadoresVista.getTxt_dni().getText() + " registrado correctamente", "Trabajador dado de alta", JOptionPane.INFORMATION_MESSAGE);
                 this.registroTrabajadoresVista.dispose();
-            } else {
-                JOptionPane.showMessageDialog(registroTrabajadoresVista, "El DNI " + dni + " ya está registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(registroTrabajadoresVista, "Usuario con dni " + this.registroTrabajadoresVista.getTxt_dni().getText() + " ya registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);
             }
-
+            
         }
     }
     
