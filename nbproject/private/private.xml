@@ -3,16 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/LibrosController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RecuperarContraseñaController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministrativoController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/Libros.java</file>
-        </group>
-        <group>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RegistroLibroController.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
@@ -27,6 +17,13 @@
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministrativoController.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/Libros.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RegistroTrabajadorController.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministrativoController.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RegistroSocioController.java</file>
         </group>
     </open-files>
 </project-private>
