@@ -126,7 +126,7 @@ public class TrabajadorModelo {
      */
     public void ingresarContraseña(Trabajador trabajador){
         try {
-            //this.bd_controller.conectarBd();
+            
 
             String sentencia_slq = "INSERT INTO bd_biblioteca.mbappe (Contrasenia, ID_Trabajador_FK)" + "VALUES (?, ?);";
 
