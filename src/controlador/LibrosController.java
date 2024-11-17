@@ -46,9 +46,17 @@ public class LibrosController implements ActionListener{
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if (button == this.menu_libros_vista.getBtn_consulta_libros()) {
-            
+            try {
+                new ConsultarLibrosController();
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_libros_vista.getBtn_consulta_sanciones()) {
-            
+            try {
+                new ConsultarSancionesController();
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_libros_vista.getBtn_registrar_autor()) {
             try {
                 new RegistroAutorController(new RegistrarAutor());
@@ -56,7 +64,11 @@ public class LibrosController implements ActionListener{
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if (button == this.menu_libros_vista.getBtn_consultar_prestamos()) {
-            
+            try {
+                new ConsultarPrestamosController();
+            } catch (SQLException ex) {
+                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
