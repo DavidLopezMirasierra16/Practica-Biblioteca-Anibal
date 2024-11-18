@@ -52,8 +52,12 @@ public class AdministradorController implements ActionListener{
             //Controller consultar socios
             
         }else if (button == this.menu_administrador_vista.getBtnModificar()){
-            //Controller editar socio
-            
+            try {
+                //Controller editar socio
+                new ModLocalidadSocioController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
             try {
                 //Controller registrar trabajador
