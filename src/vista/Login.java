@@ -44,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Iniciar Sesión");
 
-        jLabel2.setText("Usuario");
+        jLabel2.setText("ID");
 
         jLabel3.setText("Contraseña");
 

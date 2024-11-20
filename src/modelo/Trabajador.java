@@ -21,8 +21,9 @@ public class Trabajador {
     private String seguridad_social;
     private String localidad;
     private String contraseña;
+    private String biblioteca;
 
-    public Trabajador(int id_permiso, int id, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña) {
+    public Trabajador(int id_permiso, int id, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña, String biblioteca) {
         this.id_permiso = id_permiso;
         this.id = id;
         this.nombre = nombre;
@@ -34,9 +35,10 @@ public class Trabajador {
         this.seguridad_social = seguridad_social;
         this.localidad = localidad;
         this.contraseña = contraseña;
+        this.biblioteca = biblioteca;
     }
 
-    public Trabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña) {
+    public Trabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String biblioteca) {
         this.id_permiso = id_permiso;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,8 +47,7 @@ public class Trabajador {
         this.correo = correo;
         this.cuenta_banco = cuenta_banco;
         this.seguridad_social = seguridad_social;
-        this.localidad = localidad;
-        this.contraseña = contraseña;
+        this.biblioteca = biblioteca;
     }
 
     public int getId_permiso() {
@@ -136,5 +137,15 @@ public class Trabajador {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    public String getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(String biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+    
+    
     
 }

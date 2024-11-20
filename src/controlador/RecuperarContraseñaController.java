@@ -60,8 +60,7 @@ public class RecuperarContraseñaController implements ActionListener{
         
         if (validarDatos()) {
             
-            this.modelo.cambiarContraseña(this.recuperar_vista.getTxt_usuario().getText(), 
-                    this.recuperar_vista.getTxt_contraseña().getText());
+            this.modelo.cambiarContraseña(new RecuperarContraseña());
         }
         
     }
