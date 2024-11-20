@@ -7,10 +7,14 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.LibrosModelo;
 import modelo.SocioModelo;
+import vista.ConsultarSocios;
 import vista.ControlLibros;
 import vista.MenuAdministrativo;
+import vista.RegistroSocios;
 
 /**
  *
@@ -42,7 +46,12 @@ public class AdministrativoController implements ActionListener{
             //Abre el controlador de libros
             new LibrosController(new ControlLibros());
         }else if (button == this.menu_administrativo_vista.getBtnConsulta()){
-            //Abre el controlador de consultas
+            try {
+                //Abre el controlador de consultas
+                new ConsultarSociosController(new ConsultarSocios());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministrativoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
         

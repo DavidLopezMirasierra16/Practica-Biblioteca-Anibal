@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
 import vista.ModLocalidadSocio;
-import vista.RecuperarContraseña;
+import vista.RecuperarContrasena;
 
 /**
  * Modelo para realizar operaciones de base de datos sobre los socios.
@@ -94,7 +94,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (Dni, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
@@ -134,7 +134,7 @@ public class SocioModelo {
     //--------------------------------CONSULTAR---------------------------------
     
     public void consultarSocios(JTable table) {
-        String sql = "SELECT ID_Socios, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios";
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
@@ -148,7 +148,7 @@ public class SocioModelo {
             // Agregar las filas a la tabla
             while (rs.next()) {
                 Object[] row = {
-                    rs.getInt("ID_Socios"),
+                    rs.getInt("DNI_Socio"),
                     rs.getString("Nombre"),
                     rs.getString("Apellidos"),
                     rs.getString("Direccion"),
@@ -195,11 +195,11 @@ public class SocioModelo {
                 columna = "Correo_Socio";
                 break;
             case "ID":
-                columna = "ID_Socios";
+                columna = "DNI_Socio";
                 break;
         }
 
-        String sql = "SELECT ID_Socios, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ?";
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
@@ -214,7 +214,7 @@ public class SocioModelo {
                 // Agregar las filas filtradas a la tabla
                 while (rs.next()) {
                     Object[] row = {
-                        rs.getInt("ID_Socios"),
+                        rs.getInt("DNI_Socio"),
                         rs.getString("Nombre"),
                         rs.getString("Apellidos"),
                         rs.getString("Direccion"),
@@ -238,38 +238,6 @@ public class SocioModelo {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-    
-    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
-        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
-        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
-        
-        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
-            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
-            return;
-        }
-
-        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
-        BaseDatosController baseDatosController = new BaseDatosController();
-
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, nuevaContraseña);
-            stmt.setString(2, usuario);
-
-            int filasActualizadas = stmt.executeUpdate();
-
-            if (filasActualizadas > 0) {
-                System.out.println("Contraseña actualizada exitosamente.");
-            } else {
-                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
         }
     }
     
