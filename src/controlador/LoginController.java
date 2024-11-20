@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import modelo.TrabajadorModelo;
 import vista.Login;
 import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
+import vista.RecuperarContrasena;
 
 /**
  *
@@ -56,7 +58,11 @@ public class LoginController implements ActionListener {
         }
 
         if (button == this.login_vista.getBtnRecuperar1()) {
-            // Controller recuperar cuenta
+            try {
+                new RecuperarContrasenaController(new RecuperarContrasena());
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
