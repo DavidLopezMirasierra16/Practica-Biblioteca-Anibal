@@ -40,6 +40,7 @@ public class RegistroTrabajadorController implements ActionListener {
         if (validarDatos()) {
             
             int id = this.trabajadorModelo.añadirPermiso(this.registroTrabajadoresVista.getCombo_roles().getSelectedItem().toString());
+            int id_biblioteca = this.trabajadorModelo.seleccionarBiblioteca(this.registroTrabajadoresVista.getCombo_bibliotecas().getSelectedItem().toString());
             
             if (this.trabajadorModelo.crearTrabajador(id, 
                     this.registroTrabajadoresVista.getTxt_nombre().getText(), 
@@ -49,8 +50,8 @@ public class RegistroTrabajadorController implements ActionListener {
                     this.registroTrabajadoresVista.getTxt_correo().getText(), 
                     this.registroTrabajadoresVista.getTxt_cuenta().getText(), 
                     this.registroTrabajadoresVista.getTxt_seguridad_social().getText(), 
-                    this.registroTrabajadoresVista.getTxt_localidad().getText(), 
-                    this.registroTrabajadoresVista.getTxt_contraseña().getText())!=null) {
+                    this.registroTrabajadoresVista.getTxt_contraseña().getText(),
+                    Integer.toString(id_biblioteca))!=null) {
                 JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador con dni " + this.registroTrabajadoresVista.getTxt_dni().getText() + " registrado correctamente", "Trabajador dado de alta", JOptionPane.INFORMATION_MESSAGE);
                 this.registroTrabajadoresVista.dispose();
             }else{

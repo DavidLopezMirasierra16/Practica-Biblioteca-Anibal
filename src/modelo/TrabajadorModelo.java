@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Base64;
+import vista.RecuperarContraseña;
 
 /**
  *
@@ -36,7 +37,7 @@ public class TrabajadorModelo {
         this.conexion = this.bd_controller.conectar();
     }
     
-    public Trabajador crearTrabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña){
+    public Trabajador crearTrabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String contraseña, String biblioteca){
         //contraseña = "hola";
         try {
             // Obtener una instancia del algoritmo SHA-256
@@ -55,7 +56,7 @@ public class TrabajadorModelo {
             e.printStackTrace();
         }
 
-        Trabajador trabajador = new Trabajador(id_permiso, nombre, apellido, dni, fecha_nacimiento, correo, cuenta_banco, seguridad_social, localidad, contraseña);
+        Trabajador trabajador = new Trabajador(id_permiso, nombre, apellido, dni, fecha_nacimiento, correo, cuenta_banco, seguridad_social, biblioteca);
         
         if (!comprobarDNI(dni)) {
             ingresarUsuarioBd(trabajador);
@@ -96,7 +97,7 @@ public class TrabajadorModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.trabajadores (ID_Permisos_FK, Nombre, Apellidos, DNI, Nacimiento, Correo, Cuenta_bancaria, SeguridadSocial, Localidad, Contraseña)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.trabajadores (ID_Permisos_FK, Nombre, Apellidos, DNI, Nacimiento, Correo, Cuenta_bancaria, SeguridadSocial, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
@@ -108,8 +109,7 @@ public class TrabajadorModelo {
             prepare.setString(6, trabajador.getCorreo());
             prepare.setString(7, trabajador.getCuenta_banco());
             prepare.setString(8, trabajador.getSeguridad_social());
-            prepare.setString(9, trabajador.getLocalidad());
-            prepare.setString(10, trabajador.getContraseña());
+            prepare.setString(9, trabajador.getBiblioteca());
             
             int ejecutar = prepare.executeUpdate();
             
@@ -238,6 +238,61 @@ public class TrabajadorModelo {
         }
         return id;
         
+    }
+
+    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
+        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
+        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
+        
+        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
+            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
+            return;
+        }
+
+        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
+        BaseDatosController baseDatosController = new BaseDatosController();
+
+        try (Connection conn = baseDatosController.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nuevaContraseña);
+            stmt.setString(2, usuario);
+
+            int filasActualizadas = stmt.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }
+    
+    public int seleccionarBiblioteca(String biblioteca){
+        int id = 0;
+        
+        try {
+            
+            String comprobar_id_biblioteca = "SELECT ID_Biblioteca from bd_biblioteca.biblioteca WHERE Nombre_Biblioteca = ?;";
+            
+            prepare=conexion.prepareStatement(comprobar_id_biblioteca);
+            
+            prepare.setString(1, biblioteca);
+            
+            resultado = prepare.executeQuery();
+            
+            if (resultado.next()) {
+                id=resultado.getInt("ID_Biblioteca");
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id;
     }
     
 }
