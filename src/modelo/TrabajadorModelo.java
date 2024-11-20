@@ -28,6 +28,8 @@ public class TrabajadorModelo {
     private ResultSet resultado;
     private PreparedStatement prepare;
     private CallableStatement consultas_funciones;
+    private int idPermiso;
+    private int idBiblioteca;
 
     public TrabajadorModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
@@ -146,46 +148,69 @@ public class TrabajadorModelo {
         }
     }
     
-    public int comporbarRolFuncion(String nombre, String contraseña){
-        
+        public int comprobarRolFuncion(int usuario, String contraseña) {
         int id_trabajador = 0;
-        
+
         try {
-            //this.bd_controller.conectarBd();
-            
-            String comprobar_rol = "{? = call obtener_id_trabajador(?, ?)}";
-            
-            consultas_funciones = conexion.prepareCall(comprobar_rol);
-            
-            consultas_funciones.registerOutParameter(1, Integer.BYTES);
-            consultas_funciones.setString(2, nombre);
-            
-            try {
-                // Obtener una instancia del algoritmo SHA-256
-                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Hashear la contraseña antes de enviarla al procedimiento almacenado
+            String contrasenaHasheada = hashearContraseña(contraseña);
 
-                // Convertir la contraseña a un arreglo de bytes
-                byte[] hashBytes = digest.digest(contraseña.getBytes());
+            // Llamada al procedimiento almacenado para obtener el ID de permisos y el ID de biblioteca
+            String comprobar_rol = "{CALL obtener_id_trabajadores(?, ?, ?, ?)}";
+            CallableStatement consultas_funciones = conexion.prepareCall(comprobar_rol);
 
-                // Codificar el hash en Base64 para hacerlo legible
-                String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
+            // Establecer los parámetros de entrada
+            consultas_funciones.setInt(1, usuario);  // ID del trabajador
+            consultas_funciones.setString(2, contrasenaHasheada);  // Contraseña hasheada
 
-                contraseña = hashedPassword;
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-            
-            consultas_funciones.setString(3, contraseña);
+            // Registrar los parámetros de salida
+            consultas_funciones.registerOutParameter(3, java.sql.Types.INTEGER);  // ID de permisos
+            consultas_funciones.registerOutParameter(4, java.sql.Types.INTEGER);  // ID de biblioteca
 
             consultas_funciones.execute();
-            
-            id_trabajador = consultas_funciones.getInt(1);
-            
+
+            // Recuperar los valores de salida
+            idPermiso = consultas_funciones.getInt(3);  // Obtener ID de permisos
+            idBiblioteca = consultas_funciones.getInt(4);  // Obtener ID de biblioteca
+
+            // Verificamos si se obtuvo correctamente el ID del trabajador
+            if (idPermiso != 0 && idBiblioteca != 0) {
+                id_trabajador = usuario;
+            } else {
+                System.out.println("No se encontró el trabajador con ID: " + usuario);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return id_trabajador;
-        
+    }
+
+    // Método para hashear la contraseña con SHA-256 y codificarla en Base64
+    private String hashearContraseña(String contraseña) {
+        String contraseñaHasheada = "";
+        try {
+            // Obtener una instancia del algoritmo SHA-256
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+            // Convertir la contraseña en un arreglo de bytes y obtener el hash
+            byte[] hashBytes = digest.digest(contraseña.getBytes());
+
+            // Codificar el hash en Base64 para hacerlo legible
+            contraseñaHasheada = Base64.getEncoder().encodeToString(hashBytes);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return contraseñaHasheada;
+    }
+
+    // Métodos para acceder a los valores de permiso y biblioteca
+    public int getIdPermiso() {
+        return idPermiso;
+    }
+
+    public int getIdBiblioteca() {
+        return idBiblioteca;
     }
     
     /**
