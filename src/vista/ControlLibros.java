@@ -194,6 +194,14 @@ public class ControlLibros extends javax.swing.JFrame {
         return btn_consulta_sanciones;
     }
 
+    public JButton getBtn_registrar_librosbiblio() {
+        return btn_registrar_librosbiblio;
+    }
+
+    public void setBtn_registrar_librosbiblio(JButton btn_registrar_librosbiblio) {
+        this.btn_registrar_librosbiblio = btn_registrar_librosbiblio;
+    }
+
     public JButton getBtn_consultar_prestamos() {
         return btn_consultar_prestamos;
     }
