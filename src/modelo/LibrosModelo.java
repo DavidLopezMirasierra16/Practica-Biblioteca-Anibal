@@ -3,6 +3,7 @@ package modelo;
 import com.mysql.cj.jdbc.CallableStatement;
 import com.mysql.cj.xdevapi.Statement;
 import controlador.BaseDatosController;
+import controlador.LoginController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,9 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import vista.ConsultarLibros;
 
 public class LibrosModelo {
-
     private BaseDatosController bd_controller;
-    
+    private TrabajadorModelo trabajador;
     private Connection conexion;
     private Statement sentencia;
     private ResultSet resultado;
@@ -23,6 +23,7 @@ public class LibrosModelo {
 
     public LibrosModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
+        this.trabajador = new TrabajadorModelo();
         this.conexion = this.bd_controller.conectar();
     }
         
@@ -179,40 +180,58 @@ public class LibrosModelo {
     //---------------------------CONSULTAS---------------------------
     
     public void consultarLibros(JTable table) {
-        String sql = "CALL mostrarLibrosConUbicacion()"; // Llamamos al procedimiento almacenado
+        // Llamamos a la función getIdBiblioteca() para obtener el ID de la biblioteca
+        int idBiblioteca = trabajador.getIdBiblioteca(); // Obtener el ID de la biblioteca
+        System.out.println(idBiblioteca);
+
+        // Verificamos si el ID de la biblioteca es válido
+        if (idBiblioteca == 0) {
+            System.out.println("No se pudo obtener el ID de la biblioteca.");
+            return;
+        }
+
+        String sql = "CALL mostrarLibrosConUbicacion(?)"; // Procedimiento que muestra libros por biblioteca
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
+            // Establecemos el parámetro para la consulta: el ID de la biblioteca
+            stmt.setInt(1, idBiblioteca); // Pasamos el ID de la biblioteca como parámetro
 
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getInt("ISBN_Libros"),
-                    rs.getString("Titulo"),
-                    rs.getString("Genero"),
-                    rs.getString("Anio"),
-                    rs.getString("Editorial"),
-                    rs.getInt("ID_Autor_FK"),
-                    rs.getString("Estanteria"),
-                    rs.getString("Seccion"),
-                    rs.getString("Piso"),
-                    rs.getInt("Cantidad")
-                };
-                model.addRow(row);
-            }
+            try (ResultSet rs = stmt.executeQuery()) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
 
-            table.setModel(model);
+                // Procesamos los resultados de la consulta
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getInt("ISBN_Libros"),
+                        rs.getString("Titulo"),
+                        rs.getString("Genero"),
+                        rs.getString("Anio"),
+                        rs.getString("Editorial"),
+                        rs.getString("nombre_autor"),
+                        rs.getString("Estanteria"),
+                        rs.getString("Seccion"),
+                        rs.getString("Piso"),
+                        rs.getInt("Cantidad")
+                    };
+                    model.addRow(row); // Agregamos la fila al modelo de la tabla
+                }
 
-            for (int i = 0; i < table.getColumnCount(); i++) {
-                table.getColumnModel().getColumn(i).setResizable(false);
+                // Actualizamos el modelo de la tabla
+                table.setModel(model);
+
+                // Hacemos que las columnas no se puedan redimensionar
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    table.getColumnModel().getColumn(i).setResizable(false);
+                }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error al consultar los libros: " + e.getMessage());
         }
     }
 
@@ -226,7 +245,7 @@ public class LibrosModelo {
             return;
         }
 
-        String columna = "";
+        String columna;
         switch (filtro) {
             case "Nombre":
                 columna = "Titulo";
@@ -235,22 +254,26 @@ public class LibrosModelo {
                 columna = "Editorial";
                 break;
             case "Autor":
-                columna = "ID_AUTOR";
+                columna = "nombre_autor";
                 break;
+            default:
+                System.out.println("Filtro no válido.");
+                return;
         }
 
-        String sql = "CALL mostrarLibrosConUbicacion()"; // Llamada al procedimiento con ubicación
-            BaseDatosController baseDatosController = new BaseDatosController();
+        String sql = "CALL mostrarLibrosConUbicacion(?)";
+        BaseDatosController baseDatosController = new BaseDatosController();
 
-            try (Connection conn = baseDatosController.conectar();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = baseDatosController.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setInt(1, trabajador.getIdBiblioteca()); // Ajustar según el contexto de biblioteca
+
+            try (ResultSet rs = stmt.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
                 model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
 
                 while (rs.next()) {
-                    // Filtramos las filas basadas en el filtro seleccionado y la búsqueda
                     if (rs.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
                         Object[] row = {
                             rs.getInt("ISBN_Libros"),
@@ -258,7 +281,7 @@ public class LibrosModelo {
                             rs.getString("Genero"),
                             rs.getString("Anio"),
                             rs.getString("Editorial"),
-                            rs.getInt("ID_Autor_FK"),
+                            rs.getString("nombre_autor"),
                             rs.getString("Estanteria"),
                             rs.getString("Seccion"),
                             rs.getString("Piso"),
@@ -273,9 +296,10 @@ public class LibrosModelo {
                 for (int i = 0; i < consultarLibros.getTablaLibros().getColumnCount(); i++) {
                     consultarLibros.getTablaLibros().getColumnModel().getColumn(i).setResizable(false);
                 }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

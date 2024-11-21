@@ -18,7 +18,7 @@ import vista.ConsultarSocios;
 public class ConsultarSociosController implements ActionListener {
     private ConsultarSocios consultasocios_vista;
 
-    public ConsultarSociosController() throws SQLException {
+    public ConsultarSociosController(ConsultarSocios consultarSocios_vista) throws SQLException {
         this.consultasocios_vista = new ConsultarSocios();
         this.consultasocios_vista.getBtnBuscar().addActionListener(this);
         this.consultasocios_vista.getBtnReestablecer().addActionListener(this);
