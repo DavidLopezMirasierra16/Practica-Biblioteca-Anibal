@@ -35,6 +35,7 @@ public class ControlLibros extends javax.swing.JFrame {
         btn_consulta_libros = new javax.swing.JButton();
         btn_registrar_autor = new javax.swing.JButton();
         btn_consultar_prestamos = new javax.swing.JButton();
+        btn_registrar_librosbiblio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,18 +77,26 @@ public class ControlLibros extends javax.swing.JFrame {
             }
         });
 
+        btn_registrar_librosbiblio.setText("Registrar Libro Biblioteca");
+        btn_registrar_librosbiblio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrar_librosbiblioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btn_consulta_sanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_consulta_libros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_registrar_libros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_registrar_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_registrar_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_registrar_librosbiblio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btn_consultar_prestamos)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,6 +111,8 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(btn_registrar_libros)
+                .addGap(18, 18, 18)
+                .addComponent(btn_registrar_librosbiblio)
                 .addGap(12, 12, 12)
                 .addComponent(btn_consulta_libros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -110,7 +121,7 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addComponent(btn_registrar_autor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_consultar_prestamos)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,6 +146,10 @@ public class ControlLibros extends javax.swing.JFrame {
     private void btn_consultar_prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultar_prestamosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_consultar_prestamosActionPerformed
+
+    private void btn_registrar_librosbiblioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_librosbiblioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_registrar_librosbiblioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +216,7 @@ public class ControlLibros extends javax.swing.JFrame {
     private javax.swing.JButton btn_consultar_prestamos;
     private javax.swing.JButton btn_registrar_autor;
     private javax.swing.JButton btn_registrar_libros;
+    private javax.swing.JButton btn_registrar_librosbiblio;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

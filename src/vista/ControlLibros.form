@@ -24,13 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <EmptySpace pref="114" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btn_consulta_sanciones" alignment="0" max="32767" attributes="0"/>
                       <Component id="btn_consulta_libros" alignment="0" max="32767" attributes="0"/>
                       <Component id="btn_registrar_libros" alignment="0" max="32767" attributes="0"/>
                       <Component id="btn_registrar_autor" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="btn_registrar_librosbiblio" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="btn_consultar_prestamos" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -50,6 +51,8 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_registrar_libros" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btn_registrar_librosbiblio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="btn_consulta_libros" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -58,7 +61,7 @@
               <Component id="btn_registrar_autor" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btn_consultar_prestamos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,6 +113,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_consultar_prestamosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_registrar_librosbiblio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Libro Biblioteca"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_registrar_librosbiblioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

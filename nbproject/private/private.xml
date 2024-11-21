@@ -3,33 +3,85 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RegistroAutorController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RecuperarContraseñaController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/main.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroSancionesController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroUbicacionLibroController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroLibroController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistroSanciones.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/AdministrativoController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarPrestamosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/SancionesModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Sanciones.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistrarLibro.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroAutorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ModLocalidadSocio.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarLibros.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroTrabajadorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/PrestamosModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ValidacionController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Socio.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistroTrabajadores.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RecuperarContraseñaController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Prestamos.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/BaseDatosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroSocioController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Trabajador.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarLibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarPrestamos.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarSanciones.java</file>
         </group>
         <group>
-=======
->>>>>>> Stashed changes
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/UbicacionLibroModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/main.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroSancionesController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroUbicacionLibroController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroLibroController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistroSanciones.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/AdministrativoController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarPrestamosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/SancionesModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Sanciones.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistrarLibro.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroAutorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ModLocalidadSocio.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarLibros.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroTrabajadorController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/PrestamosModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ValidacionController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Socio.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RegistroTrabajadores.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RecuperarContraseñaController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Prestamos.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/BaseDatosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RegistroSocioController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/Trabajador.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarLibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarPrestamos.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ConsultarSanciones.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
-=======
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/LibrosModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/RecuperarContrasenaController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarLibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LibrosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/ConsultarSociosController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/ModLocalidadSocio.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/controlador/LoginController.java</file>
+            <file>file:/C:/Users/pablo/Documents/Practica-Biblioteca-Anibal/src/vista/RecuperarContrasena.java</file>
         </group>
     </open-files>
 </project-private>
