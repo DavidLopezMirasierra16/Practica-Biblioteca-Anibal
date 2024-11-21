@@ -45,6 +45,7 @@ public class AdministrativoController implements ActionListener{
         if (button == this.menu_administrativo_vista.getBtnLibros()) {
             //Abre el controlador de libros
             new LibrosController(new ControlLibros());
+            this.menu_administrativo_vista.dispose();
         }else if (button == this.menu_administrativo_vista.getBtnConsulta()){
             try {
                 //Abre el controlador de consultas

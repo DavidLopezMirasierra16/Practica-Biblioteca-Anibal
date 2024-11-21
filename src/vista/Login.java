@@ -197,4 +197,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txt_contraseña;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
+
 }
