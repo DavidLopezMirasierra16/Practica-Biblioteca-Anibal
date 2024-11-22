@@ -17,6 +17,16 @@ public class Libros {
         this.editorial = editorial;
         this.idAutor = idAutor;
     }   
+
+    public Libros(String titulo, String genero, String year, String editorial, int idAutor) {
+        this.titulo = titulo;
+        this.genero = genero;
+        this.year = year;
+        this.editorial = editorial;
+        this.idAutor = idAutor;
+    }
+    
+    
     
     public int getIdLibros() {
         return ISBN;

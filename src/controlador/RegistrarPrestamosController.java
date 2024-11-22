@@ -27,7 +27,7 @@ public class RegistrarPrestamosController implements ActionListener {
         this.registroPrestamoVista = registroPrestamoVista;
         // Asigna el evento al botón
         this.registroPrestamoVista.getBtnAceptar().addActionListener(this);
-
+        this.registroPrestamoVista.getTxt_prestamo().setText(this.prestamosModelo.fecha());
         // Muestra la vista de registro de préstamos
         this.registroPrestamoVista.setVisible(true);
     }

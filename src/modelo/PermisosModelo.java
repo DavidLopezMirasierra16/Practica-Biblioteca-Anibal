@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -58,6 +60,18 @@ public class PermisosModelo {
         }
         return id;
         
+    }
+    
+    /**
+     * Fucion que nos genera la fecha del dia de hoy
+     * @return 
+     */
+    public String fecha(){
+        LocalDateTime dia = LocalDateTime.now();
+        
+        DateTimeFormatter formatear = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        String formateada = dia.format(formatear);
+        return formateada;
     }
     
 }

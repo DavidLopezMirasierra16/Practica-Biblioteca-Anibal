@@ -69,7 +69,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
             
-            String buscar_email = "SELECT dni FROM bd_biblioteca.socios WHERE dni=?;";
+                String buscar_email = "SELECT DNI_Socio FROM bd_biblioteca.socios WHERE DNI_Socio=?;";
             
             prepare = conexion.prepareStatement(buscar_email);
             

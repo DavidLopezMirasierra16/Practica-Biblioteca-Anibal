@@ -41,12 +41,11 @@ public class RegistroLibroController implements ActionListener {
                 JOptionPane.showMessageDialog(registro_libro_vista, "Autor no registrado", "Error autor", JOptionPane.ERROR_MESSAGE);
             }else{
 
-                if (this.modelo_libros.crearLibro(Integer.parseInt(this.registro_libro_vista.getTxt_isbn().getText()), 
-                        this.registro_libro_vista.getTxt_nombre().getText(), 
+                if (this.modelo_libros.crearLibro(this.registro_libro_vista.getTxt_nombre().getText(), 
                         this.registro_libro_vista.getTxt_genero().getText(), 
                         this.registro_libro_vista.getTxt_año().getText(), 
                         this.registro_libro_vista.getTxt_editorial().getText(), id)!=null) {
-                    JOptionPane.showMessageDialog(registro_libro_vista, "Libro con ISBN " + this.registro_libro_vista.getTxt_isbn().getText() + " registrado correctamente", "Libro dado de alta", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(registro_libro_vista, "Libro registrado correctamente", "Libro dado de alta", JOptionPane.INFORMATION_MESSAGE);
                     this.registro_libro_vista.dispose();
                 }else{
                     JOptionPane.showMessageDialog(registro_libro_vista, "Autor " + this.registro_libro_vista.getTxt_autor().getText() + " no registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
@@ -69,10 +68,7 @@ public class RegistroLibroController implements ActionListener {
             resultado = false;
         }
 
-        if (this.registro_libro_vista.getTxt_isbn().getText().trim().length() == 0) {
-            mensaje = mensaje + "Debe introducir uno ISBN. \n";
-            resultado = false;
-        }
+        
 
         if (this.registro_libro_vista.getTxt_genero().getText().trim().length() == 0) {
             mensaje = mensaje + "Debe introducir un género. \n";
