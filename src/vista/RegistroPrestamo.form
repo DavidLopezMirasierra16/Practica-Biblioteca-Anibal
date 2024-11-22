@@ -114,21 +114,60 @@
     <Component class="javax.swing.JComboBox" name="combo_biblioteca">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="53">
             <StringItem index="0" value="Biblioteca del Mar"/>
             <StringItem index="1" value="Biblioteca El Bosque Encantado"/>
             <StringItem index="2" value="Biblioteca de la Cultura"/>
             <StringItem index="3" value="Biblioteca El Saber Ancestral"/>
-            <StringItem index="4" value="Biblioteca La Sombra del Olivo"/>
-            <StringItem index="5" value="Biblioteca El Rinc&#xf3;n de la Sabidur&#xed;a"/>
-            <StringItem index="6" value="Biblioteca La Luna del Mediterr&#xe1;neo"/>
-            <StringItem index="7" value="Biblioteca del Viento"/>
-            <StringItem index="8" value="Biblioteca La Monta&#xf1;a Sagrada"/>
-            <StringItem index="9" value="Biblioteca El Viaje de las Estrellas"/>
-            <StringItem index="10" value="Biblioteca El Refugio de la Lectura"/>
-            <StringItem index="11" value="Biblioteca El Jard&#xed;n Secreto"/>
-            <StringItem index="12" value="Biblioteca Los Tesoros del Conocimiento"/>
-            <StringItem index="13" value="Biblioteca La Brisa del Sur"/>
+            <StringItem index="4" value="Biblioteca Provincial de &#xc1;lava"/>
+            <StringItem index="5" value="Biblioteca P&#xfa;blica del Estado de Albacete"/>
+            <StringItem index="6" value="Biblioteca Valenciana Nicolau Primitiu"/>
+            <StringItem index="7" value="Biblioteca Provincial de Almer&#xed;a"/>
+            <StringItem index="8" value="Biblioteca P&#xfa;blica del Estado de Asturias"/>
+            <StringItem index="9" value="Biblioteca P&#xfa;blica de &#xc1;vila"/>
+            <StringItem index="10" value="Biblioteca P&#xfa;blica de Badajoz"/>
+            <StringItem index="11" value="Biblioteca P&#xfa;blica de Barcelona"/>
+            <StringItem index="12" value="Biblioteca P&#xfa;blica de Burgos"/>
+            <StringItem index="13" value="Biblioteca P&#xfa;blica de C&#xe1;ceres"/>
+            <StringItem index="14" value="Biblioteca de C&#xe1;diz"/>
+            <StringItem index="15" value="Biblioteca Central de Cantabria"/>
+            <StringItem index="16" value="Biblioteca P&#xfa;blica de Castell&#xf3;n"/>
+            <StringItem index="17" value="Biblioteca P&#xfa;blica de Ceuta"/>
+            <StringItem index="18" value="Biblioteca P&#xfa;blica del Estado de Ciudad Real"/>
+            <StringItem index="19" value="Biblioteca de C&#xf3;rdoba"/>
+            <StringItem index="20" value="Biblioteca Provincial de A Coru&#xf1;a"/>
+            <StringItem index="21" value="Biblioteca P&#xfa;blica del Estado de Cuenca"/>
+            <StringItem index="22" value="Biblioteca P&#xfa;blica de Girona"/>
+            <StringItem index="23" value="Biblioteca de Granada"/>
+            <StringItem index="24" value="Biblioteca P&#xfa;blica de Guadalajara"/>
+            <StringItem index="25" value="Biblioteca Provincial de Huelva"/>
+            <StringItem index="26" value="Biblioteca P&#xfa;blica de Huesca"/>
+            <StringItem index="27" value="Biblioteca P&#xfa;blica de las Islas Baleares"/>
+            <StringItem index="28" value="Biblioteca P&#xfa;blica de Ja&#xe9;n"/>
+            <StringItem index="29" value="Biblioteca de La Rioja"/>
+            <StringItem index="30" value="Biblioteca Insular de Las Palmas"/>
+            <StringItem index="31" value="Biblioteca P&#xfa;blica de Le&#xf3;n"/>
+            <StringItem index="32" value="Biblioteca P&#xfa;blica de Lleida"/>
+            <StringItem index="33" value="Biblioteca Provincial de Lugo"/>
+            <StringItem index="34" value="Biblioteca Nacional de Madrid"/>
+            <StringItem index="35" value="Biblioteca Provincial de M&#xe1;laga"/>
+            <StringItem index="36" value="Biblioteca Regional de Murcia"/>
+            <StringItem index="37" value="Biblioteca de Navarra"/>
+            <StringItem index="38" value="Biblioteca P&#xfa;blica de Ourense"/>
+            <StringItem index="39" value="Biblioteca de Palencia"/>
+            <StringItem index="40" value="Biblioteca P&#xfa;blica de Pontevedra"/>
+            <StringItem index="41" value="Biblioteca P&#xfa;blica de Salamanca"/>
+            <StringItem index="42" value="Biblioteca Municipal de Santa Cruz de Tenerif"/>
+            <StringItem index="43" value="Biblioteca P&#xfa;blica de Segovia"/>
+            <StringItem index="44" value="Biblioteca de Sevilla"/>
+            <StringItem index="45" value="Biblioteca P&#xfa;blica de Soria"/>
+            <StringItem index="46" value="Biblioteca P&#xfa;blica de Tarragona"/>
+            <StringItem index="47" value="Biblioteca de Teruel"/>
+            <StringItem index="48" value="Biblioteca Manchega de Toledo"/>
+            <StringItem index="49" value="Biblioteca Valenciana Nicolau Primitiu"/>
+            <StringItem index="50" value="Biblioteca P&#xfa;blica de Valladolid"/>
+            <StringItem index="51" value="Biblioteca Foral de Bizkaia"/>
+            <StringItem index="52" value="Biblioteca P&#xfa;blica de Zamora"/>
           </StringArray>
         </Property>
       </Properties>

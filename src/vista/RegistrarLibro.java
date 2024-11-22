@@ -34,10 +34,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txt_editorial = new javax.swing.JTextField();
-        txt_isbn = new javax.swing.JTextField();
         btn_agregar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txt_genero = new javax.swing.JTextField();
@@ -45,7 +43,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         txt_año = new javax.swing.JTextField();
         txt_autor = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Registro de Libros");
@@ -53,8 +51,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel2.setText("Nombre:");
 
         jLabel6.setText("Editorial:");
-
-        jLabel7.setText("ISBN:");
 
         jLabel8.setText("Autor:");
 
@@ -76,11 +72,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_agregar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addGap(37, 37, 37)
-                            .addComponent(txt_isbn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -99,7 +91,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txt_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,10 +103,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -131,9 +119,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(btn_agregar)
-                .addGap(31, 31, 31))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,13 +204,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         this.txt_editorial = txt_editorial;
     }
 
-    public JTextField getTxt_isbn() {
-        return txt_isbn;
-    }
-
-    public void setTxt_isbn(JTextField txt_isbn) {
-        this.txt_isbn = txt_isbn;
-    }
+    
 
     public JTextField getTxt_nombre() {
         return txt_nombre;
@@ -241,13 +223,11 @@ public class RegistrarLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txt_autor;
     private javax.swing.JTextField txt_año;
     private javax.swing.JTextField txt_editorial;
     private javax.swing.JTextField txt_genero;
-    private javax.swing.JTextField txt_isbn;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
