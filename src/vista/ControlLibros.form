@@ -40,6 +40,7 @@
                               <Component id="btn_registrar_librosbiblio" alignment="0" max="32767" attributes="0"/>
                               <Component id="btn_registrar_autor" alignment="0" max="32767" attributes="0"/>
                               <Component id="btn_consultar_prestamos" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="btn_registroPrestamo" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
@@ -66,8 +67,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btn_consultar_prestamos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btn_registroPrestamo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,6 +136,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver atr&#xe1;s"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_registroPrestamo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Pr&#xe9;stamos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_registroPrestamoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

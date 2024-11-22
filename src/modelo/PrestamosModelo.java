@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import controlador.BaseDatosController;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -38,14 +40,37 @@ public class PrestamosModelo {
      * @param Fecha_Devolucion Fecha de devolución prevista
      * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
      */
-    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo) {
-        if (!comprobarDisponibilidadLibro(ID_Libro_FK) && comprobarLimitePrestamos(ID_Socio_FK)) {
-            Prestamos prestamo = new Prestamos(0, ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo); // ID_Prestamo = 0 ya que será autogenerado
-            ingresarPrestamoEnBd(prestamo);
-            return prestamo;
+    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, String Nombre_Biblioteca, Date Fecha_Prestamo) {
+        // Verificar disponibilidad del libro
+        String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
+        if (ID_Biblioteca_FK == null) {
+            return null; // Si no se encuentra la biblioteca, retorna null
         }
-        
-        return null; // Retorna null si el libro ya está prestado o el socio tiene 3 préstamos activos
+
+        Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, ID_Biblioteca_FK, Fecha_Prestamo);
+        ingresarPrestamoEnBd(prestamo);
+        return prestamo;
+    }
+
+    /**
+     * Obtiene el ID de la biblioteca según su nombre.
+     * @param Nombre_Biblioteca Nombre de la biblioteca
+     * @return el ID de la biblioteca o null si no se encuentra
+     */
+    private String obtenerIDBiblioteca(String Nombre_Biblioteca) {
+        try {
+            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre = ?";
+            prepare = conexion.prepareStatement(query);
+            prepare.setString(1, Nombre_Biblioteca);
+            resultado = prepare.executeQuery();
+            
+            if (resultado.next()) {
+                return resultado.getString("ID_Biblioteca");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null; // Si no se encuentra la biblioteca
     }
 
     /**
@@ -55,10 +80,9 @@ public class PrestamosModelo {
      */
     public boolean comprobarDisponibilidadLibro(int ID_Libro_FK) {
         try {
-            String query = "SELECT * FROM bd_biblioteca.prestamos WHERE ID_Libro_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            String query = "SELECT * FROM prestamos WHERE ID_Libro_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
             prepare = conexion.prepareStatement(query);
             prepare.setInt(1, ID_Libro_FK);
-            
             resultado = prepare.executeQuery();
             
             return !resultado.next(); // Retorna true si no encuentra un préstamo activo para el libro
@@ -75,10 +99,9 @@ public class PrestamosModelo {
      */
     public boolean comprobarLimitePrestamos(int ID_Socio_FK) {
         try {
-            String query = "SELECT COUNT(*) AS total_prestamos FROM bd_biblioteca.prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            String query = "SELECT COUNT(*) AS total_prestamos FROM prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
             prepare = conexion.prepareStatement(query);
             prepare.setInt(1, ID_Socio_FK);
-            
             resultado = prepare.executeQuery();
             
             if (resultado.next()) {
@@ -92,30 +115,40 @@ public class PrestamosModelo {
         return false; // Retorna false en caso de error o si ya tiene 3 préstamos
     }
 
+    public String fecha(){
+        LocalDateTime dia = LocalDateTime.now();
+        
+        DateTimeFormatter formatear = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+        String formateada = dia.format(formatear);
+        return formateada;
+    }
+
     /**
      * Inserta un préstamo en la base de datos.
      * @param prestamo el objeto Prestamos que queremos registrar en la base de datos
      */
-    public void ingresarPrestamoEnBd(Prestamos prestamo) {
+    private void ingresarPrestamoEnBd(Prestamos prestamo) {
         try {
-            String sql = "INSERT INTO bd_biblioteca.prestamos (ID_Libro_FK, ID_Socio_FK, Fecha_Prestamo, Fecha_Devolucion)" +
-                         "VALUES (?, ?, ?, ?);";
+            // Llamamos al procedimiento almacenado 'registrarPrestamo'
+            String query = "{CALL registrarPrestamo(?, ?, ?, ?)}";
 
-            prepare = conexion.prepareStatement(sql);
+            // Preparamos la llamada al procedimiento
+            prepare = conexion.prepareStatement(query);
+
+            // Establecemos los parámetros del procedimiento
             prepare.setInt(1, prestamo.getID_Libro_FK());
             prepare.setInt(2, prestamo.getID_Socio_FK());
-            prepare.setDate(3, new java.sql.Date(prestamo.getFecha_Prestamo().getTime()));
-            prepare.setDate(4, new java.sql.Date(prestamo.getFecha_Devolucion().getTime()));
-            
-            int ejecutar = prepare.executeUpdate();
-            
-            if (ejecutar == 1) {
-                System.out.println("Préstamo registrado correctamente para el libro con ID: " + prestamo.getID_Libro_FK());
-            }
+            prepare.setString(3, prestamo.getID_Biblioteca_FK());
+            prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
+
+            // Ejecutamos el procedimiento
+            prepare.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
+
     
     // Método para consultar todos los libros y mostrar en la tabla
     public void consultarPrestamos(JTable table) {

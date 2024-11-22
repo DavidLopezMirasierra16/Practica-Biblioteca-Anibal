@@ -37,6 +37,7 @@ public class ControlLibros extends javax.swing.JFrame {
         btn_consultar_prestamos = new javax.swing.JButton();
         btn_registrar_librosbiblio = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        btn_registroPrestamo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -87,6 +88,13 @@ public class ControlLibros extends javax.swing.JFrame {
 
         btnVolver.setText("Volver atrás");
 
+        btn_registroPrestamo.setText("Registrar Préstamos");
+        btn_registroPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registroPrestamoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +114,8 @@ public class ControlLibros extends javax.swing.JFrame {
                                 .addComponent(btn_registrar_libros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_registrar_librosbiblio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_registrar_autor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_consultar_prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_consultar_prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_registroPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(118, 118, 118))))
         );
         layout.setVerticalGroup(
@@ -127,8 +136,10 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_consultar_prestamos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_registroPrestamo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,6 +168,10 @@ public class ControlLibros extends javax.swing.JFrame {
     private void btn_registrar_librosbiblioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrar_librosbiblioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_registrar_librosbiblioActionPerformed
+
+    private void btn_registroPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroPrestamoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_registroPrestamoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +244,14 @@ public class ControlLibros extends javax.swing.JFrame {
         this.btnVolver = btnVolver;
     }
 
+    public JButton getBtn_registroPrestamo() {
+        return btn_registroPrestamo;
+    }
+
+    public void setBtn_registroPrestamo(JButton btn_registroPrestamo) {
+        this.btn_registroPrestamo = btn_registroPrestamo;
+    }
+
     
 
     
@@ -241,6 +264,7 @@ public class ControlLibros extends javax.swing.JFrame {
     private javax.swing.JButton btn_registrar_autor;
     private javax.swing.JButton btn_registrar_libros;
     private javax.swing.JButton btn_registrar_librosbiblio;
+    private javax.swing.JButton btn_registroPrestamo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
