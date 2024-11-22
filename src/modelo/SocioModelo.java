@@ -68,7 +68,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
             
-            String buscar_email = "SELECT dni FROM bd_biblioteca.socios WHERE dni=?;";
+            String buscar_email = "SELECT DNI_socio FROM bd_biblioteca.socios WHERE DNI_socio=?;";
             
             prepare = conexion.prepareStatement(buscar_email);
             
@@ -148,7 +148,7 @@ public class SocioModelo {
             // Agregar las filas a la tabla
             while (rs.next()) {
                 Object[] row = {
-                    rs.getInt("DNI_Socio"),
+                    rs.getString("DNI_Socio"),
                     rs.getString("Nombre"),
                     rs.getString("Apellidos"),
                     rs.getString("Direccion"),
