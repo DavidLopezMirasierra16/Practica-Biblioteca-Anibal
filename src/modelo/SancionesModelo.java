@@ -35,7 +35,7 @@ public class SancionesModelo {
     }
     
     public void consultarSanciones(JTable table) {
-        String sql = "SELECT sanciones.ID_Sancion, CONCAT(socios.Nombre, ' ', socios.Apellidos) AS Nombre_Completo_Socio, sanciones.ID_Prestamo_FK, sanciones.Tipo_Sancion FROM sanciones JOIN socios ON sanciones.ID_Socio_FK = socios.ID_Socio;";
+        String sql = "SELECT sanciones.ID_Sancion, CONCAT(socios.Nombre, ' ', socios.Apellidos) AS Nombre_Completo_Socio, sanciones.ID_Prestamo_FK, sanciones.Tipo_Sancion FROM sanciones JOIN socios ON sanciones.ID_Socio_FK = socios.DNI_Socio;";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
