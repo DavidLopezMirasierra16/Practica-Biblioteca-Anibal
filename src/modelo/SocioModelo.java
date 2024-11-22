@@ -21,7 +21,7 @@ import vista.RecuperarContrasena;
 public class SocioModelo {
 
     private BaseDatosController bd_controller;
-    
+    private TrabajadorModelo trabajador;
     private Connection conexion;
     private Statement sentencia;
     private ResultSet resultado;
@@ -30,6 +30,7 @@ public class SocioModelo {
 
     public SocioModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
+        this.trabajador = new TrabajadorModelo();
         this.conexion = this.bd_controller.conectar();
     }
     
@@ -68,7 +69,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
             
-            String buscar_email = "SELECT DNI_socio FROM bd_biblioteca.socios WHERE DNI_socio=?;";
+            String buscar_email = "SELECT dni FROM bd_biblioteca.socios WHERE dni=?;";
             
             prepare = conexion.prepareStatement(buscar_email);
             
@@ -134,38 +135,45 @@ public class SocioModelo {
     //--------------------------------CONSULTAR---------------------------------
     
     public void consultarSocios(JTable table) {
-        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios";
+        int idBiblioteca = trabajador.getIdBiblioteca();
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // Crear un modelo para la tabla y limpiar las filas anteriores
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Limpiar las filas actuales
+            // Establecer el valor para el parámetro de la consulta
+            stmt.setInt(1, idBiblioteca);
 
-            // Agregar las filas a la tabla
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getString("DNI_Socio"),
-                    rs.getString("Nombre"),
-                    rs.getString("Apellidos"),
-                    rs.getString("Direccion"),
-                    rs.getString("Telefono"),
-                    rs.getString("Correo_Socio"),
-                    rs.getString("Fecha_Alta"),
-                    rs.getString("Cuenta_Bancaria"),
-                };
-                model.addRow(row);
-            }
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            // Establecer el modelo en la tabla
-            table.setModel(model);
+                // Crear un modelo para la tabla y limpiar las filas anteriores
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setRowCount(0); // Limpiar las filas actuales
 
-            // No permitir redimensionar las columnas
-            for (int i = 0; i < table.getColumnCount(); i++) {
-                table.getColumnModel().getColumn(i).setResizable(false);
+                // Agregar las filas a la tabla
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getInt("DNI_Socio"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("Direccion"),
+                        rs.getString("Telefono"),
+                        rs.getString("Correo_Socio"),
+                        rs.getString("Fecha_Alta"),
+                        rs.getString("Cuenta_Bancaria"),
+                    };
+                    model.addRow(row);
+                }
+
+                // Establecer el modelo en la tabla
+                table.setModel(model);
+
+                // No permitir redimensionar las columnas
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    table.getColumnModel().getColumn(i).setResizable(false);
+                }
+
             }
 
         } catch (SQLException e) {
@@ -173,11 +181,12 @@ public class SocioModelo {
         }
     }
 
+
     // Método para filtrar socios según el filtro y la búsqueda
     public void filtrarSocios(ConsultarSocios consultarSocios, JTable table) {
         String filtro = (String) consultarSocios.getCbFiltro().getSelectedItem();
         String busqueda = consultarSocios.getTxtBusqueda().getText().trim();
-
+        int idBiblioteca = trabajador.getIdBiblioteca();
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
             System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
             return;
@@ -199,13 +208,14 @@ public class SocioModelo {
                 break;
         }
 
-        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ?";
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ? AND ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + busqueda + "%"); // Usamos % para buscar coincidencias parciales
+            stmt.setInt(2, idBiblioteca);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -272,4 +282,5 @@ public class SocioModelo {
             System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
         }
     }
+
 }
