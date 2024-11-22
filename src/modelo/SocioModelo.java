@@ -154,7 +154,7 @@ public class SocioModelo {
                 // Agregar las filas a la tabla
                 while (rs.next()) {
                     Object[] row = {
-                        rs.getInt("DNI_Socio"),
+                        rs.getString("DNI_Socio"),
                         rs.getString("Nombre"),
                         rs.getString("Apellidos"),
                         rs.getString("Direccion"),
