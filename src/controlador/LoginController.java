@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import modelo.TrabajadorModelo;
 import vista.Login;
 import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
+import vista.RecuperarContrasena;
 
 /**
  *
@@ -39,26 +41,44 @@ public class LoginController implements ActionListener {
         Object button = e.getSource();
 
         if (button == this.login_vista.getBtnIniciar()) {
-            // Controller iniciar sesión
-            int id = this.trabajador_modelo.comprobarRolFuncion(
-                    Integer.parseInt(this.login_vista.getTxt_usuario().getText()),
-                    this.login_vista.getTxt_contraseña().getText()
-            );
-            if (id > 0) {
-                try {
-                    mostrarVentana(id);
-                } catch (SQLException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                // Recuperar el usuario y contraseña desde la vista
+                int usuarioId = Integer.parseInt(this.login_vista.getTxt_usuario().getText().trim());
+                String contraseña = this.login_vista.getTxt_contraseña().getText().trim();
+
+                // Realizar la comprobación del rol y función
+                int idTrabajador = this.trabajador_modelo.comprobarRolFuncion(usuarioId, contraseña);
+
+                if (idTrabajador > 0) {
+                    // Si el trabajador fue encontrado, obtenemos los valores directamente desde trabajador_modelo
+                    int idPermiso = trabajador_modelo.getIdPermiso();
+                    int idBiblioteca = trabajador_modelo.getIdBiblioteca();
+                    System.out.println("ID Trabajador: " + idTrabajador);
+                    System.out.println("ID Permiso: " + idPermiso);
+                    System.out.println("ID Biblioteca: " + idBiblioteca);
+
+                    // Mostrar la ventana correspondiente
+                    mostrarVentana(idPermiso);
+                } else {
+                    // Si no se encontró el trabajador
+                    JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(login_vista, "Por favor, ingrese un usuario válido", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         if (button == this.login_vista.getBtnRecuperar1()) {
-            // Controller recuperar cuenta
+            try {
+                new RecuperarContrasenaController(new RecuperarContrasena());
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
+
 
     public void mostrarVentana(int id) throws SQLException {
         // Obtenemos el ID de la biblioteca y permisos

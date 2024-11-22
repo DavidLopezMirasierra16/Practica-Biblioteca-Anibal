@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
 import vista.ModLocalidadSocio;
-import vista.RecuperarContraseña;
+import vista.RecuperarContrasena;
 
 /**
  * Modelo para realizar operaciones de base de datos sobre los socios.
@@ -21,7 +21,7 @@ import vista.RecuperarContraseña;
 public class SocioModelo {
 
     private BaseDatosController bd_controller;
-    
+    private TrabajadorModelo trabajador;
     private Connection conexion;
     private Statement sentencia;
     private ResultSet resultado;
@@ -30,6 +30,7 @@ public class SocioModelo {
 
     public SocioModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
+        this.trabajador = new TrabajadorModelo();
         this.conexion = this.bd_controller.conectar();
     }
     
@@ -94,7 +95,7 @@ public class SocioModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (Dni, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, ID_Biblioteca_FK)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
@@ -134,38 +135,45 @@ public class SocioModelo {
     //--------------------------------CONSULTAR---------------------------------
     
     public void consultarSocios(JTable table) {
-        String sql = "SELECT ID_Socios, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios";
+        int idBiblioteca = trabajador.getIdBiblioteca();
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // Crear un modelo para la tabla y limpiar las filas anteriores
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Limpiar las filas actuales
+            // Establecer el valor para el parámetro de la consulta
+            stmt.setInt(1, idBiblioteca);
 
-            // Agregar las filas a la tabla
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getInt("ID_Socios"),
-                    rs.getString("Nombre"),
-                    rs.getString("Apellidos"),
-                    rs.getString("Direccion"),
-                    rs.getString("Telefono"),
-                    rs.getString("Correo_Socio"),
-                    rs.getString("Fecha_Alta"),
-                    rs.getString("Cuenta_Bancaria"),
-                };
-                model.addRow(row);
-            }
+            try (ResultSet rs = stmt.executeQuery()) {
 
-            // Establecer el modelo en la tabla
-            table.setModel(model);
+                // Crear un modelo para la tabla y limpiar las filas anteriores
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setRowCount(0); // Limpiar las filas actuales
 
-            // No permitir redimensionar las columnas
-            for (int i = 0; i < table.getColumnCount(); i++) {
-                table.getColumnModel().getColumn(i).setResizable(false);
+                // Agregar las filas a la tabla
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getInt("DNI_Socio"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getString("Direccion"),
+                        rs.getString("Telefono"),
+                        rs.getString("Correo_Socio"),
+                        rs.getString("Fecha_Alta"),
+                        rs.getString("Cuenta_Bancaria"),
+                    };
+                    model.addRow(row);
+                }
+
+                // Establecer el modelo en la tabla
+                table.setModel(model);
+
+                // No permitir redimensionar las columnas
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    table.getColumnModel().getColumn(i).setResizable(false);
+                }
+
             }
 
         } catch (SQLException e) {
@@ -173,11 +181,12 @@ public class SocioModelo {
         }
     }
 
+
     // Método para filtrar socios según el filtro y la búsqueda
     public void filtrarSocios(ConsultarSocios consultarSocios, JTable table) {
         String filtro = (String) consultarSocios.getCbFiltro().getSelectedItem();
         String busqueda = consultarSocios.getTxtBusqueda().getText().trim();
-
+        int idBiblioteca = trabajador.getIdBiblioteca();
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
             System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
             return;
@@ -195,17 +204,18 @@ public class SocioModelo {
                 columna = "Correo_Socio";
                 break;
             case "ID":
-                columna = "ID_Socios";
+                columna = "DNI_Socio";
                 break;
         }
 
-        String sql = "SELECT ID_Socios, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ?";
+        String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ? AND ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conn = baseDatosController.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + busqueda + "%"); // Usamos % para buscar coincidencias parciales
+            stmt.setInt(2, idBiblioteca);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -214,7 +224,7 @@ public class SocioModelo {
                 // Agregar las filas filtradas a la tabla
                 while (rs.next()) {
                     Object[] row = {
-                        rs.getInt("ID_Socios"),
+                        rs.getInt("DNI_Socio"),
                         rs.getString("Nombre"),
                         rs.getString("Apellidos"),
                         rs.getString("Direccion"),
@@ -238,38 +248,6 @@ public class SocioModelo {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-    
-    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
-        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
-        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
-        
-        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
-            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
-            return;
-        }
-
-        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
-        BaseDatosController baseDatosController = new BaseDatosController();
-
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, nuevaContraseña);
-            stmt.setString(2, usuario);
-
-            int filasActualizadas = stmt.executeUpdate();
-
-            if (filasActualizadas > 0) {
-                System.out.println("Contraseña actualizada exitosamente.");
-            } else {
-                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
         }
     }
     
@@ -304,4 +282,5 @@ public class SocioModelo {
             System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
         }
     }
+
 }

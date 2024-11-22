@@ -49,7 +49,7 @@ public class ConsultarSocios extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnReestablecer = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaSocios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

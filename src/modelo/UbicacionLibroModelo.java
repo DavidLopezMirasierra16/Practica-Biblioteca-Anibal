@@ -12,12 +12,14 @@ import vista.ConsultarLibros;
 public class UbicacionLibroModelo {
 
     private BaseDatosController bd_controller;
+    private TrabajadorModelo trabajador;
     private Connection conexion;
     private PreparedStatement prepare;
     private ResultSet resultado;
 
     public UbicacionLibroModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
+        this.trabajador = new TrabajadorModelo();
         this.conexion = this.bd_controller.conectar();
     }
 
@@ -44,7 +46,8 @@ public class UbicacionLibroModelo {
      * @return true si la biblioteca existe, false en caso contrario.
      */
     public boolean existeBiblioteca(int idBiblioteca) {
-        String sql = "SELECT ID_Biblioteca FROM bibliotecas WHERE ID_Biblioteca = ?";
+        idBiblioteca = trabajador.getIdBiblioteca();
+        String sql = "SELECT ID_Biblioteca FROM biblioteca WHERE ID_Biblioteca = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, idBiblioteca);
             ResultSet rs = stmt.executeQuery();
@@ -74,7 +77,7 @@ public class UbicacionLibroModelo {
         }
 
         // Si ambos existen, proceder a registrar la ubicación
-        String sql = "INSERT INTO ubicaciones_libros (ID_Biblioteca, ID_Libro, Estanteria, Seccion, Piso, Cantidad) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ubicacion (ID_Biblioteca, ID_Libro, Estanteria, Seccion, Piso, Cantidad) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, ubicacion.getID_Biblioteca());
             stmt.setInt(2, ubicacion.getID_Libro());

@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Base64;
-import vista.RecuperarContraseña;
+import vista.RecuperarContrasena;
 
 /**
  *
@@ -30,7 +30,7 @@ public class TrabajadorModelo {
     private PreparedStatement prepare;
     private CallableStatement consultas_funciones;
     private int idPermiso;
-    private int idBiblioteca;
+    private static int idBiblioteca;
 
     public TrabajadorModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
@@ -212,6 +212,10 @@ public class TrabajadorModelo {
     public int getIdBiblioteca() {
         return idBiblioteca;
     }
+
+    public void setIdBiblioteca(int idBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
+    }
     
     /**
      * Funcion que nos recoje el id del rol que se seleccion
@@ -240,36 +244,30 @@ public class TrabajadorModelo {
         
     }
 
-    public void cambiarContraseña(RecuperarContraseña recuperarContraseña) {
-        String usuario = recuperarContraseña.getTxt_usuario().getText().trim();
-        String nuevaContraseña = recuperarContraseña.getTxt_contraseña().getText().trim();
-        
-        if (usuario.isEmpty() || nuevaContraseña.isEmpty()) {
-            System.out.println("Usuario o contraseña nueva no deben estar vacíos.");
-            return;
-        }
+        public void cambiarContraseña(String usuario, String nuevaContraseña) {
+            // Hashear la nueva contraseña
+            String contrasenaHasheada = hashearContraseña(nuevaContraseña);
+            // Preparar el SQL para actualizar la contraseña en la base de datos
+            String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
+            // Conexión y ejecución de la consulta
+            try (Connection conn = bd_controller.conectar();
+                    PreparedStatement stmt = conn.prepareStatement(sql)) {
+                
+                stmt.setString(1, contrasenaHasheada); // Usar la contraseña hasheada
+                stmt.setString(2, usuario); // Usuario (ID del trabajador)
 
-        String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
-        BaseDatosController baseDatosController = new BaseDatosController();
+                int filasActualizadas = stmt.executeUpdate();
 
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                if (filasActualizadas > 0) {
+                    System.out.println("Contraseña actualizada exitosamente.");
+                } else {
+                    System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+                }
 
-            stmt.setString(1, nuevaContraseña);
-            stmt.setString(2, usuario);
-
-            int filasActualizadas = stmt.executeUpdate();
-
-            if (filasActualizadas > 0) {
-                System.out.println("Contraseña actualizada exitosamente.");
-            } else {
-                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Error al actualizar la contraseña: " + e.getMessage());
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
-        }
     }
     
     public int seleccionarBiblioteca(String biblioteca){

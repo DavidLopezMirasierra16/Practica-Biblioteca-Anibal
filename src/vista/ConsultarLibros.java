@@ -40,9 +40,8 @@ public class ConsultarLibros extends javax.swing.JFrame {
         cbFiltro = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         btnReestablecer = new javax.swing.JButton();
-        btnPrestar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,8 +94,6 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
         btnReestablecer.setText("Reestablecer");
 
-        btnPrestar.setText("Prestar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,9 +114,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addComponent(btnReestablecer))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPrestar)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -137,9 +132,7 @@ public class ConsultarLibros extends javax.swing.JFrame {
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPrestar)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,14 +177,6 @@ public class ConsultarLibros extends javax.swing.JFrame {
         return cbFiltro;
     }
 
-    public JButton getBtnPrestar() {
-        return btnPrestar;
-    }
-
-    public void setBtnPrestar(JButton btnPrestar) {
-        this.btnPrestar = btnPrestar;
-    }
-
     public JButton getBtnReestablecer() {
         return btnReestablecer;
     }
@@ -232,7 +217,6 @@ public class ConsultarLibros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnPrestar;
     private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;

@@ -14,28 +14,23 @@ public class Prestamos {
     private int ID_Prestamo;
     private int ID_Libro_FK;
     private int ID_Socio_FK;
+    private String ID_Biblioteca_FK;
     private Date Fecha_Prestamo;
     private Date Fecha_Devolucion;
 
-    public Prestamos(int ID_Prestamo, int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
+    public Prestamos(int ID_Prestamo, int ID_Libro_FK, int ID_Socio_FK, String ID_Biblioteca_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
         this.ID_Prestamo = ID_Prestamo;
         this.ID_Libro_FK = ID_Libro_FK;
         this.ID_Socio_FK = ID_Socio_FK;
+        this.ID_Biblioteca_FK = ID_Biblioteca_FK;
         this.Fecha_Prestamo = Fecha_Prestamo;
         this.Fecha_Devolucion = Fecha_Devolucion;
     }
 
-    public Prestamos(int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
+    public Prestamos(int ID_Libro_FK, int ID_Socio_FK, String ID_Biblioteca_FK, Date Fecha_Prestamo) {
         this.ID_Libro_FK = ID_Libro_FK;
         this.ID_Socio_FK = ID_Socio_FK;
-        this.Fecha_Prestamo = Fecha_Prestamo;
-        this.Fecha_Devolucion = Fecha_Devolucion;
-    }
-
-    public Prestamos(int ID_Prestamo, int ID_Libro_FK, int ID_Socio_FK, Date Fecha_Prestamo) {
-        this.ID_Prestamo = ID_Prestamo;
-        this.ID_Libro_FK = ID_Libro_FK;
-        this.ID_Socio_FK = ID_Socio_FK;
+        this.ID_Biblioteca_FK = ID_Biblioteca_FK;
         this.Fecha_Prestamo = Fecha_Prestamo;
     }
 
@@ -63,6 +58,14 @@ public class Prestamos {
         this.ID_Socio_FK = ID_Socio_FK;
     }
 
+    public String getID_Biblioteca_FK() {
+        return ID_Biblioteca_FK;
+    }
+
+    public void setID_Biblioteca_FK(String ID_Biblioteca_FK) {
+        this.ID_Biblioteca_FK = ID_Biblioteca_FK;
+    }
+
     public Date getFecha_Prestamo() {
         return Fecha_Prestamo;
     }
@@ -78,5 +81,6 @@ public class Prestamos {
     public void setFecha_Devolucion(Date Fecha_Devolucion) {
         this.Fecha_Devolucion = Fecha_Devolucion;
     }
+    
     
 }

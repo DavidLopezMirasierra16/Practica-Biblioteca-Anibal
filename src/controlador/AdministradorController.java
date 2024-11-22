@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.SocioModelo;
+import vista.ConsultarSocios;
 import vista.MenuAdministrador;
 import vista.RegistroSocios;
 import vista.RegistroTrabajadores;
@@ -49,7 +50,12 @@ public class AdministradorController implements ActionListener{
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if (button == this.menu_administrador_vista.getBtnConsulta()){
-            //Controller consultar socios
+            try {
+                //Controller consultar socios
+                new ConsultarSociosController(new ConsultarSocios());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }else if (button == this.menu_administrador_vista.getBtnModificar()){
             try {

@@ -36,6 +36,16 @@ public class UbicacionLibro {
         this.Cantidad = Cantidad;
     }
 
+    public UbicacionLibro(int ID_Libro, String Estanteria, String Seccion, String Piso, int Cantidad) {
+        this.ID_Libro = ID_Libro;
+        this.Estanteria = Estanteria;
+        this.Seccion = Seccion;
+        this.Piso = Piso;
+        this.Cantidad = Cantidad;
+    }
+    
+    
+
     public int getID_Ubicacion() {
         return ID_Ubicacion;
     }

@@ -37,7 +37,6 @@ public class RegistroUbicacionLibroController implements ActionListener {
         if (validarDatos()) {
             try {
                 // Obtener datos de la vista
-                int idBiblioteca = Integer.parseInt(this.registroUbicacionLibroVista.getTxtBiblioteca().getText().trim());
                 int idLibro = Integer.parseInt(this.registroUbicacionLibroVista.getTxtLibro().getText().trim());
                 String estanteria = this.registroUbicacionLibroVista.getTxtEstanteria().getText().trim();
                 String seccion = this.registroUbicacionLibroVista.getTxtSeccion().getText().trim();
@@ -45,7 +44,7 @@ public class RegistroUbicacionLibroController implements ActionListener {
                 int cantidad = Integer.parseInt(this.registroUbicacionLibroVista.getTxtCantidad().getText().trim());
                 
                 // Crear objeto UbicacionLibro con los datos
-                UbicacionLibro ubicacion = new UbicacionLibro(idBiblioteca, idLibro, estanteria, seccion, piso, cantidad);
+                UbicacionLibro ubicacion = new UbicacionLibro(idLibro, estanteria, seccion, piso, cantidad);
 
                 // Registrar ubicación en la base de datos
                 if (ubicacionLibroModelo.registrarUbicacion(ubicacion)) {
@@ -68,12 +67,7 @@ public class RegistroUbicacionLibroController implements ActionListener {
     private boolean validarDatos() {
         boolean resultado = true;
         StringBuilder mensaje = new StringBuilder();
-
-        if (this.registroUbicacionLibroVista.getTxtBiblioteca().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir el ID de la biblioteca.\n");
-            resultado = false;
-        }
-
+        
         if (this.registroUbicacionLibroVista.getTxtLibro().getText().trim().isEmpty()) {
             mensaje.append("Debe introducir el ISBN del libro.\n");
             resultado = false;
