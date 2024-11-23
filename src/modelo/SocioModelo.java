@@ -13,7 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
+import vista.ModCorreoSocio;
+import vista.ModCuentaBancariaSocio;
 import vista.ModLocalidadSocio;
+import vista.ModTelefonoSocio;
 import vista.RecuperarContrasena;
 
 /**
@@ -257,9 +260,10 @@ public class SocioModelo {
         String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
         String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
         String localidad = modificar.getTxtLocalidad().getText().trim();  // Localidad de la biblioteca
+        String direccion = modificar.getTxtLocalidad().getText().trim();
 
         // Consulta SQL para llamar al procedimiento almacenado
-        String sql = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?)";
+        String sql = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?, ?)";
 
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement stmt = conexion.prepareStatement(sql)) {
@@ -268,6 +272,7 @@ public class SocioModelo {
             stmt.setString(1, nombre);  // Establece el nombre del socio
             stmt.setString(2, apellidos);  // Establece los apellidos del socio
             stmt.setString(3, localidad);  // Establece la localidad de la biblioteca
+            stmt.setString(4, direccion);
 
             // Ejecutar la llamada al procedimiento almacenado
             boolean resultado = stmt.execute();
@@ -284,6 +289,100 @@ public class SocioModelo {
         }
     }
     
+    public void modificarTelefono(ModTelefonoSocio modificar) {
+        String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
+        String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
+        String nuevoTelefono = modificar.getTxtTelefono().getText().trim();  // Nuevo teléfono del socio
+
+        // Consulta SQL para llamar al procedimiento almacenado
+        String sql = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores para el PreparedStatement
+            stmt.setString(1, nombre);  // Establece el nombre del socio
+            stmt.setString(2, apellidos);  // Establece los apellidos del socio
+            stmt.setString(3, nuevoTelefono);  // Establece el nuevo teléfono
+
+            // Ejecutar la llamada al procedimiento almacenado
+            boolean resultado = stmt.execute();
+
+            // Si la llamada es exitosa, el procedimiento interno se encargará de la actualización
+            if (resultado) {
+                System.out.println("El teléfono ha sido actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+        }
+    }
+    
+    public void modificarCorreo(ModCuentaBancariaSocio modificar) {
+        String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
+        String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
+        String nuevaCuenta = modificar.getTxtCuenta().getText().trim();  // Nuevo teléfono del socio
+
+        // Consulta SQL para llamar al procedimiento almacenado
+        String sql = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores para el PreparedStatement
+            stmt.setString(1, nombre);  // Establece el nombre del socio
+            stmt.setString(2, apellidos);  // Establece los apellidos del socio
+            stmt.setString(3, nuevaCuenta);  // Establece el nuevo teléfono
+
+            // Ejecutar la llamada al procedimiento almacenado
+            boolean resultado = stmt.execute();
+
+            // Si la llamada es exitosa, el procedimiento interno se encargará de la actualización
+            if (resultado) {
+                System.out.println("El teléfono ha sido actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+        }
+    }
+
+    
+    public void modificarCuentaBancaria(ModCorreoSocio modificar) {
+        String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
+        String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio
+        String nuevoCorreo = modificar.getTxtCorreo().getText().trim();  // Nuevo teléfono del socio
+
+        // Consulta SQL para llamar al procedimiento almacenado
+        String sql = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores para el PreparedStatement
+            stmt.setString(1, nombre);  // Establece el nombre del socio
+            stmt.setString(2, apellidos);  // Establece los apellidos del socio
+            stmt.setString(3, nuevoCorreo);  // Establece el nuevo teléfono
+
+            // Ejecutar la llamada al procedimiento almacenado
+            boolean resultado = stmt.execute();
+
+            // Si la llamada es exitosa, el procedimiento interno se encargará de la actualización
+            if (resultado) {
+                System.out.println("El teléfono ha sido actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+        }
+    }
+ 
     public void cambiarEstadoPago(ConsultarSocios consultar) {
         // Obtener la fila seleccionada en la tabla
         int row = consultar.getTablaSocios().getSelectedRow();
