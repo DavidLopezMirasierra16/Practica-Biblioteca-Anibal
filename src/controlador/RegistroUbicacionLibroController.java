@@ -33,6 +33,9 @@ public class RegistroUbicacionLibroController implements ActionListener {
         agregarDatos();
     }
 
+    /**
+     * Funcion que nos agrega los datos de la ubicacion que escribimos
+     */ 
     private void agregarDatos() {
         if (validarDatos()) {
             try {

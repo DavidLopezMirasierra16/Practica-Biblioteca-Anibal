@@ -75,6 +75,10 @@ public class AutorModelo {
         }
     }
     
+    /**
+     * Funcion que nos ingresa en la BD lo datos del autor
+     * @param autor 
+     */
     public void ingresarUsuarioBd(Autor autor){
         try {
             //this.bd_controller.conectarBd();

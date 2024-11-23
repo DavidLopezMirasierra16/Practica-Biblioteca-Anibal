@@ -35,6 +35,9 @@ public class RegistroAutorController implements ActionListener{
         agregarDatos();
     }
     
+    /**
+     * Funcion que nos agrega los datos del autor que escribimos
+     */ 
     public void agregarDatos(){
         
         if (validarDatos()) {
@@ -53,6 +56,13 @@ public class RegistroAutorController implements ActionListener{
         
     }
     
+    /**
+     * /**
+     * Valida los datos ingresados en el formulario de préstamos.
+     * Verifica que los campos requeridos no estén vacíos y muestra un mensaje en caso de errores.
+     * 
+     * @return true si los datos son válidos; false en caso contrario.
+     */
     public boolean validarDatos() {
         boolean resultado = true;
         String mensaje = " ";

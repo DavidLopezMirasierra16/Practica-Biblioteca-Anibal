@@ -79,7 +79,11 @@ public class LoginController implements ActionListener {
         }
     }
 
-
+    /**
+     * En funcion del id que le pasemos nos busca una ventana u otra
+     * @param id
+     * @throws SQLException 
+     */
     public void mostrarVentana(int id) throws SQLException {
         // Obtenemos el ID de la biblioteca y permisos
         int idPermiso = trabajador_modelo.getIdPermiso();
