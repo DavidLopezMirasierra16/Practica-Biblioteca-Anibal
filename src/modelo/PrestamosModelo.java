@@ -59,7 +59,7 @@ public class PrestamosModelo {
      */
     private String obtenerIDBiblioteca(String Nombre_Biblioteca) {
         try {
-            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre:Biblioteca = ?";
+            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre_Biblioteca = ?";
             prepare = conexion.prepareStatement(query);
             prepare.setString(1, Nombre_Biblioteca);
             resultado = prepare.executeQuery();
