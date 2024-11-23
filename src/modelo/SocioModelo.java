@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarSocios;
@@ -280,6 +281,138 @@ public class SocioModelo {
 
         } catch (SQLException e) {
             System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
+        }
+    }
+    
+    public void cambiarEstadoPago(ConsultarSocios consultar) {
+        // Obtener la fila seleccionada en la tabla
+        int row = consultar.getTablaSocios().getSelectedRow();
+
+        if (row != -1) { // Si hay una fila seleccionada
+            // Obtener el ID del socio (asumimos que está en la primera columna)
+            int idSocio = (int) consultar.getTablaSocios().getValueAt(row, 0);
+
+            // Obtener el estado actual del campo "Pagado" (asumimos que está en la novena columna)
+            String estadoActual = (String) consultar.getTablaSocios().getValueAt(row, 8);
+
+            // Determinar el nuevo estado
+            String nuevoEstado;
+            if ("Pagado".equalsIgnoreCase(estadoActual)) {
+                nuevoEstado = "No Pagado";
+            } else {
+                nuevoEstado = "Pagado";
+            }
+
+            // Confirmar la acción de cambio de estado
+            int confirm = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de que deseas cambiar el estado de 'Pagado' del socio seleccionado?",
+                "Confirmar cambio de estado",
+                JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Actualizar el estado en la base de datos
+                actualizarEstadoPagoEnBD(idSocio, nuevoEstado);
+
+                // Actualizar el estado en la tabla
+                consultar.getTablaSocios().setValueAt(nuevoEstado, row, 8);
+
+                // Mostrar un mensaje de éxito
+                JOptionPane.showMessageDialog(null, "Estado de 'Pagado' actualizado correctamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un socio.");
+        }
+    }
+
+    // Método para actualizar el estado en la base de datos
+    private void actualizarEstadoPagoEnBD(int idSocio, String nuevoEstado) {
+        String sql = "UPDATE socios SET Pagado = ? WHERE ID_Socios = ?";
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores de los parámetros
+            stmt.setString(1, nuevoEstado);
+            stmt.setInt(2, idSocio);
+
+            // Ejecutar la consulta de actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+            // Si no se actualizó ninguna fila, mostrar un mensaje de error
+            if (filasAfectadas == 0) {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
+            }
+        } catch (SQLException e) {
+            // Si ocurre un error, mostrar el mensaje de error
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
+        }
+    }
+
+    public void cambiarEstadoHabilitado(ConsultarSocios consultar) {
+        // Obtener la fila seleccionada en la tabla
+        int row = consultar.getTablaSocios().getSelectedRow();
+
+        if (row != -1) { // Si hay una fila seleccionada
+            // Obtener el ID del socio (asumimos que está en la primera columna)
+            int idSocio = (int) consultar.getTablaSocios().getValueAt(row, 0);
+
+            // Obtener el estado actual del campo "Habilitado" (asumimos que está en la columna correspondiente)
+            String estadoActual = (String) consultar.getTablaSocios().getValueAt(row, 9); // Ajusta el índice de la columna
+
+            // Determinar el nuevo estado
+            String nuevoEstado;
+            if ("Habilitado".equalsIgnoreCase(estadoActual)) {
+                nuevoEstado = "Deshabilitado";
+            } else {
+                nuevoEstado = "Habilitado";
+            }
+
+            // Confirmar la acción de cambio de estado
+            int confirm = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de que deseas cambiar el estado de 'Habilitado' del socio seleccionado?",
+                "Confirmar cambio de estado",
+                JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                // Actualizar el estado en la base de datos
+                actualizarEstadoHabilitadoEnBD(idSocio, nuevoEstado);
+
+                // Actualizar el estado en la tabla
+                consultar.getTablaSocios().setValueAt(nuevoEstado, row, 9); // Ajusta el índice de la columna
+
+                // Mostrar un mensaje de éxito
+                JOptionPane.showMessageDialog(null, "Estado de 'Habilitado' actualizado correctamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un socio.");
+        }
+    }
+
+    // Método para actualizar el estado de Habilitado en la base de datos
+    private void actualizarEstadoHabilitadoEnBD(int idSocio, String nuevoEstado) {
+        String sql = "UPDATE socios SET Habilitado = ? WHERE ID_Socios = ?"; // Cambia Habilitado
+
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+
+            // Establecer los valores de los parámetros
+            stmt.setString(1, nuevoEstado);
+            stmt.setInt(2, idSocio);
+
+            // Ejecutar la consulta de actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+            // Si no se actualizó ninguna fila, mostrar un mensaje de error
+            if (filasAfectadas == 0) {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
+            }
+        } catch (SQLException e) {
+            // Si ocurre un error, mostrar el mensaje de error
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
         }
     }
 

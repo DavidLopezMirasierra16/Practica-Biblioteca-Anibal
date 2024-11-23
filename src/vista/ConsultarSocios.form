@@ -39,6 +39,13 @@
               <Component id="btnReestablecer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnHabilitar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnPago" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -55,7 +62,12 @@
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHabilitar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -169,6 +181,16 @@
     <Component class="javax.swing.JButton" name="btnReestablecer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reestablecer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPago">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Marcar Pagado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHabilitar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Habilitar/Deshabilitar"/>
       </Properties>
     </Component>
   </SubComponents>

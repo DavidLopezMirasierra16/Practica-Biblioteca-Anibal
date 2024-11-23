@@ -95,7 +95,7 @@ public class SancionesModelo {
     }
         
             // Método para resolver (eliminar) la sanción
-    private void resolverSancion(ConsultarSanciones consultar) {
+    public void resolverSancion(ConsultarSanciones consultar) {
         // Obtener la fila seleccionada en la tabla
         int row = consultar.tablaSanciones.getSelectedRow();
 

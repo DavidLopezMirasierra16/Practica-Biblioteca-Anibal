@@ -31,6 +31,22 @@ public class ConsultarSocios extends javax.swing.JFrame {
         this.btnReestablecer = btnReestablecer;
     }
 
+    public JButton getBtnHabilitar() {
+        return btnHabilitar;
+    }
+
+    public void setBtnHabilitar(JButton btnHabilitar) {
+        this.btnHabilitar = btnHabilitar;
+    }
+
+    public JButton getBtnPago() {
+        return btnPago;
+    }
+
+    public void setBtnPago(JButton btnPago) {
+        this.btnPago = btnPago;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +64,8 @@ public class ConsultarSocios extends javax.swing.JFrame {
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnReestablecer = new javax.swing.JButton();
+        btnPago = new javax.swing.JButton();
+        btnHabilitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,6 +108,10 @@ public class ConsultarSocios extends javax.swing.JFrame {
 
         btnReestablecer.setText("Reestablecer");
 
+        btnPago.setText("Marcar Pagado");
+
+        btnHabilitar.setText("Habilitar/Deshabilitar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,6 +131,12 @@ public class ConsultarSocios extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(btnReestablecer)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHabilitar)
+                .addGap(18, 18, 18)
+                .addComponent(btnPago)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +151,11 @@ public class ConsultarSocios extends javax.swing.JFrame {
                     .addComponent(btnReestablecer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPago)
+                    .addComponent(btnHabilitar))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -200,6 +232,8 @@ public class ConsultarSocios extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnHabilitar;
+    private javax.swing.JButton btnPago;
     private javax.swing.JButton btnReestablecer;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
