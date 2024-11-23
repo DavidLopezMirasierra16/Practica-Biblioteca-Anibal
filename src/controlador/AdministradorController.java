@@ -33,7 +33,6 @@ public class AdministradorController implements ActionListener{
         this.menu_administrador_vista.getBtnModificar().addActionListener(this);
         this.menu_administrador_vista.getBtnRegistrar().addActionListener(this);
         this.menu_administrador_vista.getBtn_registrar_trabajador().addActionListener(this);
-        this.menu_administrador_vista.getBtnModificarTlf().addActionListener(this);
         //-----------------------------------------------
         this.menu_administrador_vista.setVisible(true);
     }
@@ -69,24 +68,6 @@ public class AdministradorController implements ActionListener{
             try {
                 //Controller registrar trabajador
                 new RegistroTrabajadorController(new RegistroTrabajadores());
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if(button == this.menu_administrador_vista.getBtnModificarTlf()){
-            try {
-                new ModTelefonoSocioController();
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if(button == this.menu_administrador_vista.getBtnModificarCorreo()){
-            try {
-                new ModCorreoSocioController();
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if (button == this.menu_administrador_vista.getBtnModificarCB()){
-            try {
-                new ModCuentaBancariaSocioController();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }

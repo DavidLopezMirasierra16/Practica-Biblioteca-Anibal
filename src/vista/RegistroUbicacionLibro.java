@@ -18,6 +18,7 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
      */
     public RegistroUbicacionLibro() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -29,6 +30,7 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtLibro = new javax.swing.JTextField();
@@ -41,6 +43,10 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txt_idBiblioteca = new javax.swing.JTextField();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,6 +69,8 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("ID Biblioteca:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +101,11 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_idBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,7 +113,11 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_idBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -216,18 +232,31 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
         this.txtSeccion = txtSeccion;
     }
 
+    public JTextField getTxt_idBiblioteca() {
+        return txt_idBiblioteca;
+    }
+
+    public void setTxt_idBiblioteca(JTextField txt_idBiblioteca) {
+        this.txt_idBiblioteca = txt_idBiblioteca;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtEstanteria;
     private javax.swing.JTextField txtLibro;
     private javax.swing.JTextField txtPiso;
     private javax.swing.JTextField txtSeccion;
+    private javax.swing.JTextField txt_idBiblioteca;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,6 +32,9 @@ public class RegistroLibroController implements ActionListener {
         agregarDatos();
     }
     
+    /**
+     * Funcion que nos agrega los datos del libro que escribimos
+     */ 
     public void agregarDatos(){
         
         if (validarDatos()) {

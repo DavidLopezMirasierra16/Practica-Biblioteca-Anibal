@@ -12,6 +12,7 @@ import controlador.BaseDatosController;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import vista.ConsultarPrestamos;
@@ -21,7 +22,7 @@ import vista.ConsultarPrestamos;
  * @author pablo
  */
 public class PrestamosModelo {
-    
+    private TrabajadorModelo trabajador;
     private BaseDatosController bd_controller;
     private Connection conexion;
     private PreparedStatement prepare;
@@ -29,9 +30,12 @@ public class PrestamosModelo {
 
     public PrestamosModelo() throws SQLException {
         this.bd_controller = new BaseDatosController();
+        this.trabajador = new TrabajadorModelo();
         this.conexion = this.bd_controller.conectar();
     }
 
+    //---------------------------INSERTAR---------------------------
+    
     /**
      * Registra un préstamo en la base de datos.
      * @param ID_Libro_FK ID del libro
@@ -40,14 +44,14 @@ public class PrestamosModelo {
      * @param Fecha_Devolucion Fecha de devolución prevista
      * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
      */
-    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, String Nombre_Biblioteca, Date Fecha_Prestamo) {
+    public Prestamos registrarPrestamo(int ID_Libro_FK, String ID_Socio_FK, int Biblioteca, Date Fecha_Prestamo) {
         // Verificar disponibilidad del libro
-        String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
+        /*String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
         if (ID_Biblioteca_FK == null) {
             return null; // Si no se encuentra la biblioteca, retorna null
-        }
+        }*/
 
-        Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, ID_Biblioteca_FK, Fecha_Prestamo);
+        Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, Biblioteca, Fecha_Prestamo);
         ingresarPrestamoEnBd(prestamo);
         return prestamo;
     }
@@ -59,7 +63,7 @@ public class PrestamosModelo {
      */
     private String obtenerIDBiblioteca(String Nombre_Biblioteca) {
         try {
-            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre = ?";
+            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre_Biblioteca = ?";
             prepare = conexion.prepareStatement(query);
             prepare.setString(1, Nombre_Biblioteca);
             resultado = prepare.executeQuery();
@@ -97,11 +101,11 @@ public class PrestamosModelo {
      * @param ID_Socio_FK ID del socio a verificar
      * @return true si el socio tiene menos de 3 préstamos activos, false si ya tiene 3
      */
-    public boolean comprobarLimitePrestamos(int ID_Socio_FK) {
+    public boolean comprobarLimitePrestamos(String ID_Socio_FK) {
         try {
             String query = "SELECT COUNT(*) AS total_prestamos FROM prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
             prepare = conexion.prepareStatement(query);
-            prepare.setInt(1, ID_Socio_FK);
+            prepare.setString(1, ID_Socio_FK);
             resultado = prepare.executeQuery();
             
             if (resultado.next()) {
@@ -137,8 +141,8 @@ public class PrestamosModelo {
 
             // Establecemos los parámetros del procedimiento
             prepare.setInt(1, prestamo.getID_Libro_FK());
-            prepare.setInt(2, prestamo.getID_Socio_FK());
-            prepare.setString(3, prestamo.getID_Biblioteca_FK());
+            prepare.setString(2, prestamo.getID_Socio_FK());
+            prepare.setInt(3, prestamo.getID_Biblioteca_FK());
             prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
 
             // Ejecutamos el procedimiento
@@ -148,9 +152,12 @@ public class PrestamosModelo {
         }
     }
 
+    //---------------------------CONSULTAS---------------------------
 
-    
-    // Método para consultar todos los libros y mostrar en la tabla
+    /**
+     * Método para consultar todos los libros y mostrar en la tabla
+     * @param table 
+     */
     public void consultarPrestamos(JTable table) {
         String sql = "SELECT * FROM prestamos";
         BaseDatosController baseDatosController = new BaseDatosController();
@@ -170,7 +177,7 @@ public class PrestamosModelo {
                     rs.getString("ID_Libro_FK"),
                     rs.getString("ID_Socio_FK"),
                     rs.getString("Fecha_Prestamo"),
-                    rs.getString("Fecha_Limite")
+                    rs.getString("Fecha_Devolucion")
                 };
                 model.addRow(row);
             }
@@ -188,7 +195,10 @@ public class PrestamosModelo {
         }
     }
 
-    // Método para filtrar libros según el filtro y la búsqueda
+    /**
+     * Método para filtrar libros según el filtro y la búsqueda
+     * @param consultarPrestamos 
+     */
     public void filtrarLibros(ConsultarPrestamos consultarPrestamos) {
         String filtro = (String) consultarPrestamos.getCbFiltro().getSelectedItem();
         String busqueda = consultarPrestamos.getTxtBusqueda().getText().trim();
@@ -230,7 +240,7 @@ public class PrestamosModelo {
                         rs.getString("ID_Libro_FK"),
                         rs.getString("ID_Socio_FK"),
                         rs.getString("Fecha_Prestamo"),
-                        rs.getString("Fecha_Limite")
+                        rs.getString("Fecha_Devolucion")
                     };
                     model.addRow(row);
                 }
@@ -250,6 +260,10 @@ public class PrestamosModelo {
         }
     }
     
+    /**
+     * Funcion que empleada para devolver un libro
+     * @param tabla 
+     */
     public void devolver(JTable tabla) {
         // Verifica si hay una fila seleccionada
         int filaSeleccionada = tabla.getSelectedRow();
@@ -259,7 +273,7 @@ public class PrestamosModelo {
             DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 
             // Obtener el ID del préstamo de la fila seleccionada
-            int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0);  // Asume que el ID está en la primera columna
+            int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0); // Asume que el ID está en la primera columna
 
             // Actualizar la base de datos para marcar el préstamo como devuelto
             String sql = "DELETE FROM prestamos WHERE ID_Prestamo = ?";
@@ -277,16 +291,30 @@ public class PrestamosModelo {
                 if (filasAfectadas > 0) {
                     // Si la eliminación fue exitosa, eliminar la fila del modelo de la tabla
                     modelo.removeRow(filaSeleccionada);
-                    System.out.println("Préstamo devuelto exitosamente.");
+                    JOptionPane.showMessageDialog(null, 
+                        "Préstamo devuelto exitosamente.", 
+                        "Éxito", 
+                        JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.out.println("Error: No se pudo devolver el préstamo.");
+                    JOptionPane.showMessageDialog(null, 
+                        "Error: No se pudo devolver el préstamo.", 
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, 
+                    "Ocurrió un error al procesar la devolución: " + e.getMessage(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         } else {
-            System.out.println("No hay ninguna fila seleccionada.");
+            JOptionPane.showMessageDialog(null, 
+                "Por favor, seleccione una fila para devolver un préstamo.", 
+                "Advertencia", 
+                JOptionPane.WARNING_MESSAGE);
         }
     }
+
 }

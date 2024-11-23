@@ -97,6 +97,7 @@ public class LibrosController implements ActionListener{
                 frame.add(panel);
                 frame.pack();
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(frame);
                 new RegistrarPrestamosController(panel); // Controlador asociado
             } catch (SQLException ex) {
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);

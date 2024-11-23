@@ -35,8 +35,6 @@
                       <Component id="txtSocio" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtApellido" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -60,10 +58,6 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="txtLocalidad" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="txtDireccion" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -102,13 +96,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Introduzca la nueva direcci&#xf3;n"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDireccion">
     </Component>
   </SubComponents>
 </Form>

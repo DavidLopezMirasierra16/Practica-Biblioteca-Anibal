@@ -17,6 +17,16 @@ public class UbicacionLibro {
     private String Piso;
     private int Cantidad;
 
+    /**
+     * Constructor para consultar
+     * @param ID_Ubicacion
+     * @param ID_Biblioteca
+     * @param ID_Libro
+     * @param Estanteria
+     * @param Seccion
+     * @param Piso
+     * @param Cantidad 
+     */
     public UbicacionLibro(int ID_Ubicacion, int ID_Biblioteca, int ID_Libro, String Estanteria, String Seccion, String Piso, int Cantidad) {
         this.ID_Ubicacion = ID_Ubicacion;
         this.ID_Biblioteca = ID_Biblioteca;
@@ -27,6 +37,15 @@ public class UbicacionLibro {
         this.Cantidad = Cantidad;
     }
 
+    /**
+     * Constructor para crear1
+     * @param ID_Biblioteca
+     * @param ID_Libro
+     * @param Estanteria
+     * @param Seccion
+     * @param Piso
+     * @param Cantidad 
+     */
     public UbicacionLibro(int ID_Biblioteca, int ID_Libro, String Estanteria, String Seccion, String Piso, int Cantidad) {
         this.ID_Biblioteca = ID_Biblioteca;
         this.ID_Libro = ID_Libro;
@@ -36,6 +55,14 @@ public class UbicacionLibro {
         this.Cantidad = Cantidad;
     }
 
+    /**
+     * Constructor para crear2
+     * @param ID_Libro
+     * @param Estanteria
+     * @param Seccion
+     * @param Piso
+     * @param Cantidad 
+     */
     public UbicacionLibro(int ID_Libro, String Estanteria, String Seccion, String Piso, int Cantidad) {
         this.ID_Libro = ID_Libro;
         this.Estanteria = Estanteria;
@@ -44,8 +71,6 @@ public class UbicacionLibro {
         this.Cantidad = Cantidad;
     }
     
-    
-
     public int getID_Ubicacion() {
         return ID_Ubicacion;
     }

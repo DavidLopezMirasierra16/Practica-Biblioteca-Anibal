@@ -35,8 +35,6 @@ public class RegistroPrestamo extends javax.swing.JPanel {
         txtDNI = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
-        combo_biblioteca = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txt_prestamo = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
@@ -47,10 +45,6 @@ public class RegistroPrestamo extends javax.swing.JPanel {
         jLabel2.setText("DNI Socio");
 
         jLabel3.setText("ISBN_Libro");
-
-        combo_biblioteca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Biblioteca del Mar", "Biblioteca El Bosque Encantado", "Biblioteca de la Cultura", "Biblioteca El Saber Ancestral", "Biblioteca Provincial de Álava", "Biblioteca Pública del Estado de Albacete", "Biblioteca Valenciana Nicolau Primitiu", "Biblioteca Provincial de Almería", "Biblioteca Pública del Estado de Asturias", "Biblioteca Pública de Ávila", "Biblioteca Pública de Badajoz", "Biblioteca Pública de Barcelona", "Biblioteca Pública de Burgos", "Biblioteca Pública de Cáceres", "Biblioteca de Cádiz", "Biblioteca Central de Cantabria", "Biblioteca Pública de Castellón", "Biblioteca Pública de Ceuta", "Biblioteca Pública del Estado de Ciudad Real", "Biblioteca de Córdoba", "Biblioteca Provincial de A Coruña", "Biblioteca Pública del Estado de Cuenca", "Biblioteca Pública de Girona", "Biblioteca de Granada", "Biblioteca Pública de Guadalajara", "Biblioteca Provincial de Huelva", "Biblioteca Pública de Huesca", "Biblioteca Pública de las Islas Baleares", "Biblioteca Pública de Jaén", "Biblioteca de La Rioja", "Biblioteca Insular de Las Palmas", "Biblioteca Pública de León", "Biblioteca Pública de Lleida", "Biblioteca Provincial de Lugo", "Biblioteca Nacional de Madrid", "Biblioteca Provincial de Málaga", "Biblioteca Regional de Murcia", "Biblioteca de Navarra", "Biblioteca Pública de Ourense", "Biblioteca de Palencia", "Biblioteca Pública de Pontevedra", "Biblioteca Pública de Salamanca", "Biblioteca Municipal de Santa Cruz de Tenerif", "Biblioteca Pública de Segovia", "Biblioteca de Sevilla", "Biblioteca Pública de Soria", "Biblioteca Pública de Tarragona", "Biblioteca de Teruel", "Biblioteca Manchega de Toledo", "Biblioteca Valenciana Nicolau Primitiu", "Biblioteca Pública de Valladolid", "Biblioteca Foral de Bizkaia", "Biblioteca Pública de Zamora" }));
-
-        jLabel10.setText("Biblioteca:");
 
         jLabel4.setText("Fecha de Prestamo:");
 
@@ -78,10 +72,6 @@ public class RegistroPrestamo extends javax.swing.JPanel {
                             .addComponent(btnAceptar)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(combo_biblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,17 +94,13 @@ public class RegistroPrestamo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(combo_biblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,14 +110,6 @@ public class RegistroPrestamo extends javax.swing.JPanel {
 
     public void setBtnAceptar(JButton btnAceptar) {
         this.btnAceptar = btnAceptar;
-    }
-
-    public JComboBox<String> getCombo_biblioteca() {
-        return combo_biblioteca;
-    }
-
-    public void setCombo_biblioteca(JComboBox<String> combo_biblioteca) {
-        this.combo_biblioteca = combo_biblioteca;
     }
 
     public JTextField getTxtDNI() {
@@ -160,9 +138,7 @@ public class RegistroPrestamo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JComboBox<String> combo_biblioteca;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -178,8 +178,9 @@ public class LibrosModelo {
     }
     
     //---------------------------CONSULTAS---------------------------
+    
     /**
-     * Consulta todos los libros registrados en la BD
+     * Funcion que nos muestra todos los libros en una tabla
      * @param table 
      */
     public void consultarLibros(JTable table) {
@@ -239,7 +240,7 @@ public class LibrosModelo {
     }
 
     /**
-     * Hace lo mismo que consultarLibros pero filtrando por búsqueda, seleccionando en el comboBox que quieres buscar y recogiendo la búsqueda
+     * Funcion que funciona de filtro para buscar
      * @param consultarLibros 
      */
     public void filtrarLibros(ConsultarLibros consultarLibros) {

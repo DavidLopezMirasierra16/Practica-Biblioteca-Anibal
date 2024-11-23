@@ -58,7 +58,6 @@ public class UbicacionLibroModelo {
         }
     }
 
-
     /**
      * Inserta la ubicación de un libro en la base de datos.
      * @param ubicacion El objeto UbicacionLibro con los datos de la ubicación.

@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Prestamos;
 import modelo.PrestamosModelo;
+import modelo.TrabajadorModelo;
 import vista.RegistroPrestamo;
 
 /**
@@ -20,10 +21,12 @@ public class RegistrarPrestamosController implements ActionListener {
 
     private PrestamosModelo prestamosModelo;
     private RegistroPrestamo registroPrestamoVista;
+    private TrabajadorModelo trabajador;
 
     public RegistrarPrestamosController(RegistroPrestamo registroPrestamoVista) throws SQLException {
         // Inicializa las clases
         this.prestamosModelo = new PrestamosModelo();
+        this.trabajador = new TrabajadorModelo();
         this.registroPrestamoVista = registroPrestamoVista;
         // Asigna el evento al botón
         this.registroPrestamoVista.getBtnAceptar().addActionListener(this);
@@ -45,30 +48,61 @@ public class RegistrarPrestamosController implements ActionListener {
         if (validarDatos()) {
             try {
                 // Obtener los datos de la vista
-                int idSocio = Integer.parseInt(this.registroPrestamoVista.getTxtDNI().getText().trim());
+                String idSocio = this.registroPrestamoVista.getTxtDNI().getText().trim();
                 int idLibro = Integer.parseInt(this.registroPrestamoVista.getTxtISBN().getText().trim());
-                String bibliotecaSeleccionada = (String) this.registroPrestamoVista.getCombo_biblioteca().getSelectedItem();
+                int biblioteca = trabajador.getIdBiblioteca();
+                
+                // Verificar si el socio puede realizar más préstamos
+                if (!prestamosModelo.comprobarLimitePrestamos(idSocio)) {
+                    JOptionPane.showMessageDialog(
+                        registroPrestamoVista, 
+                        "El socio ha alcanzado el límite máximo de préstamos permitidos.", 
+                        "Límite de préstamos alcanzado", 
+                        JOptionPane.WARNING_MESSAGE
+                    );
+                    return; // Salimos del método si no puede realizar más préstamos
+                }
 
                 // Obtener la fecha de préstamo actual
                 Date fechaPrestamo = new Date();
 
                 // Crear el objeto Prestamos con los datos
-                Prestamos prestamo = new Prestamos(idLibro, idSocio, bibliotecaSeleccionada, fechaPrestamo);
+                Prestamos prestamo = new Prestamos(idLibro, idSocio, biblioteca, fechaPrestamo);
 
                 // Intentar registrar el préstamo
-                Prestamos prestamoRegistrado = this.prestamosModelo.registrarPrestamo(idLibro, idSocio, bibliotecaSeleccionada, fechaPrestamo);
+                Prestamos prestamoRegistrado = this.prestamosModelo.registrarPrestamo(idLibro, idSocio, biblioteca, fechaPrestamo);
 
                 if (prestamoRegistrado != null) {
-                    JOptionPane.showMessageDialog(registroPrestamoVista, "Préstamo registrado correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                        registroPrestamoVista, 
+                        "Préstamo registrado correctamente.", 
+                        "Registro exitoso", 
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {
-                    JOptionPane.showMessageDialog(registroPrestamoVista, "No se pudo registrar el préstamo. Verifique la disponibilidad del libro o el límite de préstamos del socio.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                        registroPrestamoVista, 
+                        "No se pudo registrar el préstamo. Verifique la disponibilidad del libro o el límite de préstamos del socio.", 
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE
+                    );
                 }
 
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(registroPrestamoVista, "DNI y ISBN deben ser valores numéricos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                    registroPrestamoVista, 
+                    "ISBN debe ser valores numéricos.", 
+                    "Error de formato", 
+                    JOptionPane.ERROR_MESSAGE
+                );
             } catch (Exception ex) {
                 // Agregar un mensaje de registro detallado para rastrear errores
-                JOptionPane.showMessageDialog(registroPrestamoVista, "Error al registrar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(
+                    registroPrestamoVista, 
+                    "Error al registrar el préstamo: " + ex.getMessage(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE
+                );
                 ex.printStackTrace();
             }
         }
@@ -91,11 +125,6 @@ public class RegistrarPrestamosController implements ActionListener {
 
         if (this.registroPrestamoVista.getTxtISBN().getText().trim().isEmpty()) {
             mensaje.append("Debe introducir un ISBN del libro.\n");
-            resultado = false;
-        }
-
-        if (this.registroPrestamoVista.getCombo_biblioteca().getSelectedIndex() == -1) {
-            mensaje.append("Debe seleccionar una biblioteca.\n");
             resultado = false;
         }
 

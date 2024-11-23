@@ -23,6 +23,7 @@ public class ConsultarPrestamosController implements ActionListener{
         this.consultaprestamos_vista = new ConsultarPrestamos();
         this.consultaprestamos_vista.getBtnBuscar().addActionListener(this);
         this.consultaprestamos_vista.getBtnReestablecer().addActionListener(this); // Escuchar evento reestablecer
+        this.consultaprestamos_vista.getBtnDevilver().addActionListener(this);
         this.consultaprestamos_vista.setVisible(true);
         PrestamosModelo prestamosModelo = new PrestamosModelo();
         prestamosModelo.consultarPrestamos(consultaprestamos_vista.getTablaPrestamos()); // Cargar los libros completos al inicio
