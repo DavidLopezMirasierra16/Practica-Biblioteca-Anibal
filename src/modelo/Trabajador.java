@@ -23,6 +23,21 @@ public class Trabajador {
     private String contraseña;
     private String biblioteca;
 
+    /**
+     * Constructor para consultar
+     * @param id_permiso
+     * @param id
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fecha_nacimiento
+     * @param correo
+     * @param cuenta_banco
+     * @param seguridad_social
+     * @param localidad
+     * @param contraseña
+     * @param biblioteca 
+     */
     public Trabajador(int id_permiso, int id, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String localidad, String contraseña, String biblioteca) {
         this.id_permiso = id_permiso;
         this.id = id;
@@ -38,6 +53,18 @@ public class Trabajador {
         this.biblioteca = biblioteca;
     }
 
+    /**
+     * Constructor para agregar
+     * @param id_permiso
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param fecha_nacimiento
+     * @param correo
+     * @param cuenta_banco
+     * @param seguridad_social
+     * @param biblioteca 
+     */
     public Trabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String biblioteca) {
         this.id_permiso = id_permiso;
         this.nombre = nombre;
