@@ -9,6 +9,15 @@ public class Libros {
     private String editorial;
     private int idAutor; // Se ajusta a `idAutor` (ID_AUTOR)
 
+    /**
+     * Constructor empleado para consultar
+     * @param ISBN
+     * @param titulo
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor 
+     */
     public Libros(int ISBN, String titulo, String genero, String year, String editorial, int idAutor) {
         this.ISBN = ISBN;
         this.titulo = titulo;
@@ -18,6 +27,14 @@ public class Libros {
         this.idAutor = idAutor;
     }   
 
+    /**
+     * Constructor empleado para insertar
+     * @param titulo
+     * @param genero
+     * @param year
+     * @param editorial
+     * @param idAutor 
+     */
     public Libros(String titulo, String genero, String year, String editorial, int idAutor) {
         this.titulo = titulo;
         this.genero = genero;
@@ -25,8 +42,6 @@ public class Libros {
         this.editorial = editorial;
         this.idAutor = idAutor;
     }
-    
-    
     
     public int getIdLibros() {
         return ISBN;

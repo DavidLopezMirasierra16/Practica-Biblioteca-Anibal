@@ -34,6 +34,10 @@ public class SancionesModelo {
         this.conexion = this.bd_controller.conectar();
     }
     
+    /**
+     * Funcion que nos muestra en una tabla todas las sanciones
+     * @param table 
+     */
     public void consultarSanciones(JTable table) {
         String sql = "SELECT sanciones.ID_Sancion, CONCAT(socios.Nombre, ' ', socios.Apellidos) AS Nombre_Completo_Socio, sanciones.ID_Prestamo_FK, sanciones.Tipo_Sancion FROM sanciones JOIN socios ON sanciones.ID_Socio_FK = socios.DNI_Socio;";
         BaseDatosController baseDatosController = new BaseDatosController();
@@ -70,7 +74,11 @@ public class SancionesModelo {
         }
     }
     
-        public void ingresarSancionBD(Sanciones sancion){
+    /**
+     * Funcion que nos ingresa la sancion en BD
+     * @param sancion 
+     */
+    public void ingresarSancionBD(Sanciones sancion){
 
         try {
             //this.bd_controller.conectarBd();
@@ -94,7 +102,10 @@ public class SancionesModelo {
         }
     }
         
-            // Método para resolver (eliminar) la sanción
+    /**
+     * Método para resolver (eliminar) la sanción
+     * @param consultar 
+     */
     private void resolverSancion(ConsultarSanciones consultar) {
         // Obtener la fila seleccionada en la tabla
         int row = consultar.tablaSanciones.getSelectedRow();
@@ -125,7 +136,10 @@ public class SancionesModelo {
         }
     }
 
-    // Método para eliminar la sanción de la base de datos
+    /**
+     * Método para eliminar la sanción de la base de datos
+     * @param idSancion 
+     */
     private void eliminarSancionDeBD(int idSancion) {
         String sql = "DELETE FROM sanciones WHERE ID_Sancion = ?";
 

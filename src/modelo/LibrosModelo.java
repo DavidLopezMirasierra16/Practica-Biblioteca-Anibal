@@ -179,6 +179,10 @@ public class LibrosModelo {
     
     //---------------------------CONSULTAS---------------------------
     
+    /**
+     * Funcion que nos muestra todos los libros en una tabla
+     * @param table 
+     */
     public void consultarLibros(JTable table) {
         // Llamamos a la función getIdBiblioteca() para obtener el ID de la biblioteca
         int idBiblioteca = trabajador.getIdBiblioteca(); // Obtener el ID de la biblioteca
@@ -235,7 +239,10 @@ public class LibrosModelo {
         }
     }
 
-
+    /**
+     * Funcion que funciona de filtro para buscar
+     * @param consultarLibros 
+     */
     public void filtrarLibros(ConsultarLibros consultarLibros) {
         String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
         String busqueda = consultarLibros.getTxtBusqueda().getText().trim();

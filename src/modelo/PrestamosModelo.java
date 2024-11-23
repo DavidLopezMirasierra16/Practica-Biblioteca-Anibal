@@ -32,6 +32,8 @@ public class PrestamosModelo {
         this.conexion = this.bd_controller.conectar();
     }
 
+    //---------------------------INSERTAR---------------------------
+    
     /**
      * Registra un préstamo en la base de datos.
      * @param ID_Libro_FK ID del libro
@@ -148,9 +150,12 @@ public class PrestamosModelo {
         }
     }
 
+    //---------------------------CONSULTAS---------------------------
 
-    
-    // Método para consultar todos los libros y mostrar en la tabla
+    /**
+     * Método para consultar todos los libros y mostrar en la tabla
+     * @param table 
+     */
     public void consultarPrestamos(JTable table) {
         String sql = "SELECT * FROM prestamos";
         BaseDatosController baseDatosController = new BaseDatosController();
@@ -188,7 +193,10 @@ public class PrestamosModelo {
         }
     }
 
-    // Método para filtrar libros según el filtro y la búsqueda
+    /**
+     * Método para filtrar libros según el filtro y la búsqueda
+     * @param consultarPrestamos 
+     */
     public void filtrarLibros(ConsultarPrestamos consultarPrestamos) {
         String filtro = (String) consultarPrestamos.getCbFiltro().getSelectedItem();
         String busqueda = consultarPrestamos.getTxtBusqueda().getText().trim();
@@ -250,6 +258,10 @@ public class PrestamosModelo {
         }
     }
     
+    /**
+     * Funcion que empleada para devolver un libro
+     * @param tabla 
+     */
     public void devolver(JTable tabla) {
         // Verifica si hay una fila seleccionada
         int filaSeleccionada = tabla.getSelectedRow();

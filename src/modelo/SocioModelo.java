@@ -134,6 +134,10 @@ public class SocioModelo {
     
     //--------------------------------CONSULTAR---------------------------------
     
+    /**
+     * Funcion que nos muestra en una tabla todos los socios
+     * @param table 
+     */
     public void consultarSocios(JTable table) {
         int idBiblioteca = trabajador.getIdBiblioteca();
         String sql = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE ID_Biblioteca_FK = ?";
@@ -181,8 +185,11 @@ public class SocioModelo {
         }
     }
 
-
-    // Método para filtrar socios según el filtro y la búsqueda
+    /**
+     * Método para filtrar socios según el filtro y la búsqueda
+     * @param consultarSocios
+     * @param table 
+     */
     public void filtrarSocios(ConsultarSocios consultarSocios, JTable table) {
         String filtro = (String) consultarSocios.getCbFiltro().getSelectedItem();
         String busqueda = consultarSocios.getTxtBusqueda().getText().trim();
@@ -251,7 +258,11 @@ public class SocioModelo {
         }
     }
     
-    // Método para modificar el ID_Biblioteca_FK de un socio usando nombre, apellidos y localidad
+    /**
+     * Método para modificar el ID_Biblioteca_FK de un socio usando nombre, 
+     * apellidos y localidad
+     * @param modificar 
+     */
     public void modificarIdBiblioteca(ModLocalidadSocio modificar) {
         String nombre = modificar.getTxtSocio().getText().trim();  // Nombre del socio
         String apellidos = modificar.getTxtApellido().getText().trim();  // Apellidos del socio

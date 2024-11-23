@@ -18,6 +18,15 @@ public class Prestamos {
     private Date Fecha_Prestamo;
     private Date Fecha_Devolucion;
 
+    /**
+     * Constructor que nos sirve para consutar
+     * @param ID_Prestamo
+     * @param ID_Libro_FK
+     * @param ID_Socio_FK
+     * @param ID_Biblioteca_FK
+     * @param Fecha_Prestamo
+     * @param Fecha_Devolucion 
+     */
     public Prestamos(int ID_Prestamo, int ID_Libro_FK, String ID_Socio_FK, String ID_Biblioteca_FK, Date Fecha_Prestamo, Date Fecha_Devolucion) {
         this.ID_Prestamo = ID_Prestamo;
         this.ID_Libro_FK = ID_Libro_FK;
@@ -27,6 +36,13 @@ public class Prestamos {
         this.Fecha_Devolucion = Fecha_Devolucion;
     }
 
+    /**
+     * Constructor que nos sirve para insertar
+     * @param ID_Libro_FK
+     * @param ID_Socio_FK
+     * @param ID_Biblioteca_FK
+     * @param Fecha_Prestamo 
+     */
     public Prestamos(int ID_Libro_FK, String ID_Socio_FK, String ID_Biblioteca_FK, Date Fecha_Prestamo) {
         this.ID_Libro_FK = ID_Libro_FK;
         this.ID_Socio_FK = ID_Socio_FK;
