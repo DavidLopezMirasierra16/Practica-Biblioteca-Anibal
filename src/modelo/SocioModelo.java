@@ -326,7 +326,7 @@ public class SocioModelo {
         String nuevaCuenta = modificar.getTxtCuenta().getText().trim();  // Nuevo teléfono del socio
 
         // Consulta SQL para llamar al procedimiento almacenado
-        String sql = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+        String sql = "CALL ModificarCorreoPorNombreYApellidos(?, ?, ?)";
 
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement stmt = conexion.prepareStatement(sql)) {
@@ -358,7 +358,7 @@ public class SocioModelo {
         String nuevoCorreo = modificar.getTxtCorreo().getText().trim();  // Nuevo teléfono del socio
 
         // Consulta SQL para llamar al procedimiento almacenado
-        String sql = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+        String sql = "CALL ModificarCuentaBancariaPorNombreYApellidos(?, ?, ?)";
 
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement stmt = conexion.prepareStatement(sql)) {
