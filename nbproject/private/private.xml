@@ -6,12 +6,15 @@
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
-        </group>
-        <group>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/ModLocalidadSocioController.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/AdministradorController.java</file>
             <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SocioModelo.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/TrabajadorModelo.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/vista/RegistroPrestamo.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/modelo/SancionesModelo.java</file>
+            <file>file:/C:/Users/34662/OneDrive/Documentos/GitHub/Practica-Biblioteca-Anibal/src/controlador/RegistroTrabajadorController.java</file>
         </group>
     </open-files>
 </project-private>
