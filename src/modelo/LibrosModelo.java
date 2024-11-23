@@ -178,7 +178,10 @@ public class LibrosModelo {
     }
     
     //---------------------------CONSULTAS---------------------------
-    
+    /**
+     * Consulta todos los libros registrados en la BD
+     * @param table 
+     */
     public void consultarLibros(JTable table) {
         // Llamamos a la función getIdBiblioteca() para obtener el ID de la biblioteca
         int idBiblioteca = trabajador.getIdBiblioteca(); // Obtener el ID de la biblioteca
@@ -235,7 +238,10 @@ public class LibrosModelo {
         }
     }
 
-
+    /**
+     * Hace lo mismo que consultarLibros pero filtrando por búsqueda, seleccionando en el comboBox que quieres buscar y recogiendo la búsqueda
+     * @param consultarLibros 
+     */
     public void filtrarLibros(ConsultarLibros consultarLibros) {
         String filtro = (String) consultarLibros.getCbFiltro().getSelectedItem();
         String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
