@@ -45,7 +45,7 @@ public class RegistrarPrestamosController implements ActionListener {
         if (validarDatos()) {
             try {
                 // Obtener los datos de la vista
-                int idSocio = Integer.parseInt(this.registroPrestamoVista.getTxtDNI().getText().trim());
+                String idSocio =this.registroPrestamoVista.getTxtDNI().getText().trim();
                 int idLibro = Integer.parseInt(this.registroPrestamoVista.getTxtISBN().getText().trim());
                 String bibliotecaSeleccionada = (String) this.registroPrestamoVista.getCombo_biblioteca().getSelectedItem();
 

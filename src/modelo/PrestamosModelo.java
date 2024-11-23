@@ -40,7 +40,7 @@ public class PrestamosModelo {
      * @param Fecha_Devolucion Fecha de devolución prevista
      * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
      */
-    public Prestamos registrarPrestamo(int ID_Libro_FK, int ID_Socio_FK, String Nombre_Biblioteca, Date Fecha_Prestamo) {
+    public Prestamos registrarPrestamo(int ID_Libro_FK, String ID_Socio_FK, String Nombre_Biblioteca, Date Fecha_Prestamo) {
         // Verificar disponibilidad del libro
         String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
         if (ID_Biblioteca_FK == null) {
@@ -137,7 +137,7 @@ public class PrestamosModelo {
 
             // Establecemos los parámetros del procedimiento
             prepare.setInt(1, prestamo.getID_Libro_FK());
-            prepare.setInt(2, prestamo.getID_Socio_FK());
+            prepare.setString(2, prestamo.getID_Socio_FK());
             prepare.setString(3, prestamo.getID_Biblioteca_FK());
             prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
 
@@ -170,7 +170,7 @@ public class PrestamosModelo {
                     rs.getString("ID_Libro_FK"),
                     rs.getString("ID_Socio_FK"),
                     rs.getString("Fecha_Prestamo"),
-                    rs.getString("Fecha_Limite")
+                    rs.getString("Fecha_Devolucion")
                 };
                 model.addRow(row);
             }
@@ -230,7 +230,7 @@ public class PrestamosModelo {
                         rs.getString("ID_Libro_FK"),
                         rs.getString("ID_Socio_FK"),
                         rs.getString("Fecha_Prestamo"),
-                        rs.getString("Fecha_Limite")
+                        rs.getString("Fecha_Devolucion")
                     };
                     model.addRow(row);
                 }
