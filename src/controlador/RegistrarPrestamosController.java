@@ -47,7 +47,7 @@ public class RegistrarPrestamosController implements ActionListener {
                 // Obtener los datos de la vista
                 String idSocio =this.registroPrestamoVista.getTxtDNI().getText().trim();
                 int idLibro = Integer.parseInt(this.registroPrestamoVista.getTxtISBN().getText().trim());
-                String bibliotecaSeleccionada = (String) this.registroPrestamoVista.getCombo_biblioteca().getSelectedItem();
+                String bibliotecaSeleccionada = this.registroPrestamoVista.getCombo_biblioteca().getSelectedItem().toString();
 
                 // Obtener la fecha de préstamo actual
                 Date fechaPrestamo = new Date();

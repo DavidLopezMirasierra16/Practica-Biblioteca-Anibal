@@ -18,6 +18,7 @@ public class RegistroUbicacionLibro extends javax.swing.JFrame {
      */
     public RegistroUbicacionLibro() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

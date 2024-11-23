@@ -42,12 +42,12 @@ public class PrestamosModelo {
      */
     public Prestamos registrarPrestamo(int ID_Libro_FK, String ID_Socio_FK, String Nombre_Biblioteca, Date Fecha_Prestamo) {
         // Verificar disponibilidad del libro
-        String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
+        /*String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
         if (ID_Biblioteca_FK == null) {
             return null; // Si no se encuentra la biblioteca, retorna null
-        }
+        }*/
 
-        Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, ID_Biblioteca_FK, Fecha_Prestamo);
+        Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, Nombre_Biblioteca, Fecha_Prestamo);
         ingresarPrestamoEnBd(prestamo);
         return prestamo;
     }
