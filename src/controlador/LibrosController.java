@@ -27,9 +27,7 @@ public class LibrosController implements ActionListener{
     private ControlLibros menu_libros_vista;
 
     public LibrosController(ControlLibros menu_libros_vista) {
-        //Clases
         this.menu_libros_vista = menu_libros_vista;
-        //Botones
         this.menu_libros_vista.getBtn_registrar_libros().addActionListener(this);
         this.menu_libros_vista.getBtn_consulta_libros().addActionListener(this);
         this.menu_libros_vista.getBtn_consulta_sanciones().addActionListener(this);
@@ -38,7 +36,6 @@ public class LibrosController implements ActionListener{
         this.menu_libros_vista.getBtn_registrar_librosbiblio().addActionListener(this);
         this.menu_libros_vista.getBtn_registroPrestamo().addActionListener(this);
         this.menu_libros_vista.getBtnVolver().addActionListener(this);
-        //----------------------------------------
         this.menu_libros_vista.setVisible(true);
     }
 
@@ -98,7 +95,7 @@ public class LibrosController implements ActionListener{
                 frame.pack();
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(frame);
-                new RegistrarPrestamosController(panel); // Controlador asociado
+                new RegistrarPrestamosController(panel);
             } catch (SQLException ex) {
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }

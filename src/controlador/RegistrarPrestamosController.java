@@ -24,14 +24,11 @@ public class RegistrarPrestamosController implements ActionListener {
     private TrabajadorModelo trabajador;
 
     public RegistrarPrestamosController(RegistroPrestamo registroPrestamoVista) throws SQLException {
-        // Inicializa las clases
         this.prestamosModelo = new PrestamosModelo();
         this.trabajador = new TrabajadorModelo();
         this.registroPrestamoVista = registroPrestamoVista;
-        // Asigna el evento al botón
         this.registroPrestamoVista.getBtnAceptar().addActionListener(this);
         this.registroPrestamoVista.getTxt_prestamo().setText(this.prestamosModelo.fecha());
-        // Muestra la vista de registro de préstamos
         this.registroPrestamoVista.setVisible(true);
     }
 
@@ -47,12 +44,9 @@ public class RegistrarPrestamosController implements ActionListener {
     public void registrarPrestamo() {
         if (validarDatos()) {
             try {
-                // Obtener los datos de la vista
                 String idSocio = this.registroPrestamoVista.getTxtDNI().getText().trim();
                 int idLibro = Integer.parseInt(this.registroPrestamoVista.getTxtISBN().getText().trim());
                 int biblioteca = trabajador.getIdBiblioteca();
-                
-                // Verificar si el socio puede realizar más préstamos
                 if (!prestamosModelo.comprobarLimitePrestamos(idSocio)) {
                     JOptionPane.showMessageDialog(
                         registroPrestamoVista, 
@@ -60,18 +54,11 @@ public class RegistrarPrestamosController implements ActionListener {
                         "Límite de préstamos alcanzado", 
                         JOptionPane.WARNING_MESSAGE
                     );
-                    return; // Salimos del método si no puede realizar más préstamos
+                    return;
                 }
-
-                // Obtener la fecha de préstamo actual
                 Date fechaPrestamo = new Date();
-
-                // Crear el objeto Prestamos con los datos
                 Prestamos prestamo = new Prestamos(idLibro, idSocio, biblioteca, fechaPrestamo);
-
-                // Intentar registrar el préstamo
                 Prestamos prestamoRegistrado = this.prestamosModelo.registrarPrestamo(idLibro, idSocio, biblioteca, fechaPrestamo);
-
                 if (prestamoRegistrado != null) {
                     JOptionPane.showMessageDialog(
                         registroPrestamoVista, 

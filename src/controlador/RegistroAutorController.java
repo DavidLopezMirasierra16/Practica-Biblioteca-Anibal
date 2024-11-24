@@ -21,12 +21,9 @@ public class RegistroAutorController implements ActionListener{
     private RegistrarAutor registro_autor_vista;
 
     public RegistroAutorController(RegistrarAutor registro_autor_vista) throws SQLException {
-        //Clases
         this.autor_modelo = new AutorModelo();
         this.registro_autor_vista = registro_autor_vista;
-        //------------------------------------------------------------------
         this.registro_autor_vista.getBtn_agregar().addActionListener(this);
-        //-------------------------------------------
         this.registro_autor_vista.setVisible(true);
     }
 

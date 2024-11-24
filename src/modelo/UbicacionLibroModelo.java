@@ -29,11 +29,11 @@ public class UbicacionLibroModelo {
      * @return true si el libro existe, false en caso contrario.
      */
     public boolean existeLibro(int idLibro) {
-        String sql = "SELECT ISBN_Libros FROM libros WHERE ISBN_Libros = ?";
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            stmt.setInt(1, idLibro);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); // Retorna true si el libro existe
+        String consulta_Existencia = "SELECT ISBN_Libros FROM libros WHERE ISBN_Libros = ?";
+        try (PreparedStatement parametro = conexion.prepareStatement(consulta_Existencia)) {
+            parametro.setInt(1, idLibro);
+            ResultSet rs = parametro.executeQuery();
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -47,11 +47,11 @@ public class UbicacionLibroModelo {
      */
     public boolean existeBiblioteca(int idBiblioteca) {
         idBiblioteca = trabajador.getIdBiblioteca();
-        String sql = "SELECT ID_Biblioteca FROM biblioteca WHERE ID_Biblioteca = ?";
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            stmt.setInt(1, idBiblioteca);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); // Retorna true si la biblioteca existe
+        String consulta_ExistenciaB = "SELECT ID_Biblioteca FROM biblioteca WHERE ID_Biblioteca = ?";
+        try (PreparedStatement parametro = conexion.prepareStatement(consulta_ExistenciaB)) {
+            parametro.setInt(1, idBiblioteca);
+            ResultSet rs = parametro.executeQuery();
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -64,7 +64,6 @@ public class UbicacionLibroModelo {
      * @return true si la inserción es exitosa, false si ocurre un error.
      */
     public boolean registrarUbicacion(UbicacionLibro ubicacion) {
-        // Primero, verifica si el libro y la biblioteca existen en sus respectivas tablas
         if (!existeLibro(ubicacion.getID_Libro())) {
             System.out.println("El libro con el ID " + ubicacion.getID_Libro() + " no existe.");
             return false;
@@ -75,17 +74,16 @@ public class UbicacionLibroModelo {
             return false;
         }
 
-        // Si ambos existen, proceder a registrar la ubicación
-        String sql = "INSERT INTO ubicacion (ID_Biblioteca, ID_Libro, Estanteria, Seccion, Piso, Cantidad) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
-            stmt.setInt(1, ubicacion.getID_Biblioteca());
-            stmt.setInt(2, ubicacion.getID_Libro());
-            stmt.setString(3, ubicacion.getEstanteria());
-            stmt.setString(4, ubicacion.getSeccion());
-            stmt.setString(5, ubicacion.getPiso());
-            stmt.setInt(6, ubicacion.getCantidad());
-            int filasAfectadas = stmt.executeUpdate();
-            return filasAfectadas > 0;  // Si se insertó alguna fila, se registró correctamente
+        String inserta_UbicacionLibro = "INSERT INTO ubicacion (ID_Biblioteca, ID_Libro, Estanteria, Seccion, Piso, Cantidad) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement parametro = conexion.prepareStatement(inserta_UbicacionLibro)) {
+            parametro.setInt(1, ubicacion.getID_Biblioteca());
+            parametro.setInt(2, ubicacion.getID_Libro());
+            parametro.setString(3, ubicacion.getEstanteria());
+            parametro.setString(4, ubicacion.getSeccion());
+            parametro.setString(5, ubicacion.getPiso());
+            parametro.setInt(6, ubicacion.getCantidad());
+            int filasAfectadas = parametro.executeUpdate();
+            return filasAfectadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -25,14 +25,9 @@ public class RegistroSancionesController implements ActionListener {
     private RegistroSanciones registro_sancion_vista;
 
     public RegistroSancionesController(RegistroSanciones registro_sancion_vista) throws SQLException {
-        // Clases
         this.sancion_modelo = new SancionesModelo();
         this.registro_sancion_vista = registro_sancion_vista;
-
-        // Botones
         this.registro_sancion_vista.getBtn_Aceptar().addActionListener(this);
-
-        // Mostrar la vista de registro de sanciones
         this.registro_sancion_vista.setVisible(true);
     }
 
@@ -49,20 +44,14 @@ public class RegistroSancionesController implements ActionListener {
         
         if (validarDatos()) {
             try {
-                // Crear una nueva sanción con los datos de la vista
                 Sanciones sancion = new Sanciones(
                         Integer.parseInt(this.registro_sancion_vista.getTxt_Socio().getText()),
                         Integer.parseInt(this.registro_sancion_vista.getTxt_Prestamo().getText()),
                         this.registro_sancion_vista.getTxt_Sancion().getText()
                 );
-
-                // Intentar agregar la sanción en la base de datos
                 this.sancion_modelo.ingresarSancionBD(sancion);
-                
-                // Mostrar mensaje de éxito y cerrar la vista
                 JOptionPane.showMessageDialog(registro_sancion_vista, "Sanción registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                 this.registro_sancion_vista.dispose();
-
             }catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(registro_sancion_vista, "ID de Socio y ID de Préstamo deben ser numéricos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
             }

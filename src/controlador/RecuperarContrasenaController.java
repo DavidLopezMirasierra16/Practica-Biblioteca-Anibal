@@ -16,29 +16,24 @@ public class RecuperarContrasenaController implements ActionListener {
     private TrabajadorModelo modelo;
 
     public RecuperarContrasenaController(RecuperarContrasena recuperar_vista) throws SQLException {
-        // Clases
         this.modelo = new TrabajadorModelo();
         this.recuperar_vista = recuperar_vista;
-        // Botones
         this.recuperar_vista.getBtnRecuperar().addActionListener(this);
         this.recuperar_vista.getBtnVolver().addActionListener(this);
-        //--------------------------------------
         this.recuperar_vista.setVisible(true);
         this.recuperar_vista.setResizable(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object button = e.getSource();
-        
+        Object button = e.getSource();       
         if (button == recuperar_vista.getBtnRecuperar()) {
             try {
                 cambiarContraseña();
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(RecuperarContrasenaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
+        }        
         if (e.getSource() == recuperar_vista.getBtnVolver()) {
             recuperar_vista.dispose();
         }
@@ -51,8 +46,6 @@ public class RecuperarContrasenaController implements ActionListener {
         if (validarDatos()) {
             String usuario = recuperar_vista.getTxt_usuario().getText().trim();
             String nuevaContraseña = recuperar_vista.getTxt_contraseña().getText().trim();
-            
-            // Llamar al método de modelo para cambiar la contraseña
             this.modelo.cambiarContraseña(usuario, nuevaContraseña);
         }
     }

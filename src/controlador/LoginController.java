@@ -26,13 +26,10 @@ public class LoginController implements ActionListener {
     private TrabajadorModelo trabajador_modelo;
 
     public LoginController() throws SQLException {
-        // Clases
         this.login_vista = new Login();
         this.trabajador_modelo = new TrabajadorModelo();
-        // Botones
         this.login_vista.getBtnIniciar().addActionListener(this);
         this.login_vista.getBtnRecuperar1().addActionListener(this);
-        //----------------------------------
         this.login_vista.setVisible(true);
     }
 
@@ -42,25 +39,17 @@ public class LoginController implements ActionListener {
 
         if (button == this.login_vista.getBtnIniciar()) {
             try {
-                // Recuperar el usuario y contraseña desde la vista
                 int usuarioId = Integer.parseInt(this.login_vista.getTxt_usuario().getText().trim());
                 String contraseña = this.login_vista.getTxt_contraseña().getText().trim();
-
-                // Realizar la comprobación del rol y función
                 int idTrabajador = this.trabajador_modelo.comprobarRolFuncion(usuarioId, contraseña);
-
                 if (idTrabajador > 0) {
-                    // Si el trabajador fue encontrado, obtenemos los valores directamente desde trabajador_modelo
                     int idPermiso = trabajador_modelo.getIdPermiso();
                     int idBiblioteca = trabajador_modelo.getIdBiblioteca();
                     System.out.println("ID Trabajador: " + idTrabajador);
                     System.out.println("ID Permiso: " + idPermiso);
                     System.out.println("ID Biblioteca: " + idBiblioteca);
-
-                    // Mostrar la ventana correspondiente
                     mostrarVentana(idPermiso);
                 } else {
-                    // Si no se encontró el trabajador
                     JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
@@ -85,10 +74,8 @@ public class LoginController implements ActionListener {
      * @throws SQLException 
      */
     public void mostrarVentana(int id) throws SQLException {
-        // Obtenemos el ID de la biblioteca y permisos
         int idPermiso = trabajador_modelo.getIdPermiso();
         int idBiblioteca = trabajador_modelo.getIdBiblioteca();
-
         if (idPermiso == 1) {
             new AdministradorController(new MenuAdministrador());
             this.login_vista.dispose();

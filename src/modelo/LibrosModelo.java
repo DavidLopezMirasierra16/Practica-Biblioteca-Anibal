@@ -96,7 +96,7 @@ public class LibrosModelo {
             return libro;
         }
         
-        return null; // Retorna null si el libro ya está registrado
+        return null;
     }
 
     /**
@@ -107,8 +107,8 @@ public class LibrosModelo {
      */
     public boolean comprobarLibroExistente(int ISBN) {
         try {
-            String query = "SELECT ISBN_Libros FROM bd_biblioteca.libros WHERE ISBN_Libros = ?;";
-            prepare = conexion.prepareStatement(query);
+            String comprueba_Libro = "SELECT ISBN_Libros FROM bd_biblioteca.libros WHERE ISBN_Libros = ?;";
+            prepare = conexion.prepareStatement(comprueba_Libro);
             prepare.setInt(1, ISBN);
             
             resultado = prepare.executeQuery();
@@ -127,10 +127,10 @@ public class LibrosModelo {
      */
     public void ingresarLibroEnBd(Libros libro) {
         try {
-            String sql = "INSERT INTO bd_biblioteca.libros (ISBN_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR) " +
+            String insertar_Libro = "INSERT INTO bd_biblioteca.libros (ISBN_Libros, Titulo, Genero, Year, Editorial, ID_AUTOR) " +
                          "VALUES (?, ?, ?, ?, ?, ?);";
 
-            prepare = conexion.prepareStatement(sql);
+            prepare = conexion.prepareStatement(insertar_Libro);
             prepare.setInt(1, libro.getIdLibros());
             prepare.setString(2, libro.getTitulo());
             prepare.setString(3, libro.getGenero());
@@ -184,50 +184,42 @@ public class LibrosModelo {
      * @param table 
      */
     public void consultarLibros(JTable table) {
-        // Llamamos a la función getIdBiblioteca() para obtener el ID de la biblioteca
-        int idBiblioteca = trabajador.getIdBiblioteca(); // Obtener el ID de la biblioteca
+        int idBiblioteca = trabajador.getIdBiblioteca();
         System.out.println(idBiblioteca);
 
-        // Verificamos si el ID de la biblioteca es válido
         if (idBiblioteca == 0) {
             System.out.println("No se pudo obtener el ID de la biblioteca.");
             return;
         }
 
-        String sql = "CALL mostrarLibrosConUbicacion(?)"; // Procedimiento que muestra libros por biblioteca
+        String consulta_Libros = "CALL mostrarLibrosConUbicacion(?)";
         BaseDatosController baseDatosController = new BaseDatosController();
 
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conection = baseDatosController.conectar();
+             PreparedStatement parametro = conection.prepareStatement(consulta_Libros)) {
 
-            // Establecemos el parámetro para la consulta: el ID de la biblioteca
-            stmt.setInt(1, idBiblioteca); // Pasamos el ID de la biblioteca como parámetro
+            parametro.setInt(1, idBiblioteca);
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try (ResultSet result = parametro.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
+                model.setRowCount(0);
 
-                // Procesamos los resultados de la consulta
-                while (rs.next()) {
+                while (result.next()) {
                     Object[] row = {
-                        rs.getInt("ISBN_Libros"),
-                        rs.getString("Titulo"),
-                        rs.getString("Genero"),
-                        rs.getString("Anio"),
-                        rs.getString("Editorial"),
-                        rs.getString("nombre_autor"),
-                        rs.getString("Estanteria"),
-                        rs.getString("Seccion"),
-                        rs.getString("Piso"),
-                        rs.getInt("Cantidad")
+                        result.getInt("ISBN_Libros"),
+                        result.getString("Titulo"),
+                        result.getString("Genero"),
+                        result.getString("Anio"),
+                        result.getString("Editorial"),
+                        result.getString("nombre_autor"),
+                        result.getString("Estanteria"),
+                        result.getString("Seccion"),
+                        result.getString("Piso"),
+                        result.getInt("Cantidad")
                     };
-                    model.addRow(row); // Agregamos la fila al modelo de la tabla
+                    model.addRow(row);
                 }
-
-                // Actualizamos el modelo de la tabla
                 table.setModel(model);
-
-                // Hacemos que las columnas no se puedan redimensionar
                 for (int i = 0; i < table.getColumnCount(); i++) {
                     table.getColumnModel().getColumn(i).setResizable(false);
                 }
@@ -268,31 +260,31 @@ public class LibrosModelo {
                 return;
         }
 
-        String sql = "CALL mostrarLibrosConUbicacion(?)";
+        String consulta_LibrosFiltro = "CALL mostrarLibrosConUbicacion(?)";
         BaseDatosController baseDatosController = new BaseDatosController();
 
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conection = baseDatosController.conectar();
+             PreparedStatement parametro = conection.prepareStatement(consulta_LibrosFiltro)) {
 
-            stmt.setInt(1, trabajador.getIdBiblioteca()); // Ajustar según el contexto de biblioteca
+            parametro.setInt(1, trabajador.getIdBiblioteca());
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try (ResultSet result = parametro.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) consultarLibros.getTablaLibros().getModel();
-                model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
+                model.setRowCount(0);
 
-                while (rs.next()) {
-                    if (rs.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
+                while (result.next()) {
+                    if (result.getString(columna).toLowerCase().contains(busqueda.toLowerCase())) {
                         Object[] row = {
-                            rs.getInt("ISBN_Libros"),
-                            rs.getString("Titulo"),
-                            rs.getString("Genero"),
-                            rs.getString("Anio"),
-                            rs.getString("Editorial"),
-                            rs.getString("nombre_autor"),
-                            rs.getString("Estanteria"),
-                            rs.getString("Seccion"),
-                            rs.getString("Piso"),
-                            rs.getInt("Cantidad")
+                            result.getInt("ISBN_Libros"),
+                            result.getString("Titulo"),
+                            result.getString("Genero"),
+                            result.getString("Anio"),
+                            result.getString("Editorial"),
+                            result.getString("nombre_autor"),
+                            result.getString("Estanteria"),
+                            result.getString("Seccion"),
+                            result.getString("Piso"),
+                            result.getInt("Cantidad")
                         };
                         model.addRow(row);
                     }

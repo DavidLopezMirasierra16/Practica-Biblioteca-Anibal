@@ -180,30 +180,19 @@ public class TrabajadorModelo {
      */
     public int comprobarRolFuncion(int usuario, String contraseña) {
         int id_trabajador = 0;
-
         try {
             // Hashear la contraseña antes de enviarla al procedimiento almacenado
             String contrasenaHasheada = hashearContraseña(contraseña);
-
-            // Llamada al procedimiento almacenado para obtener el ID de permisos y el ID de biblioteca
             String comprobar_rol = "{CALL obtener_id_trabajadores(?, ?, ?, ?)}";
             CallableStatement consultas_funciones = conexion.prepareCall(comprobar_rol);
-
-            // Establecer los parámetros de entrada
-            consultas_funciones.setInt(1, usuario);  // ID del trabajador
-            consultas_funciones.setString(2, contrasenaHasheada);  // Contraseña hasheada
-
-            // Registrar los parámetros de salida
-            consultas_funciones.registerOutParameter(3, java.sql.Types.INTEGER);  // ID de permisos
-            consultas_funciones.registerOutParameter(4, java.sql.Types.INTEGER);  // ID de biblioteca
-
+            consultas_funciones.setInt(1, usuario); 
+            consultas_funciones.setString(2, contrasenaHasheada);
+            consultas_funciones.registerOutParameter(3, java.sql.Types.INTEGER);
+            consultas_funciones.registerOutParameter(4, java.sql.Types.INTEGER);
             consultas_funciones.execute();
+            idPermiso = consultas_funciones.getInt(3);
+            idBiblioteca = consultas_funciones.getInt(4);
 
-            // Recuperar los valores de salida
-            idPermiso = consultas_funciones.getInt(3);  // Obtener ID de permisos
-            idBiblioteca = consultas_funciones.getInt(4);  // Obtener ID de biblioteca
-
-            // Verificamos si se obtuvo correctamente el ID del trabajador
             if (idPermiso != 0 && idBiblioteca != 0) {
                 id_trabajador = usuario;
             } else {
@@ -289,15 +278,12 @@ public class TrabajadorModelo {
      * @param nuevaContraseña 
      */
     public void cambiarContraseña(String usuario, String nuevaContraseña) {
-        // Hashear la nueva contraseña
         String contrasenaHasheada = hashearContraseña(nuevaContraseña);
-        // Preparar el SQL para actualizar la contraseña en la base de datos
         String sql = "UPDATE mbappe SET Contrasenia = ? WHERE ID_Trabajador_FK = ?";
-        // Conexión y ejecución de la consulta
         try (Connection conn = bd_controller.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, contrasenaHasheada); // Usar la contraseña hasheada
-            stmt.setString(2, usuario); // Usuario (ID del trabajador)
+            stmt.setString(1, contrasenaHasheada);
+            stmt.setString(2, usuario);
 
             int filasActualizadas = stmt.executeUpdate();
 

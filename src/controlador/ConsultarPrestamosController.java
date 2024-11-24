@@ -22,11 +22,11 @@ public class ConsultarPrestamosController implements ActionListener{
     public ConsultarPrestamosController() throws SQLException {
         this.consultaprestamos_vista = new ConsultarPrestamos();
         this.consultaprestamos_vista.getBtnBuscar().addActionListener(this);
-        this.consultaprestamos_vista.getBtnReestablecer().addActionListener(this); // Escuchar evento reestablecer
+        this.consultaprestamos_vista.getBtnReestablecer().addActionListener(this);
         this.consultaprestamos_vista.getBtnDevilver().addActionListener(this);
         this.consultaprestamos_vista.setVisible(true);
         PrestamosModelo prestamosModelo = new PrestamosModelo();
-        prestamosModelo.consultarPrestamos(consultaprestamos_vista.getTablaPrestamos()); // Cargar los libros completos al inicio
+        prestamosModelo.consultarPrestamos(consultaprestamos_vista.getTablaPrestamos());
     }
 
     @Override
@@ -36,14 +36,14 @@ public class ConsultarPrestamosController implements ActionListener{
                 String filtro = consultaprestamos_vista.getCbFiltro().getSelectedItem().toString();
                 String busqueda = consultaprestamos_vista.getTxtBusqueda().getText();
                 PrestamosModelo prestamosModelo = new PrestamosModelo();
-                prestamosModelo.filtrarLibros(consultaprestamos_vista); // Filtrar según la búsqueda
+                prestamosModelo.filtrarLibros(consultaprestamos_vista);
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultarPrestamosController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getSource() == consultaprestamos_vista.getBtnReestablecer()) {
             try {
                 PrestamosModelo prestamosModelo = new PrestamosModelo();
-                prestamosModelo.consultarPrestamos(consultaprestamos_vista.getTablaPrestamos()); // Reestablecer la tabla con todos los libros
+                prestamosModelo.consultarPrestamos(consultaprestamos_vista.getTablaPrestamos());
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultarPrestamosController.class.getName()).log(Level.SEVERE, null, ex);
             }

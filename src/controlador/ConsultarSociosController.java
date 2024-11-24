@@ -24,8 +24,7 @@ public class ConsultarSociosController implements ActionListener {
         this.consultasocios_vista.getBtnReestablecer().addActionListener(this);
         this.consultasocios_vista.getBtnPago().addActionListener(this);
         this.consultasocios_vista.getBtnHabilitar().addActionListener(this);
-        this.consultasocios_vista.setVisible(true);
-        
+        this.consultasocios_vista.setVisible(true);        
         SocioModelo sociosModelo = new SocioModelo();
         sociosModelo.consultarSocios(consultasocios_vista.getTablaSocios());
     }

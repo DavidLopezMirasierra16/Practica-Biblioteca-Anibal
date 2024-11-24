@@ -20,6 +20,6 @@ public class ConsultarSancionesController{
         this.consultasanciones_vista = new ConsultarSanciones();
         this.consultasanciones_vista.setVisible(true);
         SancionesModelo sancionesModelo = new SancionesModelo();
-        sancionesModelo.consultarSanciones(consultasanciones_vista.getTablaSanciones()); // Cargar los libros completos al inicio
+        sancionesModelo.consultarSanciones(consultasanciones_vista.getTablaSanciones());
     }
 }

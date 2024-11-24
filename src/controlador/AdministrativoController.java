@@ -27,28 +27,22 @@ public class AdministrativoController implements ActionListener{
     private SocioModelo socio_modelo;
 
     public AdministrativoController(MenuAdministrativo menu_administrativo_vista) throws SQLException {
-        //Clases
         this.menu_administrativo_vista = menu_administrativo_vista;
         this.libros_modelo = new LibrosModelo();
         this.socio_modelo = new SocioModelo();
-        //Botones
         this.menu_administrativo_vista.getBtnLibros().addActionListener(this);
         this.menu_administrativo_vista.getBtnConsulta().addActionListener(this);
-        //------------------------------------------------
         this.menu_administrativo_vista.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object button = e.getSource();
-        
+        Object button = e.getSource();        
         if (button == this.menu_administrativo_vista.getBtnLibros()) {
-            //Abre el controlador de libros
             new LibrosController(new ControlLibros());
             this.menu_administrativo_vista.dispose();
         }else if (button == this.menu_administrativo_vista.getBtnConsulta()){
             try {
-                //Abre el controlador de consultas
                 new ConsultarSociosController(new ConsultarSocios());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministrativoController.class.getName()).log(Level.SEVERE, null, ex);

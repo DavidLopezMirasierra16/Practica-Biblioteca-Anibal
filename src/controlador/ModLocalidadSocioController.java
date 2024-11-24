@@ -28,7 +28,6 @@ public class ModLocalidadSocioController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == modificar_vista.getBtnAceptar()){
-            //Metodo que recoge y modifica el usuario con la nueva localidad
             socio.modificarIdBiblioteca(modificar_vista);
         }
     }

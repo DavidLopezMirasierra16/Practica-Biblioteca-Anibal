@@ -45,12 +45,6 @@ public class PrestamosModelo {
      * @return el préstamo registrado o null si el libro ya está prestado o el socio tiene 3 préstamos
      */
     public Prestamos registrarPrestamo(int ID_Libro_FK, String ID_Socio_FK, int Biblioteca, Date Fecha_Prestamo) {
-        // Verificar disponibilidad del libro
-        /*String ID_Biblioteca_FK = obtenerIDBiblioteca(Nombre_Biblioteca);
-        if (ID_Biblioteca_FK == null) {
-            return null; // Si no se encuentra la biblioteca, retorna null
-        }*/
-
         Prestamos prestamo = new Prestamos(ID_Libro_FK, ID_Socio_FK, Biblioteca, Fecha_Prestamo);
         ingresarPrestamoEnBd(prestamo);
         return prestamo;
@@ -63,8 +57,8 @@ public class PrestamosModelo {
      */
     private String obtenerIDBiblioteca(String Nombre_Biblioteca) {
         try {
-            String query = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre_Biblioteca = ?";
-            prepare = conexion.prepareStatement(query);
+            String obtener_ID = "SELECT ID_Biblioteca FROM biblioteca WHERE Nombre_Biblioteca = ?";
+            prepare = conexion.prepareStatement(obtener_ID);
             prepare.setString(1, Nombre_Biblioteca);
             resultado = prepare.executeQuery();
             
@@ -74,7 +68,7 @@ public class PrestamosModelo {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null; // Si no se encuentra la biblioteca
+        return null;
     }
 
     /**
@@ -84,12 +78,12 @@ public class PrestamosModelo {
      */
     public boolean comprobarDisponibilidadLibro(int ID_Libro_FK) {
         try {
-            String query = "SELECT * FROM prestamos WHERE ID_Libro_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
-            prepare = conexion.prepareStatement(query);
+            String comprueba_Libro = "SELECT * FROM prestamos WHERE ID_Libro_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            prepare = conexion.prepareStatement(comprueba_Libro);
             prepare.setInt(1, ID_Libro_FK);
             resultado = prepare.executeQuery();
             
-            return !resultado.next(); // Retorna true si no encuentra un préstamo activo para el libro
+            return !resultado.next();
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -103,22 +97,26 @@ public class PrestamosModelo {
      */
     public boolean comprobarLimitePrestamos(String ID_Socio_FK) {
         try {
-            String query = "SELECT COUNT(*) AS total_prestamos FROM prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
-            prepare = conexion.prepareStatement(query);
+            String comprueba_Prestamos = "SELECT COUNT(*) AS total_prestamos FROM prestamos WHERE ID_Socio_FK = ? AND (Fecha_Devolucion IS NULL OR Fecha_Devolucion > CURRENT_DATE);";
+            prepare = conexion.prepareStatement(comprueba_Prestamos);
             prepare.setString(1, ID_Socio_FK);
             resultado = prepare.executeQuery();
             
             if (resultado.next()) {
                 int totalPrestamos = resultado.getInt("total_prestamos");
-                return totalPrestamos < 3; // Retorna true si el socio tiene menos de 3 préstamos
+                return totalPrestamos < 3;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
-        return false; // Retorna false en caso de error o si ya tiene 3 préstamos
+        return false;
     }
-
+    
+    /**
+     * Función que recoge la fecha actual
+     * @return 
+     */
     public String fecha(){
         LocalDateTime dia = LocalDateTime.now();
         
@@ -131,23 +129,41 @@ public class PrestamosModelo {
      * Inserta un préstamo en la base de datos.
      * @param prestamo el objeto Prestamos que queremos registrar en la base de datos
      */
+
     private void ingresarPrestamoEnBd(Prestamos prestamo) {
         try {
-            // Llamamos al procedimiento almacenado 'registrarPrestamo'
-            String query = "{CALL registrarPrestamo(?, ?, ?, ?)}";
+            String verificarExistencias = "SELECT Existencias FROM ubicación WHERE ID_Libro = ? AND ID_Biblioteca = ?";
 
-            // Preparamos la llamada al procedimiento
-            prepare = conexion.prepareStatement(query);
-
-            // Establecemos los parámetros del procedimiento
+            prepare = conexion.prepareStatement(verificarExistencias);
             prepare.setInt(1, prestamo.getID_Libro_FK());
-            prepare.setString(2, prestamo.getID_Socio_FK());
-            prepare.setInt(3, prestamo.getID_Biblioteca_FK());
-            prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
+            prepare.setInt(2, prestamo.getID_Biblioteca_FK());
 
-            // Ejecutamos el procedimiento
-            prepare.executeUpdate();
+            ResultSet resultado = prepare.executeQuery();
+
+            if (resultado.next()) {
+                int existencias = resultado.getInt("Existencias");
+
+                if (existencias > 0) {
+                    String ingresar_Prestamo = "{CALL registrarPrestamo(?, ?, ?, ?)}";
+
+                    prepare = conexion.prepareStatement(ingresar_Prestamo);
+
+                    prepare.setInt(1, prestamo.getID_Libro_FK());
+                    prepare.setString(2, prestamo.getID_Socio_FK());
+                    prepare.setInt(3, prestamo.getID_Biblioteca_FK());
+                    prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
+
+                    prepare.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Préstamo registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay existencias suficientes del libro en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El libro no está registrado en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al procesar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -159,33 +175,28 @@ public class PrestamosModelo {
      * @param table 
      */
     public void consultarPrestamos(JTable table) {
-        String sql = "SELECT * FROM prestamos";
+        String consulta_Prestamos = "SELECT * FROM prestamos";
         BaseDatosController baseDatosController = new BaseDatosController();
 
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (Connection conection = baseDatosController.conectar();
+             PreparedStatement stmt = conection.prepareStatement(consulta_Prestamos);
+             ResultSet result = stmt.executeQuery()) {
 
-            // Crear un modelo para la tabla y limpiar las filas actuales
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Limpiar las filas actuales antes de agregar nuevas
-
-            // Agregar las filas a la tabla
-            while (rs.next()) {
+            model.setRowCount(0);
+            while (result.next()) {
                 Object[] row = {
-                    rs.getInt("ID_Prestamo"),
-                    rs.getString("ID_Libro_FK"),
-                    rs.getString("ID_Socio_FK"),
-                    rs.getString("Fecha_Prestamo"),
-                    rs.getString("Fecha_Devolucion")
+                    result.getInt("ID_Prestamo"),
+                    result.getString("ID_Libro_FK"),
+                    result.getString("ID_Socio_FK"),
+                    result.getString("Fecha_Prestamo"),
+                    result.getString("Fecha_Devolucion")
                 };
                 model.addRow(row);
             }
 
-            // Establecer el modelo en la tabla
             table.setModel(model);
 
-            // No permitir redimensionar las columnas
             for (int i = 0; i < table.getColumnCount(); i++) {
                 table.getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
             }
@@ -224,31 +235,27 @@ public class PrestamosModelo {
         String sql = "SELECT * FROM prestamos WHERE " + columna + " LIKE ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
-        try (Connection conn = baseDatosController.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conection = baseDatosController.conectar();
+             PreparedStatement parametro = conection.prepareStatement(sql)) {
 
-            stmt.setString(1, "%" + busqueda + "%");  // Usamos % para buscar coincidencias parciales
+            parametro.setString(1, "%" + busqueda + "%");
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try (ResultSet result = parametro.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) consultarPrestamos.getTablaPrestamos().getModel();
-                model.setRowCount(0); // Limpiar las filas actuales antes de filtrar
+                model.setRowCount(0);
 
-                // Agregar las filas filtradas a la tabla
-                while (rs.next()) {
+                while (result.next()) {
                     Object[] row = {
-                        rs.getInt("ID_Prestamo"),
-                        rs.getString("ID_Libro_FK"),
-                        rs.getString("ID_Socio_FK"),
-                        rs.getString("Fecha_Prestamo"),
-                        rs.getString("Fecha_Devolucion")
+                        result.getInt("ID_Prestamo"),
+                        result.getString("ID_Libro_FK"),
+                        result.getString("ID_Socio_FK"),
+                        result.getString("Fecha_Prestamo"),
+                        result.getString("Fecha_Devolucion")
                     };
                     model.addRow(row);
                 }
 
-                // Establecer el modelo en la tabla
                 consultarPrestamos.getTablaPrestamos().setModel(model);
-
-                // No permitir redimensionar las columnas
                 for (int i = 0; i < consultarPrestamos.getTablaPrestamos().getColumnCount(); i++) {
                     consultarPrestamos.getTablaPrestamos().getColumnModel().getColumn(i).setResizable(false);  // Deshabilitar redimensionado de columnas
                 }
@@ -265,31 +272,24 @@ public class PrestamosModelo {
      * @param tabla 
      */
     public void devolver(JTable tabla) {
-        // Verifica si hay una fila seleccionada
         int filaSeleccionada = tabla.getSelectedRow();
 
-        if (filaSeleccionada != -1) { // -1 significa que no hay selección
-            // Obtiene el modelo de la tabla
+        if (filaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 
-            // Obtener el ID del préstamo de la fila seleccionada
             int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0); // Asume que el ID está en la primera columna
 
-            // Actualizar la base de datos para marcar el préstamo como devuelto
-            String sql = "DELETE FROM prestamos WHERE ID_Prestamo = ?";
+            String devuelve_Prestamo = "DELETE FROM prestamos WHERE ID_Prestamo = ?";
             BaseDatosController baseDatosController = new BaseDatosController();
 
-            try (Connection conn = baseDatosController.conectar();
-                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (Connection conection = baseDatosController.conectar();
+                 PreparedStatement parametro = conection.prepareStatement(devuelve_Prestamo)) {
 
-                // Configurar el ID del préstamo en la consulta
-                stmt.setInt(1, idPrestamo);
+                parametro.setInt(1, idPrestamo);
 
-                // Ejecutar la eliminación en la base de datos
-                int filasAfectadas = stmt.executeUpdate();
+                int filasAfectadas = parametro.executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    // Si la eliminación fue exitosa, eliminar la fila del modelo de la tabla
                     modelo.removeRow(filaSeleccionada);
                     JOptionPane.showMessageDialog(null, 
                         "Préstamo devuelto exitosamente.", 
@@ -316,5 +316,4 @@ public class PrestamosModelo {
                 JOptionPane.WARNING_MESSAGE);
         }
     }
-
 }

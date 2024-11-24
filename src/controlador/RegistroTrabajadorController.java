@@ -13,35 +13,24 @@ public class RegistroTrabajadorController implements ActionListener {
     private RegistroTrabajadores registroTrabajadoresVista;
 
     public RegistroTrabajadorController(RegistroTrabajadores registroTrabajadoresVista) throws SQLException {
-        // Inicialización de la clase de modelo y vista
         this.trabajadorModelo = new TrabajadorModelo();
         this.registroTrabajadoresVista = registroTrabajadoresVista;
-        
-        // Configuración del botón de guardar
         this.registroTrabajadoresVista.getBtn_guardar().addActionListener(this);
-        
-        // Mostrar la vista
         this.registroTrabajadoresVista.setVisible(true);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        // Acción de guardar trabajador
         agregarDatos();
     }          
 
      /* Método que agrega los datos del trabajador a la base de datos.
      */
     public void agregarDatos() {
-        
-        // Validación de datos
-        if (validarDatos()) {
-            
+        if (validarDatos()) {           
             int id = this.trabajadorModelo.añadirPermiso(this.registroTrabajadoresVista.getCombo_roles().getSelectedItem().toString());
-            int id_biblioteca = this.trabajadorModelo.seleccionarBiblioteca(this.registroTrabajadoresVista.getCombo_bibliotecas().getSelectedItem().toString());
-            
+            int id_biblioteca = this.trabajadorModelo.seleccionarBiblioteca(this.registroTrabajadoresVista.getCombo_bibliotecas().getSelectedItem().toString());            
             if (this.trabajadorModelo.crearTrabajador(id, 
                     this.registroTrabajadoresVista.getTxt_nombre().getText(), 
                     this.registroTrabajadoresVista.getTxt_apellidos().getText(), 

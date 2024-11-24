@@ -20,11 +20,7 @@ public class RegistroUbicacionLibroController implements ActionListener {
     public RegistroUbicacionLibroController(RegistroUbicacionLibro registroUbicacionLibroVista) throws SQLException {
         this.ubicacionLibroModelo = new UbicacionLibroModelo();
         this.registroUbicacionLibroVista = registroUbicacionLibroVista;
-        
-        // Asignar eventos a los botones
         this.registroUbicacionLibroVista.getBtnAceptar().addActionListener(this);
-        
-        // Mostrar la vista
         this.registroUbicacionLibroVista.setVisible(true);
     }
 
@@ -39,18 +35,13 @@ public class RegistroUbicacionLibroController implements ActionListener {
     private void agregarDatos() {
         if (validarDatos()) {
             try {
-                // Obtener datos de la vista
                 int idBiblioteca = Integer.parseInt(this.registroUbicacionLibroVista.getTxt_idBiblioteca().getText().trim());
                 int idLibro = Integer.parseInt(this.registroUbicacionLibroVista.getTxtLibro().getText().trim());
                 String estanteria = this.registroUbicacionLibroVista.getTxtEstanteria().getText().trim();
                 String seccion = this.registroUbicacionLibroVista.getTxtSeccion().getText().trim();
                 String piso = this.registroUbicacionLibroVista.getTxtPiso().getText().trim();
                 int cantidad = Integer.parseInt(this.registroUbicacionLibroVista.getTxtCantidad().getText().trim());
-                
-                // Crear objeto UbicacionLibro con los datos
                 UbicacionLibro ubicacion = new UbicacionLibro(idBiblioteca, idLibro, estanteria, seccion, piso, cantidad);
-
-                // Registrar ubicación en la base de datos
                 if (ubicacionLibroModelo.registrarUbicacion(ubicacion)) {
                     JOptionPane.showMessageDialog(registroUbicacionLibroVista, "Ubicación registrada correctamente", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     this.registroUbicacionLibroVista.dispose();  // Cerrar la ventana después de registrar

@@ -17,12 +17,9 @@ public class RegistroLibroController implements ActionListener {
     private RegistrarLibro registro_libro_vista;
 
     public RegistroLibroController(RegistrarLibro registro_libro_vista) throws SQLException{
-        //Clases
         this.modelo_libros = new LibrosModelo();
         this.registro_libro_vista = registro_libro_vista;
-        //Botones
         this.registro_libro_vista.getBtn_agregar().addActionListener(this);
-        //-------------------------------------------
         JOptionPane.showMessageDialog(registro_libro_vista, "Cuando vaya a INSERTAR el autor recuerde escribir la primera letra del NOMBRE y del APELLIDO/S en MAYÚSCULA", "Recordatorio", JOptionPane.INFORMATION_MESSAGE);
         this.registro_libro_vista.setVisible(true);
     }
@@ -39,11 +36,9 @@ public class RegistroLibroController implements ActionListener {
         
         if (validarDatos()) {
             int id = this.modelo_libros.seleccionarAutor(this.registro_libro_vista.getTxt_autor().getText());
-
             if (id==0) {
                 JOptionPane.showMessageDialog(registro_libro_vista, "Autor no registrado", "Error autor", JOptionPane.ERROR_MESSAGE);
             }else{
-
                 if (this.modelo_libros.crearLibro(this.registro_libro_vista.getTxt_nombre().getText(), 
                         this.registro_libro_vista.getTxt_genero().getText(), 
                         this.registro_libro_vista.getTxt_año().getText(), 
@@ -54,8 +49,7 @@ public class RegistroLibroController implements ActionListener {
                     JOptionPane.showMessageDialog(registro_libro_vista, "Autor " + this.registro_libro_vista.getTxt_autor().getText() + " no registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
                 }
             } 
-        }   
-        
+        }           
     }
     
     /**
