@@ -36,6 +36,11 @@ public class RecuperarContrasenaController implements ActionListener {
         }        
         if (e.getSource() == recuperar_vista.getBtnVolver()) {
             recuperar_vista.dispose();
+            try {
+                new LoginController();
+            } catch (SQLException ex) {
+                Logger.getLogger(RecuperarContrasenaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

@@ -67,17 +67,12 @@ public class SancionesModelo {
     }
     
     public void filtrarSanciones(ConsultarSanciones consultarSanciones, JTable table) {
-        // Obtener los valores de la vista (filtro y búsqueda)
         String filtro = (String) consultarSanciones.getCbFiltro().getSelectedItem();
         String busqueda = consultarSanciones.getTxtBusqueda().getText().trim();
-
-        // Validar que el filtro y la búsqueda sean válidos
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
             System.out.println("Debe ingresar un valor de búsqueda válido y seleccionar un filtro.");
             return;
         }
-
-        // Determinar la columna a filtrar según el filtro seleccionado
         String columna = "";
         switch (filtro) {
             case "Socio":
@@ -87,21 +82,13 @@ public class SancionesModelo {
                 columna = "Tipo_Sancion";
                 break;
         }
-
-        // Consulta SQL para filtrar las sanciones
         String consultaSanciones = "SELECT * FROM Sanciones WHERE " + columna + " LIKE ?";
-
-        // Conexión a la base de datos y ejecución de la consulta
         try (Connection conexion = new BaseDatosController().conectar();
-             PreparedStatement stmt = conexion.prepareStatement(consultaSanciones)) {
-
-            stmt.setString(1, "%" + busqueda + "%");  // Establecer el valor del filtro de búsqueda
-
-            try (ResultSet result = stmt.executeQuery()) {
+             PreparedStatement parametro = conexion.prepareStatement(consultaSanciones)) {
+            parametro.setString(1, "%" + busqueda + "%");
+            try (ResultSet result = parametro.executeQuery()) {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.setRowCount(0);  // Limpiar la tabla antes de agregar los nuevos resultados
-
-                // Llenar la tabla con los resultados de la consulta
+                model.setRowCount(0);
                 while (result.next()) {
                     model.addRow(new Object[]{
                             result.getInt("ID_Sancion"),
@@ -110,15 +97,10 @@ public class SancionesModelo {
                             result.getString("Tipo_Sancion")
                     });
                 }
-
-                // Asignar el modelo actualizado a la tabla
                 table.setModel(model);
-
-                // Hacer que las columnas no sean redimensionables
                 for (int i = 0; i < table.getColumnCount(); i++) {
                     table.getColumnModel().getColumn(i).setResizable(false);
                 }
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -137,19 +119,14 @@ public class SancionesModelo {
             //this.bd_controller.conectarBd();
 
             String sentencia_slq = "INSERT INTO bd_biblioteca.socios (ID_Socio_FK, ID_Prestamo_FK, Tipo_Sancion)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-
-            prepare = conexion.prepareStatement(sentencia_slq);
-            
+            prepare = conexion.prepareStatement(sentencia_slq);          
             prepare.setInt(1, sancion.getID_Socio_FK());
             prepare.setInt(2, sancion.getID_Prestamo_FK());
-            prepare.setString(3, sancion.getTipo_Sancion());
-            
-            int ejecutar = prepare.executeUpdate();
-            
+            prepare.setString(3, sancion.getTipo_Sancion());            
+            int ejecutar = prepare.executeUpdate();            
             if (ejecutar == 1) {
                 System.out.println("Sanción agregada correctamente a la BD");
-            }
-            
+            }            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

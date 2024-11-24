@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -36,6 +32,7 @@ public class AdministradorController implements ActionListener{
         this.menu_administrador_vista.getBtnRegistrar().addActionListener(this);
         this.menu_administrador_vista.getBtn_registrar_trabajador().addActionListener(this);
         this.menu_administrador_vista.getBtn_consultar_trabajadores().addActionListener(this);
+        this.menu_administrador_vista.getBtn_Cerrar().addActionListener(this);
         this.menu_administrador_vista.setVisible(true);
     }
 
@@ -50,41 +47,43 @@ public class AdministradorController implements ActionListener{
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if (button == this.menu_administrador_vista.getBtnConsulta()){
+        } else if (button == this.menu_administrador_vista.getBtnConsulta()){
             try {
                 new ConsultarSociosController(new ConsultarSocios());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }else if (button == this.menu_administrador_vista.getBtnModificar()){
+            }            
+        } else if (button == this.menu_administrador_vista.getBtnModificar()){
             try {
                 new ModLocalidadSocioController();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
+        } else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
             try {
                 new RegistroTrabajadorController(new RegistroTrabajadores());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(button == this.menu_administrador_vista.getBtnModificarCorreo()){
+        } else if(button == this.menu_administrador_vista.getBtnModificarCorreo()){
             try {
                 new ModCorreoSocioController();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(button == this.menu_administrador_vista.getBtn_consultar_trabajadores()){
+        } else if(button == this.menu_administrador_vista.getBtn_consultar_trabajadores()){
             try {
                 new ConsultarTrabajadoresController(new ConsultarTrabajadores());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if(button == this.menu_administrador_vista.getBtn_Cerrar()){
+            this.menu_administrador_vista.dispose();
+            try {
+                new LoginController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
     }
-    
-    
-    
 }

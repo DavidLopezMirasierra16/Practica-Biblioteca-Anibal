@@ -443,4 +443,30 @@ public class TrabajadorModelo {
             e.printStackTrace();
         }
     }
+    
+    /**
+    * Método que comprueba si el trabajador está logado y habilitado.
+    * @param idTrabajador El ID del trabajador que se desea comprobar.
+    * @return Un String indicando si el trabajador está "Logado" y "Habilitado", o si está "Deshabilitado".
+    */
+   public String comprobarEstadoTrabajador(int idTrabajador) {
+       String estado = "Deshabilitado"; // Valor por defecto
+       String consultaEstado = "SELECT Activo FROM trabajadores WHERE ID_Trabajador = ?";
+
+       try (PreparedStatement stmt = conexion.prepareStatement(consultaEstado)) {
+           stmt.setInt(1, idTrabajador);
+
+           try (ResultSet resultSet = stmt.executeQuery()) {
+               if (resultSet.next()) {
+                   estado = resultSet.getString("Activo");
+               } else {
+                   System.out.println("No se encontró el trabajador con ID: " + idTrabajador);
+               }
+           }
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+
+       return estado;
+   }
 }

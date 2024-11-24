@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -17,10 +13,6 @@ import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
 import vista.RecuperarContrasena;
 
-/**
- *
- * @author 34662
- */
 public class LoginController implements ActionListener {
     private Login login_vista;
     private TrabajadorModelo trabajador_modelo;
@@ -39,16 +31,29 @@ public class LoginController implements ActionListener {
 
         if (button == this.login_vista.getBtnIniciar()) {
             try {
+                // Obtener el ID del trabajador y la contraseña desde la vista
                 int usuarioId = Integer.parseInt(this.login_vista.getTxt_usuario().getText().trim());
                 String contraseña = this.login_vista.getTxt_contraseña().getText().trim();
+
+                // Comprobar el ID del trabajador y la contraseña
                 int idTrabajador = this.trabajador_modelo.comprobarRolFuncion(usuarioId, contraseña);
                 if (idTrabajador > 0) {
-                    int idPermiso = trabajador_modelo.getIdPermiso();
-                    int idBiblioteca = trabajador_modelo.getIdBiblioteca();
-                    System.out.println("ID Trabajador: " + idTrabajador);
-                    System.out.println("ID Permiso: " + idPermiso);
-                    System.out.println("ID Biblioteca: " + idBiblioteca);
-                    mostrarVentana(idPermiso);
+                    // Comprobar el estado del trabajador (habilitado o deshabilitado)
+                    String estado = trabajador_modelo.comprobarEstadoTrabajador(idTrabajador);
+
+                    if ("Habilitado".equals(estado)) {
+                        // Si el trabajador está habilitado, mostramos la ventana correspondiente
+                        int idPermiso = trabajador_modelo.getIdPermiso();
+                        int idBiblioteca = trabajador_modelo.getIdBiblioteca();
+                        System.out.println("ID Trabajador: " + idTrabajador);
+                        System.out.println("ID Permiso: " + idPermiso);
+                        System.out.println("ID Biblioteca: " + idBiblioteca);
+                        mostrarVentana(idPermiso);
+                    } else {
+                        // Si el trabajador está deshabilitado, mostramos un mensaje de error
+                        JOptionPane.showMessageDialog(login_vista, "Tu cuenta está deshabilitada. No puedes iniciar sesión.", 
+                                                      "Error de acceso", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
                 }
@@ -61,6 +66,7 @@ public class LoginController implements ActionListener {
 
         if (button == this.login_vista.getBtnRecuperar1()) {
             try {
+                this.login_vista.dispose();
                 new RecuperarContrasenaController(new RecuperarContrasena());
             } catch (SQLException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,9 +75,9 @@ public class LoginController implements ActionListener {
     }
 
     /**
-     * En funcion del id que le pasemos nos busca una ventana u otra
-     * @param id
-     * @throws SQLException 
+     * En función del id que le pasemos, busca una ventana u otra
+     * @param id El ID de permiso del trabajador
+     * @throws SQLException Si ocurre un error en la base de datos
      */
     public void mostrarVentana(int id) throws SQLException {
         int idPermiso = trabajador_modelo.getIdPermiso();

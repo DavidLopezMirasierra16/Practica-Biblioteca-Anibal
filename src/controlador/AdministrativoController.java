@@ -32,6 +32,7 @@ public class AdministrativoController implements ActionListener{
         this.socio_modelo = new SocioModelo();
         this.menu_administrativo_vista.getBtnLibros().addActionListener(this);
         this.menu_administrativo_vista.getBtnConsulta().addActionListener(this);
+        this.menu_administrativo_vista.getBtnCerrar().addActionListener(this);
         this.menu_administrativo_vista.setVisible(true);
     }
     
@@ -46,10 +47,14 @@ public class AdministrativoController implements ActionListener{
                 new ConsultarSociosController(new ConsultarSocios());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministrativoController.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+        } else if(button == this.menu_administrativo_vista.getBtnCerrar()){
+            this.menu_administrativo_vista.dispose();
+            try {
+                new LoginController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        }
-        
-    }
-    
+        }        
+    }    
 }
