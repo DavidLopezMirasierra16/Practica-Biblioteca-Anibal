@@ -45,7 +45,7 @@ public class ModCorreoSocioController implements ActionListener {
         // Detectar si el evento proviene del botón "Aceptar"
         if (e.getSource() == modificarVista.getBtnAceptar()) {
             // Llamar al método para modificar el correo en el modelo
-            socioModelo.modificarCorrreo(modificarVista);
+            socioModelo.modificarCorreo(modificarVista);
         }
     }
 }

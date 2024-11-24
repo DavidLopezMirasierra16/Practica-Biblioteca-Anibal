@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.SocioModelo;
 import vista.ConsultarSocios;
+import vista.ConsultarTrabajadores;
 import vista.MenuAdministrador;
 import vista.ModCorreoSocio;
 import vista.RegistroSocios;
@@ -34,6 +35,7 @@ public class AdministradorController implements ActionListener{
         this.menu_administrador_vista.getBtnModificarTLF().addActionListener(this);
         this.menu_administrador_vista.getBtnRegistrar().addActionListener(this);
         this.menu_administrador_vista.getBtn_registrar_trabajador().addActionListener(this);
+        this.menu_administrador_vista.getBtn_consultar_trabajadores().addActionListener(this);
         this.menu_administrador_vista.setVisible(true);
     }
 
@@ -70,6 +72,12 @@ public class AdministradorController implements ActionListener{
         }else if(button == this.menu_administrador_vista.getBtnModificarCorreo()){
             try {
                 new ModCorreoSocioController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(button == this.menu_administrador_vista.getBtn_consultar_trabajadores()){
+            try {
+                new ConsultarTrabajadoresController(new ConsultarTrabajadores());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }

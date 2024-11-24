@@ -23,26 +23,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace pref="148" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnConsulta" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
-                          <Component id="btnRegistrar" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="99" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_registrar_trabajador" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnConsulta" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Component id="btnRegistrar" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -52,6 +47,13 @@
                           <Component id="btnModificarCorreo" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btn_consultar_trabajadores" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_registrar_trabajador" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -76,6 +78,8 @@
               <Component id="btnModificarTLF" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btn_registrar_trabajador" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btn_consultar_trabajadores" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -142,6 +146,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarTLFActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_consultar_trabajadores">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar Trabajadores"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

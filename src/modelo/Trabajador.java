@@ -22,6 +22,7 @@ public class Trabajador {
     private String localidad;
     private String contraseña;
     private String biblioteca;
+    private String activo;
 
     /**
      * Constructor para consultar
@@ -51,6 +52,16 @@ public class Trabajador {
         this.localidad = localidad;
         this.contraseña = contraseña;
         this.biblioteca = biblioteca;
+    }
+
+    public Trabajador(int id_permiso, String nombre, String apellido, String dni, String correo, String biblioteca, String activo) {
+        this.id_permiso = id_permiso;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.correo = correo;
+        this.biblioteca = biblioteca;
+        this.activo = activo;
     }
 
     /**

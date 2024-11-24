@@ -14,6 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Base64;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import vista.ConsultarSocios;
+import vista.ConsultarTrabajadores;
 import vista.RecuperarContrasena;
 
 /**
@@ -326,5 +331,116 @@ public class TrabajadorModelo {
         }
         return id;
     }
+    
+    public void cambiarEstadoHabilitado(ConsultarTrabajadores consultar) {
+        int row = consultar.getTablaTrabajadores().getSelectedRow();
+        if (row != -1) {
+            int idTrabajador = (int) consultar.getTablaTrabajadores().getValueAt(row, 0);
+            String estadoActual = (String) consultar.getTablaTrabajadores().getValueAt(row, 7);
+            String nuevoEstado;
+            if ("Habilitado".equalsIgnoreCase(estadoActual)) {
+                nuevoEstado = "Deshabilitado";
+            } else {
+                nuevoEstado = "Habilitado";
+            }
+            int confirm = JOptionPane.showConfirmDialog(
+                null,
+                "¿Estás seguro de que deseas cambiar el estado de 'Activo' del trabajador seleccionado?",
+                "Confirmar cambio de estado",
+                JOptionPane.YES_NO_OPTION
+            );
+            if (confirm == JOptionPane.YES_OPTION) {
+                actualizarEstadoHabilitadoEnBD(idTrabajador, nuevoEstado);
+                consultar.getTablaTrabajadores().setValueAt(nuevoEstado, row, 7);
+                JOptionPane.showMessageDialog(null, "Estado 'Activo' actualizado correctamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un trabajador.");
+        }
+    }
 
+    // Método para actualizar el estado en la base de datos
+    private void actualizarEstadoHabilitadoEnBD(int idTrabajador, String nuevoEstado) {
+        String actualiza_Activo = "UPDATE trabajadores SET Activo = ? WHERE ID_Trabajador = ?";
+        try (Connection conexion = bd_controller.conectar();
+             PreparedStatement parametro = conexion.prepareStatement(actualiza_Activo)) {
+            parametro.setString(1, nuevoEstado);
+            parametro.setInt(2, idTrabajador);
+            int filasAfectadas = parametro.executeUpdate();
+            if (filasAfectadas == 0) {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
+        }
+    }
+
+    
+    public void consultarTrabajadores(JTable table) {
+        String consulta_Trabajadores = "CALL obtenerDatosTrabajadores()";
+        BaseDatosController baseDatosController = new BaseDatosController();
+        try (Connection conection = baseDatosController.conectar();
+             PreparedStatement parametro = conection.prepareStatement(consulta_Trabajadores);
+             ResultSet result = parametro.executeQuery()) {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+            while (result.next()) {
+                Object[] row = {
+                    result.getInt("ID_Trabajador"),
+                    result.getString("Nombre"),
+                    result.getString("Apellidos"),
+                    result.getString("DNI"),
+                    result.getString("Correo"),
+                    result.getString("Permiso"),
+                    result.getString("Localidad"),
+                    result.getString("Activo")
+                };
+                model.addRow(row);
+            }
+
+            table.setModel(model);
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                table.getColumnModel().getColumn(i).setResizable(false);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void filtrarTrabajadores(String busqueda, JTable table) {
+        if (busqueda.isEmpty()) {
+            System.out.println("Debe ingresar un valor de búsqueda.");
+            return;
+        }
+        String consulta_TrabajadorFiltro = "{CALL obtenerDatosTrabajadoresFiltrados(?)}";
+        BaseDatosController baseDatosController = new BaseDatosController();
+        try (Connection conexion = baseDatosController.conectar();
+             PreparedStatement parametro = conexion.prepareStatement(consulta_TrabajadorFiltro)) {
+            parametro.setString(1, busqueda);
+            try (ResultSet result = parametro.executeQuery()) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setRowCount(0);
+                while (result.next()) {
+                    Object[] row = {
+                        result.getInt("ID_Trabajador"),
+                        result.getString("Nombre"),
+                        result.getString("Apellidos"),
+                        result.getString("DNI"),
+                        result.getString("Correo"),
+                        result.getString("Permiso"),
+                        result.getString("Localidad"),
+                        result.getString("Activo")
+                    };
+                    model.addRow(row);
+                }
+                table.setModel(model);
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    table.getColumnModel().getColumn(i).setResizable(false);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

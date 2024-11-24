@@ -39,7 +39,7 @@ public class SancionesModelo {
      * @param table 
      */
     public void consultarSanciones(JTable table) {
-        String consultaSanciones = "SELECT sanciones.ID_Sancion, CONCAT(socios.Nombre, ' ', socios.Apellidos) AS Nombre_Completo_Socio, sanciones.ID_Prestamo_FK, sanciones.Tipo_Sancion FROM sanciones JOIN socios ON sanciones.ID_Socio_FK = socios.DNI_Socio;";
+        String consultaSanciones = "SELECT * FROM Sanciones;";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conection = baseDatosController.conectar();
@@ -65,6 +65,67 @@ public class SancionesModelo {
             e.printStackTrace();
         }
     }
+    
+    public void filtrarSanciones(ConsultarSanciones consultarSanciones, JTable table) {
+        // Obtener los valores de la vista (filtro y búsqueda)
+        String filtro = (String) consultarSanciones.getCbFiltro().getSelectedItem();
+        String busqueda = consultarSanciones.getTxtBusqueda().getText().trim();
+
+        // Validar que el filtro y la búsqueda sean válidos
+        if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
+            System.out.println("Debe ingresar un valor de búsqueda válido y seleccionar un filtro.");
+            return;
+        }
+
+        // Determinar la columna a filtrar según el filtro seleccionado
+        String columna = "";
+        switch (filtro) {
+            case "Socio":
+                columna = "ID_Socio_FK";
+                break;
+            case "Tipo de sanción":
+                columna = "Tipo_Sancion";
+                break;
+        }
+
+        // Consulta SQL para filtrar las sanciones
+        String consultaSanciones = "SELECT * FROM Sanciones WHERE " + columna + " LIKE ?";
+
+        // Conexión a la base de datos y ejecución de la consulta
+        try (Connection conexion = new BaseDatosController().conectar();
+             PreparedStatement stmt = conexion.prepareStatement(consultaSanciones)) {
+
+            stmt.setString(1, "%" + busqueda + "%");  // Establecer el valor del filtro de búsqueda
+
+            try (ResultSet result = stmt.executeQuery()) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setRowCount(0);  // Limpiar la tabla antes de agregar los nuevos resultados
+
+                // Llenar la tabla con los resultados de la consulta
+                while (result.next()) {
+                    model.addRow(new Object[]{
+                            result.getInt("ID_Sancion"),
+                            result.getString("ID_Socio_FK"),
+                            result.getString("ID_Prestamo_FK"),
+                            result.getString("Tipo_Sancion")
+                    });
+                }
+
+                // Asignar el modelo actualizado a la tabla
+                table.setModel(model);
+
+                // Hacer que las columnas no sean redimensionables
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    table.getColumnModel().getColumn(i).setResizable(false);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     
     /**
      * Funcion que nos ingresa la sancion en BD

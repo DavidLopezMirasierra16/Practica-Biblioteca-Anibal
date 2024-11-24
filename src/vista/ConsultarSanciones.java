@@ -35,6 +35,12 @@ public class ConsultarSanciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSanciones = new javax.swing.JTable();
         btnResolver = new javax.swing.JButton();
+        cbFiltro = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtBusqueda = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,20 +74,51 @@ public class ConsultarSanciones extends javax.swing.JFrame {
 
         btnResolver.setText("Resolver Sanción");
 
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Socio", "Sancion" }));
+
+        jLabel1.setText("Filtrar Por");
+
+        jLabel2.setText("Introduzca el dato a buscar");
+
+        btnBuscar.setText("Buscar");
+
+        btnReestablecer.setText("Reestablecer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnResolver)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(btnBuscar)
+                .addGap(32, 32, 32)
+                .addComponent(btnReestablecer))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnReestablecer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnResolver)
@@ -141,10 +178,48 @@ public class ConsultarSanciones extends javax.swing.JFrame {
     public void setBtnResolver(JButton btnResolver) {
         this.btnResolver = btnResolver;
     }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public void setBtnBuscar(JButton btnBuscar) {
+        this.btnBuscar = btnBuscar;
+    }
+
+    public JButton getBtnReestablecer() {
+        return btnReestablecer;
+    }
+
+    public void setBtnReestablecer(JButton btnReestablecer) {
+        this.btnReestablecer = btnReestablecer;
+    }
+
+    public JComboBox<String> getCbFiltro() {
+        return cbFiltro;
+    }
+
+    public void setCbFiltro(JComboBox<String> cbFiltro) {
+        this.cbFiltro = cbFiltro;
+    }
+
+    public JTextField getTxtBusqueda() {
+        return txtBusqueda;
+    }
+
+    public void setTxtBusqueda(JTextField txtBusqueda) {
+        this.txtBusqueda = txtBusqueda;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnReestablecer;
     private javax.swing.JButton btnResolver;
+    private javax.swing.JComboBox<String> cbFiltro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaSanciones;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

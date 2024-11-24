@@ -37,6 +37,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btnModificarCorreo = new javax.swing.JButton();
         btnModificarCB = new javax.swing.JButton();
         btnModificarTLF = new javax.swing.JButton();
+        btn_consultar_trabajadores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,33 +88,36 @@ public class MenuAdministrador extends javax.swing.JFrame {
             }
         });
 
+        btn_consultar_trabajadores.setText("Consultar Trabajadores");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(148, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)))
-                .addGap(78, 78, 78))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_registrar_trabajador)
-                        .addGap(124, 124, 124))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)))
+                        .addGap(78, 78, 78))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnModificarCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnModificarTLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnModificarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))))
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_consultar_trabajadores)
+                            .addComponent(btn_registrar_trabajador))
+                        .addGap(124, 124, 124))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,6 +138,8 @@ public class MenuAdministrador extends javax.swing.JFrame {
                 .addComponent(btnModificarTLF)
                 .addGap(18, 18, 18)
                 .addComponent(btn_registrar_trabajador)
+                .addGap(18, 18, 18)
+                .addComponent(btn_consultar_trabajadores)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -240,6 +246,14 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.btnModificarTLF = btnModificarTLF;
     }
 
+    public JButton getBtn_consultar_trabajadores() {
+        return btn_consultar_trabajadores;
+    }
+
+    public void setBtn_consultar_trabajadores(JButton btn_consultar_trabajadores) {
+        this.btn_consultar_trabajadores = btn_consultar_trabajadores;
+    }
+
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -249,6 +263,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarCorreo;
     private javax.swing.JButton btnModificarTLF;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btn_consultar_trabajadores;
     private javax.swing.JButton btn_registrar_trabajador;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

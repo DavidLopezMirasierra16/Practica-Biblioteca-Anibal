@@ -23,7 +23,6 @@ public class ConsultarSociosController implements ActionListener {
         this.consultasocios_vista.getBtnBuscar().addActionListener(this);
         this.consultasocios_vista.getBtnReestablecer().addActionListener(this);
         this.consultasocios_vista.getBtnPago().addActionListener(this);
-        this.consultasocios_vista.getBtnHabilitar().addActionListener(this);
         this.consultasocios_vista.setVisible(true);        
         SocioModelo sociosModelo = new SocioModelo();
         sociosModelo.consultarSocios(consultasocios_vista.getTablaSocios());
@@ -41,8 +40,6 @@ public class ConsultarSociosController implements ActionListener {
                 sociosModelo.consultarSocios(consultasocios_vista.getTablaSocios());
             } else if(e.getSource() == consultasocios_vista.getBtnPago()){
                 sociosModelo.cambiarEstadoPago(consultasocios_vista);
-            } else if(e.getSource() == consultasocios_vista.getBtnHabilitar()){
-                sociosModelo.cambiarEstadoHabilitado(consultasocios_vista);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarSociosController.class.getName()).log(Level.SEVERE, null, ex);

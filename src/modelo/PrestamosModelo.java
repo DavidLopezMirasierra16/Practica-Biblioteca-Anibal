@@ -133,13 +133,10 @@ public class PrestamosModelo {
     private void ingresarPrestamoEnBd(Prestamos prestamo) {
         try {
             String verificarExistencias = "SELECT Existencias FROM ubicación WHERE ID_Libro = ? AND ID_Biblioteca = ?";
-
             prepare = conexion.prepareStatement(verificarExistencias);
             prepare.setInt(1, prestamo.getID_Libro_FK());
             prepare.setInt(2, prestamo.getID_Biblioteca_FK());
-
             ResultSet resultado = prepare.executeQuery();
-
             if (resultado.next()) {
                 int existencias = resultado.getInt("Existencias");
 
@@ -147,7 +144,6 @@ public class PrestamosModelo {
                     String ingresar_Prestamo = "{CALL registrarPrestamo(?, ?, ?, ?)}";
 
                     prepare = conexion.prepareStatement(ingresar_Prestamo);
-
                     prepare.setInt(1, prestamo.getID_Libro_FK());
                     prepare.setString(2, prestamo.getID_Socio_FK());
                     prepare.setInt(3, prestamo.getID_Biblioteca_FK());
@@ -163,10 +159,16 @@ public class PrestamosModelo {
                 JOptionPane.showMessageDialog(null, "El libro no está registrado en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al procesar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+            if (ex.getMessage().contains("El socio no está pagado")) {
+                JOptionPane.showMessageDialog(null, "El socio no está habilitado para realizar préstamos dado que no ha pagado.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al procesar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
         }
     }
+
+
 
     //---------------------------CONSULTAS---------------------------
 

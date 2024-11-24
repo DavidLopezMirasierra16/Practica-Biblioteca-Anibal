@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import modelo.UbicacionLibroModelo;
+import vista.ConsultarSanciones;
 import vista.ControlLibros;
 import vista.MenuAdministrativo;
 import vista.RegistrarAutor;
@@ -58,7 +59,7 @@ public class LibrosController implements ActionListener{
             }
         }else if (button == this.menu_libros_vista.getBtn_consulta_sanciones()) {
             try {
-                new ConsultarSancionesController();
+                new ConsultarSancionesController(new ConsultarSanciones());
             } catch (SQLException ex) {
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }
