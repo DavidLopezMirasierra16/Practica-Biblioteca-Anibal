@@ -39,7 +39,8 @@ public class RegistroLibroController implements ActionListener {
             if (id==0) {
                 JOptionPane.showMessageDialog(registro_libro_vista, "Autor no registrado", "Error autor", JOptionPane.ERROR_MESSAGE);
             }else{
-                if (this.modelo_libros.crearLibro(this.registro_libro_vista.getTxt_nombre().getText(), 
+                if (this.modelo_libros.crearLibro(Integer.parseInt(this.registro_libro_vista.getTxt_ISBN().getText()),
+                        this.registro_libro_vista.getTxt_nombre().getText(), 
                         this.registro_libro_vista.getTxt_genero().getText(), 
                         this.registro_libro_vista.getTxt_año().getText(), 
                         this.registro_libro_vista.getTxt_editorial().getText(), id)!=null) {

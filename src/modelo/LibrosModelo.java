@@ -39,8 +39,8 @@ public class LibrosModelo {
      * @param idAutor
      * @return 
      */
-    public Libros crearLibro(String titulo, String genero, String year, String editorial, int idAutor){
-        Libros libro = new Libros(titulo, genero, year, editorial, idAutor);
+    public Libros crearLibro(int ISBN, String titulo, String genero, String year, String editorial, int idAutor){
+        Libros libro = new Libros(ISBN, titulo, genero, year, editorial, idAutor);
         
         insertarDatos(libro);
         
@@ -55,16 +55,16 @@ public class LibrosModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.libros (Titulo, Genero, Anio, Editorial, ID_Autor_FK)" + "VALUES (?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.libros (ISBN_Libros, Titulo, Genero, Anio, Editorial, ID_Autor_FK)" + "VALUES (?, ?, ?, ?, ?, ?);";
 
             prepare = conexion.prepareStatement(sentencia_slq);
             
-            //prepare.setInt(1, libro.getISBN());
-            prepare.setString(1, libro.getTitulo());
-            prepare.setString(2, libro.getGenero());
-            prepare.setString(3, libro.getYear());
-            prepare.setString(4, libro.getEditorial());
-            prepare.setInt(5, libro.getIdAutor());
+            prepare.setInt(1, libro.getISBN());
+            prepare.setString(2, libro.getTitulo());
+            prepare.setString(3, libro.getGenero());
+            prepare.setString(4, libro.getYear());
+            prepare.setString(5, libro.getEditorial());
+            prepare.setInt(6, libro.getIdAutor());
             
             int ejecutar = prepare.executeUpdate();
             
