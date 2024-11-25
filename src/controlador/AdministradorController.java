@@ -84,6 +84,18 @@ public class AdministradorController implements ActionListener{
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if(button == this.menu_administrador_vista.getBtnModificarCB()){
+            try {
+                new ModCuentaBancariaSocioController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if(button == this.menu_administrador_vista.getBtnModificarTLF()){
+            try {
+                new ModTelefonoSocioController();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
