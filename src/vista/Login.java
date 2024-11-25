@@ -5,6 +5,7 @@
 package vista;
 
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -34,10 +35,10 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_contraseña = new javax.swing.JTextField();
         btnIniciar = new javax.swing.JButton();
         btnRecuperar1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        txt_contraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +75,6 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(txt_contraseña)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1))
@@ -82,7 +82,8 @@ public class Login extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(btnRecuperar1))
                     .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_usuario))
+                    .addComponent(txt_usuario)
+                    .addComponent(txt_contraseña))
                 .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
@@ -169,11 +170,11 @@ public class Login extends javax.swing.JFrame {
         this.btnRecuperar1 = btnRecuperar1;
     }
 
-    public JTextField getTxt_contraseña() {
+    public JPasswordField getTxt_contraseña() {
         return txt_contraseña;
     }
 
-    public void setTxt_contraseña(JTextField txt_contraseña) {
+    public void setTxt_contraseña(JPasswordField txt_contraseña) {
         this.txt_contraseña = txt_contraseña;
     }
 
@@ -194,7 +195,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txt_contraseña;
+    private javax.swing.JPasswordField txt_contraseña;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
