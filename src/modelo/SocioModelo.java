@@ -246,12 +246,14 @@ public class SocioModelo {
      * Método para modificar el ID_Biblioteca_FK de un socio usando nombre, apellidos y localidad
      * @param modificar 
      */
+
     public void modificarIdBiblioteca(ModLocalidadSocio modificar) {
         String nombre = modificar.getTxtSocio().getText().trim();
         String apellidos = modificar.getTxtApellido().getText().trim();
         String localidad = modificar.getTxtLocalidad().getText().trim();
         String direccion = modificar.getTxtLocalidad().getText().trim();
-        String modifica_biblioteca = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?, ?)";
+        String modifica_biblioteca = "CALL ModificarIdBibliotecaPorNombreYApellidos(?, ?, ?)";
+
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement parametro = conexion.prepareStatement(modifica_biblioteca)) {
             parametro.setString(1, nombre);
@@ -259,59 +261,63 @@ public class SocioModelo {
             parametro.setString(3, localidad);
             parametro.setString(4, direccion);
             boolean resultado = parametro.execute();
+
             if (resultado) {
-                System.out.println("La modificación se ha realizado correctamente.");
+                JOptionPane.showMessageDialog(null, "La modificación se ha realizado correctamente.");
             } else {
-                System.out.println("No se encontró un socio o una biblioteca correspondiente.");
+                JOptionPane.showMessageDialog(null, "No se encontró un socio o una biblioteca correspondiente.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
-            System.out.println("Error al modificar el ID_Biblioteca_FK: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al modificar el ID_Biblioteca_FK: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void modificarTelefono(ModTelefonoSocio modificar) {
         String nombre = modificar.getTxtSocio().getText().trim();
         String apellidos = modificar.getTxtApellido().getText().trim();
         String nuevoTelefono = modificar.getTxtTelefono().getText().trim();
         String modifica_telefono = "CALL ModificarTelefonoPorNombreYApellidos(?, ?, ?)";
+
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement parametro = conexion.prepareStatement(modifica_telefono)) {
             parametro.setString(1, nombre);
             parametro.setString(2, apellidos);
             parametro.setString(3, nuevoTelefono);
             boolean resultado = parametro.execute();
+
             if (resultado) {
-                System.out.println("El teléfono ha sido actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "El teléfono ha sido actualizado correctamente.");
             } else {
-                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
-            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al modificar el teléfono del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void modificarCorreo(ModCorreoSocio modificar) {
         String nombre = modificar.getTxtSocio().getText().trim();
         String apellidos = modificar.getTxtApellido().getText().trim();
         String nuevaCuenta = modificar.getTxtCorreo().getText().trim();
         String modifica_correo = "CALL ModificarCorreoPorNombreYApellidos(?, ?, ?)";
+
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement parametro = conexion.prepareStatement(modifica_correo)) {
             parametro.setString(1, nombre);
             parametro.setString(2, apellidos);
             parametro.setString(3, nuevaCuenta);
             boolean resultado = parametro.execute();
+
             if (resultado) {
-                System.out.println("El teléfono ha sido actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "El correo ha sido actualizado correctamente.");
             } else {
-                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
-            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al modificar el correo del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    
     public void modificarCuentaBancaria(ModCuentaBancariaSocio modificar) {
         String nombre = modificar.getTxtSocio().getText().trim();
         String apellidos = modificar.getTxtApellido().getText().trim();
@@ -324,16 +330,17 @@ public class SocioModelo {
             parametro.setString(2, apellidos);
             parametro.setString(3, nuevoCorreo);
             boolean resultado = parametro.execute();
-            if (resultado) {
-                System.out.println("El teléfono ha sido actualizado correctamente.");
-            } else {
-                System.out.println("No se encontró un socio con el nombre y apellidos especificados.");
-            }
 
+            if (resultado) {
+                JOptionPane.showMessageDialog(null, "La cuenta bancaria ha sido actualizada correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         } catch (SQLException e) {
-            System.out.println("Error al modificar el teléfono del socio: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al modificar la cuenta bancaria del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
  
     public void cambiarEstadoPago(ConsultarSocios consultar) {
         int row = consultar.getTablaSocios().getSelectedRow();

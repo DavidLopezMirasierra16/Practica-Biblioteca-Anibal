@@ -132,13 +132,13 @@ public class PrestamosModelo {
 
     private void ingresarPrestamoEnBd(Prestamos prestamo) {
         try {
-            String verificarExistencias = "SELECT Existencias FROM ubicación WHERE ID_Libro = ? AND ID_Biblioteca = ?";
+            String verificarExistencias = "SELECT Cantidad FROM ubicacion WHERE ID_Libro = ? AND ID_Biblioteca = ?";
             prepare = conexion.prepareStatement(verificarExistencias);
             prepare.setInt(1, prestamo.getID_Libro_FK());
             prepare.setInt(2, prestamo.getID_Biblioteca_FK());
             ResultSet resultado = prepare.executeQuery();
             if (resultado.next()) {
-                int existencias = resultado.getInt("Existencias");
+                int existencias = resultado.getInt("Cantidad");
 
                 if (existencias > 0) {
                     String ingresar_Prestamo = "{CALL registrarPrestamo(?, ?, ?, ?)}";
@@ -150,8 +150,6 @@ public class PrestamosModelo {
                     prepare.setTimestamp(4, new java.sql.Timestamp(prestamo.getFecha_Prestamo().getTime()));
 
                     prepare.executeUpdate();
-
-                    JOptionPane.showMessageDialog(null, "Préstamo registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay existencias suficientes del libro en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
