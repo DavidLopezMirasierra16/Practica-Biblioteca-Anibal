@@ -144,7 +144,7 @@ public class SocioModelo {
      */
     public void consultarSocios(JTable table) {
         int idBiblioteca = trabajador.getIdBiblioteca();
-        String consulta_Socio = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE ID_Biblioteca_FK = ?";
+        String consulta_Socio = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, Pagado FROM socios WHERE ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conection = baseDatosController.conectar();
@@ -163,6 +163,7 @@ public class SocioModelo {
                         result.getString("Correo_Socio"),
                         result.getString("Fecha_Alta"),
                         result.getString("Cuenta_Bancaria"),
+                        result.getString("Pagado")
                     };
                     model.addRow(row);
                 }
@@ -207,7 +208,7 @@ public class SocioModelo {
                 break;
         }
 
-        String consulta_SocioFiltro = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria FROM socios WHERE " + columna + " LIKE ? AND ID_Biblioteca_FK = ?";
+        String consulta_SocioFiltro = "SELECT DNI_Socio, Nombre, Apellidos, Direccion, Telefono, Correo_Socio, Fecha_Alta, Cuenta_Bancaria, Pagado FROM socios WHERE " + columna + " LIKE ? AND ID_Biblioteca_FK = ?";
         BaseDatosController baseDatosController = new BaseDatosController();
 
         try (Connection conection = baseDatosController.conectar();
@@ -229,6 +230,7 @@ public class SocioModelo {
                         result.getString("Correo_Socio"),
                         result.getString("Fecha_Alta"),
                         result.getString("Cuenta_Bancaria"),
+                        result.getString("Pagado")
                     };
                     model.addRow(row);
                 }
@@ -345,14 +347,10 @@ public class SocioModelo {
     public void cambiarEstadoPago(ConsultarSocios consultar) {
         int row = consultar.getTablaSocios().getSelectedRow();
         if (row != -1) {
-            int idSocio = (int) consultar.getTablaSocios().getValueAt(row, 0);
+            String idSocio = String.valueOf(consultar.getTablaSocios().getValueAt(row, 0));
             String estadoActual = (String) consultar.getTablaSocios().getValueAt(row, 8);
-            String nuevoEstado;
-            if ("Pagado".equalsIgnoreCase(estadoActual)) {
-                nuevoEstado = "No Pagado";
-            } else {
-                nuevoEstado = "Pagado";
-            }
+            String nuevoEstado = "Pagado".equalsIgnoreCase(estadoActual) ? "No Pagado" : "Pagado";
+
             int confirm = JOptionPane.showConfirmDialog(
                 null,
                 "¿Estás seguro de que deseas cambiar el estado de 'Pagado' del socio seleccionado?",
@@ -370,12 +368,12 @@ public class SocioModelo {
         }
     }
 
-    private void actualizarEstadoPagoEnBD(int idSocio, String nuevoEstado) {
-        String actualiza_Pago = "UPDATE socios SET Pagado = ? WHERE ID_Socios = ?";
+    private void actualizarEstadoPagoEnBD(String idSocio, String nuevoEstado) {
+        String actualiza_Pago = "UPDATE socios SET Pagado = ? WHERE DNI_Socio = ?";
         try (Connection conexion = bd_controller.conectar();
              PreparedStatement parametro = conexion.prepareStatement(actualiza_Pago)) {
             parametro.setString(1, nuevoEstado);
-            parametro.setInt(2, idSocio);
+            parametro.setString(2, idSocio);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
@@ -384,4 +382,5 @@ public class SocioModelo {
             JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
         }
     }
+
 }

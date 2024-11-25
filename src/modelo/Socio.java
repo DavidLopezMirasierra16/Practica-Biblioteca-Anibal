@@ -20,6 +20,7 @@ public class Socio {
     private String fecha_alta;
     private String cuenta_banco;
     private String ID_Biblioteca;
+    private String pagado;
 
     /**
      * Este constructor sirve para consultar el socio con el ID.
@@ -78,6 +79,14 @@ public class Socio {
 
     public void setID_Socios(int ID_Socios) {
         this.ID_Socios = ID_Socios;
+    }
+
+    public String getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(String pagado) {
+        this.pagado = pagado;
     }
 
     public String getDni() {

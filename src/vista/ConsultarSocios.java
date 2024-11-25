@@ -65,11 +65,11 @@ public class ConsultarSocios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Apellidos", "Dirección", "Teléfono", "Fecha Alta", "Correo", "Cuenta Bancaria"
+                "ID", "Nombre", "Apellidos", "Dirección", "Teléfono", "Fecha Alta", "Correo", "Cuenta Bancaria", "Pagado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -87,6 +87,7 @@ public class ConsultarSocios extends javax.swing.JFrame {
             tablaSocios.getColumnModel().getColumn(5).setResizable(false);
             tablaSocios.getColumnModel().getColumn(6).setResizable(false);
             tablaSocios.getColumnModel().getColumn(7).setResizable(false);
+            tablaSocios.getColumnModel().getColumn(8).setResizable(false);
         }
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "Nombre", "Apellidos", "Correo", "ID" }));
