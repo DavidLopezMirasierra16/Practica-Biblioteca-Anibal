@@ -57,6 +57,7 @@ public class RegistroTrabajadores extends javax.swing.JFrame {
         combo_bibliotecas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Registro de Trabajadores");

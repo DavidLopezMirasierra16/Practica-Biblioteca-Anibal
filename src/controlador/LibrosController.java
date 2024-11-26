@@ -10,9 +10,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import modelo.TrabajadorModelo;
 import modelo.UbicacionLibroModelo;
 import vista.ConsultarSanciones;
 import vista.ControlLibros;
+import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
 import vista.RegistrarAutor;
 import vista.RegistrarLibro;
@@ -26,9 +28,12 @@ import vista.RegistroUbicacionLibro;
 public class LibrosController implements ActionListener{
     
     private ControlLibros menu_libros_vista;
+    private TrabajadorModelo trabajador;
+    private int permiso;
 
-    public LibrosController(ControlLibros menu_libros_vista) {
+    public LibrosController(ControlLibros menu_libros_vista) throws SQLException {
         this.menu_libros_vista = menu_libros_vista;
+        this.trabajador = new TrabajadorModelo();
         this.menu_libros_vista.getBtn_registrar_libros().addActionListener(this);
         this.menu_libros_vista.getBtn_consulta_libros().addActionListener(this);
         this.menu_libros_vista.getBtn_consulta_sanciones().addActionListener(this);
@@ -82,11 +87,20 @@ public class LibrosController implements ActionListener{
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(button == this.menu_libros_vista.getBtnVolver()){
+            permiso = trabajador.getIdPermiso();
             this.menu_libros_vista.dispose();
-            try {
-                new AdministrativoController(new MenuAdministrativo());
-            } catch (SQLException ex) {
-                Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+            if(permiso == 1){
+                try {
+                    new AdministradorController(new MenuAdministrador());
+                } catch (SQLException ex) {
+                    Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if(permiso == 2){
+                try {
+                    new AdministrativoController(new MenuAdministrativo());
+                } catch (SQLException ex) {
+                    Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }else if (button == this.menu_libros_vista.getBtn_registroPrestamo()) {
             try {

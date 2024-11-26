@@ -40,6 +40,7 @@ public class RegistrarAutor extends javax.swing.JFrame {
         txt_correo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setText("Nombre:");
 

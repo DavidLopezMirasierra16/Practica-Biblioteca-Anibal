@@ -40,6 +40,7 @@ public class ModLocalidadSocio extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Modificar localidad socio");
 

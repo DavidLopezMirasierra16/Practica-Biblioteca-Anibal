@@ -42,6 +42,7 @@ public class ConsultarTrabajadores extends javax.swing.JFrame {
         btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tablaTrabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

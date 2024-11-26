@@ -43,6 +43,7 @@ public class ConsultarSanciones extends javax.swing.JFrame {
         btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tablaSanciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

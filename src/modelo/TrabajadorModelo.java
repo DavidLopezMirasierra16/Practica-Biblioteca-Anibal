@@ -34,7 +34,7 @@ public class TrabajadorModelo {
     private ResultSet resultado;
     private PreparedStatement prepare;
     private CallableStatement consultas_funciones;
-    private int idPermiso;
+    private static int idPermiso;
     private static int idBiblioteca;
 
     public TrabajadorModelo() throws SQLException {

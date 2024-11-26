@@ -53,6 +53,7 @@ public class RegistroSocios extends javax.swing.JFrame {
         combo_biblioteca = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel8.setText("Direccion:");
 

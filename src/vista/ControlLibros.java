@@ -87,6 +87,7 @@ public class ControlLibros extends javax.swing.JFrame {
         });
 
         btnVolver.setText("Volver atrás");
+        btnVolver.setEnabled(false);
 
         btn_registroPrestamo.setText("Registrar Préstamos");
         btn_registroPrestamo.addActionListener(new java.awt.event.ActionListener() {

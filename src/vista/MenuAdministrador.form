@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,33 +24,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace pref="96" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnModificar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnModificarCB" max="32767" attributes="0"/>
-                              <Component id="btnModificarTLF" max="32767" attributes="0"/>
-                              <Component id="btnModificarCorreo" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_registrar_trabajador" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_consultar_trabajadores" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_Cerrar" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                          <Component id="btnSocios" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnLibros" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnRegistrar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnConsulta" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btn_registrar_trabajador" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btn_consultar_trabajadores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btn_Cerrar" alignment="0" pref="202" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -57,28 +47,20 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <Component id="btnLibros" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnConsulta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnModificarCorreo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnModificarCB" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnModificarTLF" min="-2" max="-2" attributes="0"/>
+              <Component id="btnSocios" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btn_registrar_trabajador" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btn_consultar_trabajadores" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btn_Cerrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,58 +74,10 @@
         <Property name="text" type="java.lang.String" value="Men&#xfa; de Opciones Administrador"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnConsulta">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Consultar Socio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnRegistrar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar localidad Socio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btn_registrar_trabajador">
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrar Trabajador"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnModificarCorreo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar Correo Socio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarCorreoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnModificarCB">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar Cuenta Bancaria Socio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarCBActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnModificarTLF">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar Tel&#xe9;fono Socio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarTLFActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_consultar_trabajadores">
       <Properties>
@@ -153,6 +87,16 @@
     <Component class="javax.swing.JButton" name="btn_Cerrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSocios">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Control Socios"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLibros">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Control Libros"/>
       </Properties>
     </Component>
   </SubComponents>

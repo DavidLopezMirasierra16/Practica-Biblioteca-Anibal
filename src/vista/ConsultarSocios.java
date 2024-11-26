@@ -59,6 +59,7 @@ public class ConsultarSocios extends javax.swing.JFrame {
         btnPago = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tablaSocios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

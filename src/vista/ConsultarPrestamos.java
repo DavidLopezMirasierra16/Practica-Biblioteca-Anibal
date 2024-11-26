@@ -43,6 +43,7 @@ public class ConsultarPrestamos extends javax.swing.JFrame {
         btnReestablecer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Filtrar Por");
 

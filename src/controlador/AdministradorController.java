@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import modelo.SocioModelo;
 import vista.ConsultarSocios;
 import vista.ConsultarTrabajadores;
+import vista.ControlLibros;
+import vista.ControlSocios;
 import vista.MenuAdministrador;
 import vista.ModCorreoSocio;
 import vista.RegistroSocios;
@@ -24,14 +26,10 @@ public class AdministradorController implements ActionListener{
 
     public AdministradorController(MenuAdministrador menu_administrador_vista/*, SocioModelo socio_modelo*/) throws SQLException {
         this.menu_administrador_vista = menu_administrador_vista;
-        this.menu_administrador_vista.getBtnConsulta().addActionListener(this);
-        this.menu_administrador_vista.getBtnModificar().addActionListener(this);
-        this.menu_administrador_vista.getBtnModificarCorreo().addActionListener(this);
-        this.menu_administrador_vista.getBtnModificarCB().addActionListener(this);
-        this.menu_administrador_vista.getBtnModificarTLF().addActionListener(this);
-        this.menu_administrador_vista.getBtnRegistrar().addActionListener(this);
         this.menu_administrador_vista.getBtn_registrar_trabajador().addActionListener(this);
         this.menu_administrador_vista.getBtn_consultar_trabajadores().addActionListener(this);
+        this.menu_administrador_vista.getBtnLibros().addActionListener(this);
+        this.menu_administrador_vista.getBtnSocios().addActionListener(this);
         this.menu_administrador_vista.getBtn_Cerrar().addActionListener(this);
         this.menu_administrador_vista.setVisible(true);
     }
@@ -41,37 +39,13 @@ public class AdministradorController implements ActionListener{
 
         Object button = e.getSource();
         
-        if (button == this.menu_administrador_vista.getBtnRegistrar()) {
-            try {
-                new RegistroSocioController(new RegistroSocios());
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (button == this.menu_administrador_vista.getBtnConsulta()){
-            try {
-                new ConsultarSociosController(new ConsultarSocios());
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }            
-        } else if (button == this.menu_administrador_vista.getBtnModificar()){
-            try {
-                new ModLocalidadSocioController();
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
+        if (button == this.menu_administrador_vista.getBtn_registrar_trabajador()) {
             try {
                 new RegistroTrabajadorController(new RegistroTrabajadores());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(button == this.menu_administrador_vista.getBtnModificarCorreo()){
-            try {
-                new ModCorreoSocioController();
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if(button == this.menu_administrador_vista.getBtn_consultar_trabajadores()){
+        }else if(button == this.menu_administrador_vista.getBtn_consultar_trabajadores()){
             try {
                 new ConsultarTrabajadoresController(new ConsultarTrabajadores());
             } catch (SQLException ex) {
@@ -84,18 +58,16 @@ public class AdministradorController implements ActionListener{
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(button == this.menu_administrador_vista.getBtnModificarCB()){
+        } else if(button == this.menu_administrador_vista.getBtnLibros()){
+            this.menu_administrador_vista.dispose();
             try {
-                new ModCuentaBancariaSocioController();
+                new LibrosController(new ControlLibros());
             } catch (SQLException ex) {
                 Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(button == this.menu_administrador_vista.getBtnModificarTLF()){
-            try {
-                new ModTelefonoSocioController();
-            } catch (SQLException ex) {
-                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } else if(button == this.menu_administrador_vista.getBtnSocios()){
+            this.menu_administrador_vista.dispose();
+            new ControlSociosController(new ControlSocios());
         }
     }
 }

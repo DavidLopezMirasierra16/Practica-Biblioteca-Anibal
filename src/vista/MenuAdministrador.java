@@ -30,148 +30,67 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnConsulta = new javax.swing.JButton();
-        btnRegistrar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
         btn_registrar_trabajador = new javax.swing.JButton();
-        btnModificarCorreo = new javax.swing.JButton();
-        btnModificarCB = new javax.swing.JButton();
-        btnModificarTLF = new javax.swing.JButton();
         btn_consultar_trabajadores = new javax.swing.JButton();
         btn_Cerrar = new javax.swing.JButton();
+        btnSocios = new javax.swing.JButton();
+        btnLibros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Menú de Opciones Administrador");
 
-        btnConsulta.setText("Consultar Socio");
-        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaActionPerformed(evt);
-            }
-        });
-
-        btnRegistrar.setText("Registrar Usuario");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
-
-        btnModificar.setText("Modificar localidad Socio");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
         btn_registrar_trabajador.setText("Registrar Trabajador");
-
-        btnModificarCorreo.setText("Modificar Correo Socio");
-        btnModificarCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarCorreoActionPerformed(evt);
-            }
-        });
-
-        btnModificarCB.setText("Modificar Cuenta Bancaria Socio");
-        btnModificarCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarCBActionPerformed(evt);
-            }
-        });
-
-        btnModificarTLF.setText("Modificar Teléfono Socio");
-        btnModificarTLF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarTLFActionPerformed(evt);
-            }
-        });
 
         btn_consultar_trabajadores.setText("Consultar Trabajadores");
 
         btn_Cerrar.setText("Cerrar Sesión");
 
+        btnSocios.setText("Control Socios");
+
+        btnLibros.setText("Control Libros");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnModificarCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnModificarTLF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnModificarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(92, 92, 92))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_registrar_trabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_consultar_trabajadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
-                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_registrar_trabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_consultar_trabajadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSocios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(94, 94, 94))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(78, 78, 78))))
+                        .addGap(81, 81, 81))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegistrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btnLibros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConsulta)
-                .addGap(21, 21, 21)
-                .addComponent(btnModificar)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificarCorreo)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificarCB)
-                .addGap(18, 18, 18)
-                .addComponent(btnModificarTLF)
+                .addComponent(btnSocios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_registrar_trabajador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_consultar_trabajadores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_Cerrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultaActionPerformed
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnModificarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarCorreoActionPerformed
-
-    private void btnModificarCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarCBActionPerformed
-
-    private void btnModificarTLFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTLFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarTLFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,44 +128,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnConsulta() {
-        return btnConsulta;
-    }
-
-    public JButton getBtnModificar() {
-        return btnModificar;
-    }
-
-    public JButton getBtnRegistrar() {
-        return btnRegistrar;
-    }
 
     public JButton getBtn_registrar_trabajador() {
         return btn_registrar_trabajador;
-    }
-
-    public JButton getBtnModificarCB() {
-        return btnModificarCB;
-    }
-
-    public void setBtnModificarCB(JButton btnModificarCB) {
-        this.btnModificarCB = btnModificarCB;
-    }
-
-    public JButton getBtnModificarCorreo() {
-        return btnModificarCorreo;
-    }
-
-    public void setBtnModificarCorreo(JButton btnModificarCorreo) {
-        this.btnModificarCorreo = btnModificarCorreo;
-    }
-
-    public JButton getBtnModificarTLF() {
-        return btnModificarTLF;
-    }
-
-    public void setBtnModificarTLF(JButton btnModificarTLF) {
-        this.btnModificarTLF = btnModificarTLF;
     }
 
     public JButton getBtn_consultar_trabajadores() {
@@ -265,15 +149,26 @@ public class MenuAdministrador extends javax.swing.JFrame {
         this.btn_Cerrar = btn_Cerrar;
     }
 
+    public JButton getBtnSocios() {
+        return btnSocios;
+    }
+
+    public void setBtnSocios(JButton btnSocios) {
+        this.btnSocios = btnSocios;
+    }
+
+    public JButton getBtnLibros() {
+        return btnLibros;
+    }
+
+    public void setBtnLibros(JButton btnLibros) {
+        this.btnLibros = btnLibros;
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsulta;
-    private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnModificarCB;
-    private javax.swing.JButton btnModificarCorreo;
-    private javax.swing.JButton btnModificarTLF;
-    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnLibros;
+    private javax.swing.JButton btnSocios;
     private javax.swing.JButton btn_Cerrar;
     private javax.swing.JButton btn_consultar_trabajadores;
     private javax.swing.JButton btn_registrar_trabajador;
