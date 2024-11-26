@@ -75,7 +75,6 @@ public class ControlSocios extends javax.swing.JFrame {
         });
 
         btnRegistrar.setText("Registrar Usuario");
-        btnRegistrar.setEnabled(false);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
