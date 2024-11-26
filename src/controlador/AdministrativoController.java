@@ -40,7 +40,11 @@ public class AdministrativoController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object button = e.getSource();        
         if (button == this.menu_administrativo_vista.getBtnLibros()) {
-            new LibrosController(new ControlLibros());
+            try {
+                new LibrosController(new ControlLibros());
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministrativoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.menu_administrativo_vista.dispose();
         }else if (button == this.menu_administrativo_vista.getBtnConsulta()){
             try {
