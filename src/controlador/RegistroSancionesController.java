@@ -51,7 +51,6 @@ public class RegistroSancionesController implements ActionListener {
                 );
                 this.sancion_modelo.ingresarSancionBD(sancion);
                 JOptionPane.showMessageDialog(registro_sancion_vista, "Sanción registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                this.registro_sancion_vista.dispose();
             }catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(registro_sancion_vista, "ID de Socio y ID de Préstamo deben ser numéricos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
             }

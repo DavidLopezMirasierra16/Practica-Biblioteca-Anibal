@@ -58,7 +58,6 @@ public class RegistroSocioController implements ActionListener{
                     this.registro_socio_vista.getTxt_cuenta().getText(), 
                     Integer.toString(id)) != null) {
                 JOptionPane.showMessageDialog(registro_socio_vista, "Socio con dni " + this.registro_socio_vista.getTxt_dni().getText() + " registrado correctamente", "Socio dado de alta", JOptionPane.INFORMATION_MESSAGE);
-                this.registro_socio_vista.dispose();
             }else{
                 JOptionPane.showMessageDialog(registro_socio_vista, "Usuario con dni " + this.registro_socio_vista.getTxt_dni().getText() + " ya registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
             }

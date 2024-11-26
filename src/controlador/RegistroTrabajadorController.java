@@ -42,7 +42,6 @@ public class RegistroTrabajadorController implements ActionListener {
                     this.registroTrabajadoresVista.getTxt_contraseña().getText(),
                     Integer.toString(id_biblioteca))!=null) {
                 JOptionPane.showMessageDialog(registroTrabajadoresVista, "Trabajador con dni " + this.registroTrabajadoresVista.getTxt_dni().getText() + " registrado correctamente", "Trabajador dado de alta", JOptionPane.INFORMATION_MESSAGE);
-                this.registroTrabajadoresVista.dispose();
             }else{
                 JOptionPane.showMessageDialog(registroTrabajadoresVista, "Usuario con dni " + this.registroTrabajadoresVista.getTxt_dni().getText() + " ya registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);
             }

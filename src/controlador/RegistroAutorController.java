@@ -43,7 +43,6 @@ public class RegistroAutorController implements ActionListener{
                     this.registro_autor_vista.getTxt_nacimiento().getText(), 
                     this.registro_autor_vista.getTxt_correo().getText()) != null) {
                 JOptionPane.showMessageDialog(registro_autor_vista, "Autor " + this.registro_autor_vista.getTxt_nombre().getText() + " registrado correctamente", "Autor dado de alta", JOptionPane.INFORMATION_MESSAGE);
-                this.registro_autor_vista.dispose();
             }else{
                 JOptionPane.showMessageDialog(registro_autor_vista, "Autor " + this.registro_autor_vista.getTxt_nombre().getText() + " ya registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
 

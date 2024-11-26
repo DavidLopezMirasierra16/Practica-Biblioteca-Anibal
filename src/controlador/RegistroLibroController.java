@@ -45,7 +45,6 @@ public class RegistroLibroController implements ActionListener {
                         this.registro_libro_vista.getTxt_año().getText(), 
                         this.registro_libro_vista.getTxt_editorial().getText(), id)!=null) {
                     JOptionPane.showMessageDialog(registro_libro_vista, "Libro registrado correctamente", "Libro dado de alta", JOptionPane.INFORMATION_MESSAGE);
-                    this.registro_libro_vista.dispose();
                 }else{
                     JOptionPane.showMessageDialog(registro_libro_vista, "Autor " + this.registro_libro_vista.getTxt_autor().getText() + " no registrado", "Error de registro", JOptionPane.ERROR_MESSAGE);                
                 }
