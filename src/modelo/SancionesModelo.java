@@ -136,7 +136,7 @@ public class SancionesModelo {
      * Método para resolver (eliminar) la sanción
      * @param consultar 
      */
-    private void resolverSancion(ConsultarSanciones consultar) {
+    public void resolverSancion(ConsultarSanciones consultar) {
         int row = consultar.tablaSanciones.getSelectedRow();
         if (row != -1) {
             int idSancion = (int) consultar.tablaSanciones.getValueAt(row, 0);

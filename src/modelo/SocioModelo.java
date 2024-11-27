@@ -351,17 +351,12 @@ public class SocioModelo {
             String estadoActual = (String) consultar.getTablaSocios().getValueAt(row, 8);
             String nuevoEstado = "Pagado".equalsIgnoreCase(estadoActual) ? "No Pagado" : "Pagado";
 
-            int confirm = JOptionPane.showConfirmDialog(
-                null,
-                "¿Estás seguro de que deseas cambiar el estado de 'Pagado' del socio seleccionado?",
-                "Confirmar cambio de estado",
-                JOptionPane.YES_NO_OPTION
-            );
+            int confirm = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas cambiar el estado de Pago del socio seleccionado?","Confirmar",JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 actualizarEstadoPagoEnBD(idSocio, nuevoEstado);
                 consultar.getTablaSocios().setValueAt(nuevoEstado, row, 8);
-                JOptionPane.showMessageDialog(null, "Estado de 'Pagado' actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "Estado de Pago actualizado.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un socio.");
@@ -376,7 +371,7 @@ public class SocioModelo {
             parametro.setString(2, idSocio);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo.");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());

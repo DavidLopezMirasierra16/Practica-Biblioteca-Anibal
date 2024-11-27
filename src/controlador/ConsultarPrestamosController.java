@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.PrestamosModelo;
 import vista.ConsultarPrestamos;
 
@@ -49,8 +50,12 @@ public class ConsultarPrestamosController implements ActionListener{
             }
         } else if(e.getSource() == consultaprestamos_vista.getBtnDevilver()){
             try {
-                PrestamosModelo prestamosModelo = new PrestamosModelo();
-                prestamosModelo.devolver(consultaprestamos_vista.getTablaPrestamos());
+                int confirm = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas devolver el préstamo indicado?","Confirmar",JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    PrestamosModelo prestamosModelo = new PrestamosModelo();
+                    prestamosModelo.devolver(consultaprestamos_vista.getTablaPrestamos());
+                    JOptionPane.showMessageDialog(null, "Préstamo devuelto correctamente");
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultarPrestamosController.class.getName()).log(Level.SEVERE, null, ex);
             }

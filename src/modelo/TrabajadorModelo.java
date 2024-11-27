@@ -343,16 +343,11 @@ public class TrabajadorModelo {
             } else {
                 nuevoEstado = "Habilitado";
             }
-            int confirm = JOptionPane.showConfirmDialog(
-                null,
-                "¿Estás seguro de que deseas cambiar el estado de 'Activo' del trabajador seleccionado?",
-                "Confirmar cambio de estado",
-                JOptionPane.YES_NO_OPTION
-            );
+            int confirm = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas cambiar el estado de Activo del trabajador seleccionado?","Confirmar",JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 actualizarEstadoHabilitadoEnBD(idTrabajador, nuevoEstado);
                 consultar.getTablaTrabajadores().setValueAt(nuevoEstado, row, 7);
-                JOptionPane.showMessageDialog(null, "Estado 'Activo' actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "Estado Activo actualizado.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona un trabajador.");
@@ -363,12 +358,12 @@ public class TrabajadorModelo {
     private void actualizarEstadoHabilitadoEnBD(int idTrabajador, String nuevoEstado) {
         String actualiza_Activo = "UPDATE trabajadores SET Activo = ? WHERE ID_Trabajador = ?";
         try (Connection conexion = bd_controller.conectar();
-             PreparedStatement parametro = conexion.prepareStatement(actualiza_Activo)) {
+            PreparedStatement parametro = conexion.prepareStatement(actualiza_Activo)) {
             parametro.setString(1, nuevoEstado);
             parametro.setInt(2, idTrabajador);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente nuevamente.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo.");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
