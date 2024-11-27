@@ -47,7 +47,7 @@ public class RegistroSancionesController implements ActionListener {
                 Sanciones sancion = new Sanciones(
                         this.registro_sancion_vista.getTxt_Socio().getText(),
                         Integer.parseInt(this.registro_sancion_vista.getTxt_Prestamo().getText()),
-                        this.registro_sancion_vista.getTxt_Sancion().getText()
+                        this.registro_sancion_vista.getCbSancion().getSelectedItem().toString()
                 );
                 this.sancion_modelo.ingresarSancionBD(sancion);
                 JOptionPane.showMessageDialog(registro_sancion_vista, "Sanción registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
@@ -77,8 +77,8 @@ public class RegistroSancionesController implements ActionListener {
             resultado = false;
         }
 
-        if (this.registro_sancion_vista.getTxt_Sancion().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir el tipo de sanción.\n");
+        if (this.registro_sancion_vista.getCbSancion().getSelectedIndex() == 0) {
+            mensaje.append("Debe indicar el tipo de sanción.\n");
             resultado = false;
         }
 

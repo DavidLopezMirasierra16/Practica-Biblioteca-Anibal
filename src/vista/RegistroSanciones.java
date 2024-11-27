@@ -5,6 +5,7 @@
 package vista;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -35,8 +36,8 @@ public class RegistroSanciones extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_Socio = new javax.swing.JTextField();
         txt_Prestamo = new javax.swing.JTextField();
-        txt_Sancion = new javax.swing.JTextField();
         btn_Aceptar = new javax.swing.JButton();
+        cbSancion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -44,13 +45,15 @@ public class RegistroSanciones extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Registro de Sanciones");
 
-        jLabel2.setText("ID Socio");
+        jLabel2.setText("DNI Socio");
 
         jLabel3.setText("ID Préstamo");
 
         jLabel4.setText("Tipo de sancion");
 
         btn_Aceptar.setText("Aceptar");
+
+        cbSancion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de Sanción", "Dañado", "Roto" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,20 +65,21 @@ public class RegistroSanciones extends javax.swing.JFrame {
                         .addGap(126, 126, 126)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_Aceptar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Sancion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_Prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_Socio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGap(316, 316, 316)
+                        .addComponent(btn_Aceptar)))
+                .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_Prestamo)
+                    .addComponent(txt_Socio)
+                    .addComponent(cbSancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +95,9 @@ public class RegistroSanciones extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txt_Prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txt_Sancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbSancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btn_Aceptar)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -153,13 +157,14 @@ public class RegistroSanciones extends javax.swing.JFrame {
         this.txt_Prestamo = txt_Prestamo;
     }
 
-    public JTextField getTxt_Sancion() {
-        return txt_Sancion;
+    public JComboBox<String> getCbSancion() {
+        return cbSancion;
     }
 
-    public void setTxt_Sancion(JTextField txt_Sancion) {
-        this.txt_Sancion = txt_Sancion;
+    public void setCbSancion(JComboBox<String> cbSancion) {
+        this.cbSancion = cbSancion;
     }
+
 
     public JTextField getTxt_Socio() {
         return txt_Socio;
@@ -171,12 +176,12 @@ public class RegistroSanciones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Aceptar;
+    private javax.swing.JComboBox<String> cbSancion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txt_Prestamo;
-    private javax.swing.JTextField txt_Sancion;
     private javax.swing.JTextField txt_Socio;
     // End of variables declaration//GEN-END:variables
 }

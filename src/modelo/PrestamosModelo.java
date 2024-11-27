@@ -291,29 +291,17 @@ public class PrestamosModelo {
 
                 if (filasAfectadas > 0) {
                     modelo.removeRow(filaSeleccionada);
-                    JOptionPane.showMessageDialog(null, 
-                        "Préstamo devuelto exitosamente.", 
-                        "Éxito", 
-                        JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Préstamo devuelto exitosamente.","Éxito",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, 
-                        "Error: No se pudo devolver el préstamo.", 
-                        "Error", 
-                        JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Error: No se pudo devolver el préstamo.","Error",JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, 
-                    "Ocurrió un error al procesar la devolución: " + e.getMessage(), 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Ocurrió un error al procesar la devolución: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, 
-                "Por favor, seleccione una fila para devolver un préstamo.", 
-                "Advertencia", 
-                JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Por favor, seleccione una fila para devolver un préstamo.","Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }
 }

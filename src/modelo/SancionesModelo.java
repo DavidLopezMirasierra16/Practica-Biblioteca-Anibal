@@ -140,16 +140,12 @@ public class SancionesModelo {
         int row = consultar.tablaSanciones.getSelectedRow();
         if (row != -1) {
             int idSancion = (int) consultar.tablaSanciones.getValueAt(row, 0);
-            int confirm = JOptionPane.showConfirmDialog(null, 
-                "¿Estás seguro de que deseas eliminar esta sanción?", 
-                "Confirmar eliminación", 
-                JOptionPane.YES_NO_OPTION);
-
+            int confirm = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas resolver esta sanción?","Confirmar",JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 eliminarSancionDeBD(idSancion);
                 DefaultTableModel model = (DefaultTableModel) consultar.tablaSanciones.getModel();
                 model.removeRow(row);
-                JOptionPane.showMessageDialog(null, "Sanción eliminada correctamente.");
+                JOptionPane.showMessageDialog(null, "Sanción resuelta correctamente.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecciona una sanción.");

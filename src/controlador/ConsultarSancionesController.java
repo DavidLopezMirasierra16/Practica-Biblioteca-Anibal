@@ -38,11 +38,7 @@ public class ConsultarSancionesController implements ActionListener {
                 sancionesModelo.consultarSanciones(consultarSancionesVista.getTablaSanciones());
             }            
             else if (e.getSource() == consultarSancionesVista.getBtnResolver()) {
-                int confirm = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas resolver la sancion indicada?","Confirmar",JOptionPane.YES_NO_OPTION);
-                if (confirm == JOptionPane.YES_OPTION) {
                     sancionesModelo.resolverSancion(consultarSancionesVista);
-                    JOptionPane.showMessageDialog(null, "Sanción solucionada correctamente");
-                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultarSancionesController.class.getName()).log(Level.SEVERE, null, ex);
