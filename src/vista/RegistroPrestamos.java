@@ -1,23 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
  *
  * @author pablo
  */
-public class RegistroPrestamo extends javax.swing.JPanel {
+public class RegistroPrestamos extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroPrestamo
+     * Creates new form RegistroPrestamos
      */
-    public RegistroPrestamo() {
+    public RegistroPrestamos() {
         initComponents();
     }
 
@@ -30,14 +29,22 @@ public class RegistroPrestamo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        txt_prestamo = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtISBN = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txt_prestamo = new javax.swing.JTextField();
-        btnAceptar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel4.setText("Fecha de Prestamo:");
+
+        txt_prestamo.setEditable(false);
+
+        btnAceptar.setText("Aceptar");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Registro de Préstamos");
@@ -46,14 +53,8 @@ public class RegistroPrestamo extends javax.swing.JPanel {
 
         jLabel3.setText("ISBN_Libro");
 
-        jLabel4.setText("Fecha de Prestamo:");
-
-        txt_prestamo.setEditable(false);
-
-        btnAceptar.setText("Aceptar");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -100,9 +101,46 @@ public class RegistroPrestamo extends javax.swing.JPanel {
                     .addComponent(txt_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(RegistroPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(RegistroPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(RegistroPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(RegistroPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistroPrestamos().setVisible(true);
+            }
+        });
+    }
 
     public JButton getBtnAceptar() {
         return btnAceptar;

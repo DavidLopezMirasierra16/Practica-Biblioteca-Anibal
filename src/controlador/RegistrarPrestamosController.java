@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import modelo.Prestamos;
 import modelo.PrestamosModelo;
 import modelo.TrabajadorModelo;
-import vista.RegistroPrestamo;
+import vista.RegistroPrestamos;
 
 /**
  * Controlador para el registro de préstamos en la biblioteca.
@@ -20,10 +20,10 @@ import vista.RegistroPrestamo;
 public class RegistrarPrestamosController implements ActionListener {
 
     private PrestamosModelo prestamosModelo;
-    private RegistroPrestamo registroPrestamoVista;
+    private RegistroPrestamos registroPrestamoVista;
     private TrabajadorModelo trabajador;
 
-    public RegistrarPrestamosController(RegistroPrestamo registroPrestamoVista) throws SQLException {
+    public RegistrarPrestamosController(RegistroPrestamos registroPrestamoVista) throws SQLException {
         this.prestamosModelo = new PrestamosModelo();
         this.trabajador = new TrabajadorModelo();
         this.registroPrestamoVista = registroPrestamoVista;
@@ -48,48 +48,22 @@ public class RegistrarPrestamosController implements ActionListener {
                 int idLibro = Integer.parseInt(this.registroPrestamoVista.getTxtISBN().getText().trim());
                 int biblioteca = trabajador.getIdBiblioteca();
                 if (!prestamosModelo.comprobarLimitePrestamos(idSocio)) {
-                    JOptionPane.showMessageDialog(
-                        registroPrestamoVista, 
-                        "El socio ha alcanzado el límite máximo de préstamos permitidos.", 
-                        "Límite de préstamos alcanzado", 
-                        JOptionPane.WARNING_MESSAGE
-                    );
-                    return;
+                    JOptionPane.showMessageDialog(registroPrestamoVista,"El socio ha alcanzado el límite máximo de préstamos permitidos.","Límite de préstamos alcanzado",JOptionPane.WARNING_MESSAGE);
                 }
                 Date fechaPrestamo = new Date();
                 Prestamos prestamo = new Prestamos(idLibro, idSocio, biblioteca, fechaPrestamo);
                 Prestamos prestamoRegistrado = this.prestamosModelo.registrarPrestamo(idLibro, idSocio, biblioteca, fechaPrestamo);
                 if (prestamoRegistrado != null) {
-                    JOptionPane.showMessageDialog(
-                        registroPrestamoVista, 
-                        "Préstamo registrado correctamente.", 
-                        "Registro exitoso", 
-                        JOptionPane.INFORMATION_MESSAGE
-                    );
+                    JOptionPane.showMessageDialog(registroPrestamoVista,"Préstamo registrado correctamente.","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(
-                        registroPrestamoVista, 
-                        "No se pudo registrar el préstamo. Verifique la disponibilidad del libro o el límite de préstamos del socio.", 
-                        "Error", 
-                        JOptionPane.ERROR_MESSAGE
-                    );
+                    JOptionPane.showMessageDialog(registroPrestamoVista,"No se pudo registrar el préstamo. Verifique la disponibilidad del libro o el límite de préstamos del socio.","Error",JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(
-                    registroPrestamoVista, 
-                    "ISBN debe ser valores numéricos.", 
-                    "Error de formato", 
-                    JOptionPane.ERROR_MESSAGE
-                );
+                JOptionPane.showMessageDialog(registroPrestamoVista, "ISBN debe ser valores numéricos.","Error de formato",JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 // Agregar un mensaje de registro detallado para rastrear errores
-                JOptionPane.showMessageDialog(
-                    registroPrestamoVista, 
-                    "Error al registrar el préstamo: " + ex.getMessage(), 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE
-                );
+                JOptionPane.showMessageDialog(registroPrestamoVista, "Error al registrar el préstamo: " + ex.getMessage(), "Error",  JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }

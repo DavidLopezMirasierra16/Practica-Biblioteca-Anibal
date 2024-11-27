@@ -277,7 +277,7 @@ public class PrestamosModelo {
         if (filaSeleccionada != -1) {
             DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 
-            int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0); // Asume que el ID está en la primera columna
+            int idPrestamo = (int) modelo.getValueAt(filaSeleccionada, 0);
 
             String devuelve_Prestamo = "DELETE FROM prestamos WHERE ID_Prestamo = ?";
             BaseDatosController baseDatosController = new BaseDatosController();

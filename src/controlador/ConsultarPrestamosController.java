@@ -54,7 +54,6 @@ public class ConsultarPrestamosController implements ActionListener{
                 if (confirm == JOptionPane.YES_OPTION) {
                     PrestamosModelo prestamosModelo = new PrestamosModelo();
                     prestamosModelo.devolver(consultaprestamos_vista.getTablaPrestamos());
-                    JOptionPane.showMessageDialog(null, "Préstamo devuelto correctamente");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultarPrestamosController.class.getName()).log(Level.SEVERE, null, ex);

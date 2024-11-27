@@ -18,7 +18,7 @@ import vista.MenuAdministrador;
 import vista.MenuAdministrativo;
 import vista.RegistrarAutor;
 import vista.RegistrarLibro;
-import vista.RegistroPrestamo;
+import vista.RegistroPrestamos;
 import vista.RegistroSanciones;
 import vista.RegistroUbicacionLibro;
 
@@ -106,7 +106,7 @@ public class LibrosController implements ActionListener{
             }
         }else if (button == this.menu_libros_vista.getBtn_registroPrestamo()) {
             try {
-                new RegistrarPrestamosController(new RegistroPrestamo());
+                new RegistrarPrestamosController(new RegistroPrestamos());
             } catch (SQLException ex) {
                 Logger.getLogger(LibrosController.class.getName()).log(Level.SEVERE, null, ex);
             }
