@@ -31,18 +31,12 @@ public class LoginController implements ActionListener {
 
         if (button == this.login_vista.getBtnIniciar()) {
             try {
-                // Obtener el ID del trabajador y la contraseña desde la vista
                 int usuarioId = Integer.parseInt(this.login_vista.getTxt_usuario().getText().trim());
                 String contraseña = this.login_vista.getTxt_contraseña().getText().trim();
-
-                // Comprobar el ID del trabajador y la contraseña
                 int idTrabajador = this.trabajador_modelo.comprobarRolFuncion(usuarioId, contraseña);
-                if (idTrabajador > 0) {
-                    // Comprobar el estado del trabajador (habilitado o deshabilitado)
+                if (idTrabajador != 0) {
                     String estado = trabajador_modelo.comprobarEstadoTrabajador(idTrabajador);
-
-                    if ("Habilitado".equals(estado)) {
-                        // Si el trabajador está habilitado, mostramos la ventana correspondiente
+                    if (estado.equals("Habilitado")) {
                         int idPermiso = trabajador_modelo.getIdPermiso();
                         int idBiblioteca = trabajador_modelo.getIdBiblioteca();
                         System.out.println("ID Trabajador: " + idTrabajador);
@@ -50,9 +44,7 @@ public class LoginController implements ActionListener {
                         System.out.println("ID Biblioteca: " + idBiblioteca);
                         mostrarVentana(idPermiso);
                     } else {
-                        // Si el trabajador está deshabilitado, mostramos un mensaje de error
-                        JOptionPane.showMessageDialog(login_vista, "Tu cuenta está deshabilitada. No puedes iniciar sesión.", 
-                                                      "Error de acceso", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(login_vista, "Tu cuenta está deshabilitada. No puedes iniciar sesión.", "Error de acceso", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(login_vista, "Ese usuario no está registrado", "Error de comprobación", JOptionPane.ERROR_MESSAGE);
@@ -85,7 +77,7 @@ public class LoginController implements ActionListener {
         if (idPermiso == 1) {
             new AdministradorController(new MenuAdministrador());
             this.login_vista.dispose();
-        } else {
+        } else if(idPermiso == 2){
             new AdministrativoController(new MenuAdministrativo());
             this.login_vista.dispose();
         }

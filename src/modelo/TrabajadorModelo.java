@@ -60,22 +60,8 @@ public class TrabajadorModelo {
      */
     public Trabajador crearTrabajador(int id_permiso, String nombre, String apellido, String dni, String fecha_nacimiento, String correo, String cuenta_banco, String seguridad_social, String contraseña, String biblioteca) {
         //contraseña = "hola";
-        try {
-            // Obtener una instancia del algoritmo SHA-256
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
-            // Convertir la contraseña a un arreglo de bytes
-            byte[] hashBytes = digest.digest(contraseña.getBytes());
-
-            // Codificar el hash en Base64 para hacerlo legible
-            String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
-
-            contraseña = hashedPassword;
-
-            System.out.println("Contraseña hasheada: " + hashedPassword);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        hashearContraseña(contraseña);
+        System.out.println("Contraseña hasheada: " + contraseña);
 
         Trabajador trabajador = new Trabajador(id_permiso, nombre, apellido, dni, fecha_nacimiento, correo, cuenta_banco, seguridad_social, biblioteca);
 
