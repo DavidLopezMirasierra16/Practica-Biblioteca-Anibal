@@ -64,27 +64,27 @@ public class RegistroUbicacionLibroController implements ActionListener {
         StringBuilder mensaje = new StringBuilder();
         
         if (this.registroUbicacionLibroVista.getTxtLibro().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir el ISBN del libro.\n");
+            mensaje.append("Debe introducir el ISBN del libro\n");
             resultado = false;
         }
 
         if (this.registroUbicacionLibroVista.getTxtEstanteria().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir la estantería.\n");
+            mensaje.append("Debe introducir la estantería\n");
             resultado = false;
         }
 
         if (this.registroUbicacionLibroVista.getTxtSeccion().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir la sección.\n");
+            mensaje.append("Debe introducir la sección\n");
             resultado = false;
         }
 
         if (this.registroUbicacionLibroVista.getTxtPiso().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir el piso.\n");
+            mensaje.append("Debe introducir el piso\n");
             resultado = false;
         }
 
         if (this.registroUbicacionLibroVista.getTxtCantidad().getText().trim().isEmpty()) {
-            mensaje.append("Debe introducir la cantidad.\n");
+            mensaje.append("Debe introducir la cantidad\n");
             resultado = false;
         }
 

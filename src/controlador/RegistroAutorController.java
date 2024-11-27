@@ -64,12 +64,12 @@ public class RegistroAutorController implements ActionListener{
         String mensaje = " ";
 
         if (this.registro_autor_vista.getTxt_nombre().getText().trim().length() == 0) {
-            mensaje = mensaje + "Debe introducir un nombre. \n";
+            mensaje = mensaje + "Debe introducir un nombre \n";
             resultado = false;
         }
 
         if (this.registro_autor_vista.getTxt_nacimiento().getText().trim().length() == 0) {
-            mensaje = mensaje + "Debe introducir uno nacimiento. \n";
+            mensaje = mensaje + "Debe introducir uno nacimiento \n";
             resultado = false;
         }
 

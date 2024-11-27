@@ -64,12 +64,12 @@ public class RecuperarContrasenaController implements ActionListener {
         String mensaje = " ";
 
         if (this.recuperar_vista.getTxt_usuario().getText().trim().length() == 0) {
-            mensaje = mensaje + "Debe introducir un nombre. \n";
+            mensaje = mensaje + "Debe introducir un nombre \n";
             resultado = false;
         }
 
         if (this.recuperar_vista.getTxt_contraseña().getText().trim().length() == 0) {
-            mensaje = mensaje + "Debe introducir una contraseña nueva. \n";
+            mensaje = mensaje + "Debe introducir una contraseña nueva \n";
             resultado = false;
         }
 

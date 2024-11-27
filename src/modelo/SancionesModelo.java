@@ -70,7 +70,7 @@ public class SancionesModelo {
         String filtro = (String) consultarSanciones.getCbFiltro().getSelectedItem();
         String busqueda = consultarSanciones.getTxtBusqueda().getText().trim();
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
-            System.out.println("Debe ingresar un valor de búsqueda válido y seleccionar un filtro.");
+            System.out.println("Debe ingresar un valor de búsqueda válido y seleccionar un filtro");
             return;
         }
         String columna = "";
@@ -164,7 +164,7 @@ public class SancionesModelo {
             parametro.setInt(1, idSancion);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar la sanción. Por favor, intente nuevamente.");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar la sanción. Por favor, intente nuevamente");
             }
 
         } catch (SQLException e) {

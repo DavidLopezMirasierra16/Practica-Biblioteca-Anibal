@@ -35,7 +35,7 @@ public class ConsultarTrabajadoresController implements ActionListener {
                 // Llamar al método filtrarTrabajadores pasándole los parámetros correctos
                 trabajador_modelo.filtrarTrabajadores(busqueda, consultarTrabajadoresVista.getTablaTrabajadores());
             } else {
-                System.out.println("Debe ingresar un valor de búsqueda válido.");
+                System.out.println("Debe ingresar un valor de búsqueda válido");
             }
         }
         // Reestablecer la tabla cuando se presiona el botón de reestablecer

@@ -293,9 +293,9 @@ public class TrabajadorModelo {
             int filasActualizadas = stmt.executeUpdate();
 
             if (filasActualizadas > 0) {
-                System.out.println("Contraseña actualizada exitosamente.");
+                System.out.println("Contraseña actualizada exitosamente");
             } else {
-                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña.");
+                System.out.println("No se encontró el usuario o no se pudo actualizar la contraseña");
             }
 
         } catch (SQLException e) {
@@ -347,10 +347,10 @@ public class TrabajadorModelo {
             if (confirm == JOptionPane.YES_OPTION) {
                 actualizarEstadoHabilitadoEnBD(idTrabajador, nuevoEstado);
                 consultar.getTablaTrabajadores().setValueAt(nuevoEstado, row, 7);
-                JOptionPane.showMessageDialog(null, "Estado Activo actualizado.");
+                JOptionPane.showMessageDialog(null, "Estado Activo actualizado");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Por favor, selecciona un trabajador.");
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un trabajador");
         }
     }
 
@@ -363,7 +363,7 @@ public class TrabajadorModelo {
             parametro.setInt(2, idTrabajador);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
@@ -404,7 +404,7 @@ public class TrabajadorModelo {
     
     public void filtrarTrabajadores(String busqueda, JTable table) {
         if (busqueda.isEmpty()) {
-            System.out.println("Debe ingresar un valor de búsqueda.");
+            System.out.println("Debe ingresar un valor de búsqueda");
             return;
         }
         String consulta_TrabajadorFiltro = "{CALL obtenerDatosTrabajadoresFiltrados(?)}";

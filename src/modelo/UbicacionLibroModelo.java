@@ -65,12 +65,12 @@ public class UbicacionLibroModelo {
      */
     public boolean registrarUbicacion(UbicacionLibro ubicacion) {
         if (!existeLibro(ubicacion.getID_Libro())) {
-            System.out.println("El libro con el ID " + ubicacion.getID_Libro() + " no existe.");
+            System.out.println("El libro con el ID " + ubicacion.getID_Libro() + " no existe");
             return false;
         }
 
         if (!existeBiblioteca(ubicacion.getID_Biblioteca())) {
-            System.out.println("La biblioteca con el ID " + ubicacion.getID_Biblioteca() + " no existe.");
+            System.out.println("La biblioteca con el ID " + ubicacion.getID_Biblioteca() + " no existe");
             return false;
         }
 

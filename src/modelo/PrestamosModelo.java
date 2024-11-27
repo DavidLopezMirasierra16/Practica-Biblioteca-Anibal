@@ -151,14 +151,14 @@ public class PrestamosModelo {
 
                     prepare.executeUpdate();
                 } else {
-                    JOptionPane.showMessageDialog(null, "No hay existencias suficientes del libro en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "No hay existencias suficientes del libro en esta ubicación", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El libro no está registrado en esta ubicación.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El libro no está registrado en esta ubicación", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             if (ex.getMessage().contains("El socio no está pagado")) {
-                JOptionPane.showMessageDialog(null, "El socio no está habilitado para realizar préstamos dado que no ha pagado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El socio no está habilitado para realizar préstamos dado que no ha pagado", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al procesar el préstamo: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
@@ -215,7 +215,7 @@ public class PrestamosModelo {
         String busqueda = consultarPrestamos.getTxtBusqueda().getText().trim();
 
         if ("Seleccione una opción".equals(filtro) || busqueda.isEmpty()) {
-            System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
+            System.out.println("Seleccione un filtro válido y un valor de búsqueda");
             return;
         }
 
@@ -291,9 +291,9 @@ public class PrestamosModelo {
 
                 if (filasAfectadas > 0) {
                     modelo.removeRow(filaSeleccionada);
-                    JOptionPane.showMessageDialog(null,"Préstamo devuelto exitosamente.","Éxito",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Préstamo devuelto exitosamente","Éxito",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null,"Error: No se pudo devolver el préstamo.","Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Error: No se pudo devolver el préstamo","Error",JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (SQLException e) {
@@ -301,7 +301,7 @@ public class PrestamosModelo {
                 e.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null,"Por favor, seleccione una fila para devolver un préstamo.","Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Por favor, seleccione una fila para devolver un préstamo","Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }
 }

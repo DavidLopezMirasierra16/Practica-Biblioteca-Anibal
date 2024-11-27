@@ -188,7 +188,7 @@ public class LibrosModelo {
         System.out.println(idBiblioteca);
 
         if (idBiblioteca == 0) {
-            System.out.println("No se pudo obtener el ID de la biblioteca.");
+            System.out.println("No se pudo obtener el ID de la biblioteca");
             return;
         }
 
@@ -240,7 +240,7 @@ public class LibrosModelo {
         String busqueda = consultarLibros.getTxtBusqueda().getText().trim();
 
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
-            System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
+            System.out.println("Seleccione un filtro válido y un valor de búsqueda");
             return;
         }
 

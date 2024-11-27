@@ -188,7 +188,7 @@ public class SocioModelo {
         String busqueda = consultarSocios.getTxtBusqueda().getText().trim();
         int idBiblioteca = trabajador.getIdBiblioteca();
         if (filtro.equals("Seleccione una opción") || busqueda.isEmpty()) {
-            System.out.println("Seleccione un filtro válido y un valor de búsqueda.");
+            System.out.println("Seleccione un filtro válido y un valor de búsqueda");
             return;
         }
 
@@ -265,9 +265,9 @@ public class SocioModelo {
             boolean resultado = parametro.execute();
 
             if (resultado) {
-                JOptionPane.showMessageDialog(null, "La modificación se ha realizado correctamente.");
+                JOptionPane.showMessageDialog(null, "La modificación se ha realizado correctamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un socio o una biblioteca correspondiente.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se encontró un socio o una biblioteca correspondiente", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar el ID_Biblioteca_FK: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -288,9 +288,9 @@ public class SocioModelo {
             boolean resultado = parametro.execute();
 
             if (resultado) {
-                JOptionPane.showMessageDialog(null, "El teléfono ha sido actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "El teléfono ha sido actualizado correctamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar el teléfono del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -311,9 +311,9 @@ public class SocioModelo {
             boolean resultado = parametro.execute();
 
             if (resultado) {
-                JOptionPane.showMessageDialog(null, "El correo ha sido actualizado correctamente.");
+                JOptionPane.showMessageDialog(null, "El correo ha sido actualizado correctamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar el correo del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -334,9 +334,9 @@ public class SocioModelo {
             boolean resultado = parametro.execute();
 
             if (resultado) {
-                JOptionPane.showMessageDialog(null, "La cuenta bancaria ha sido actualizada correctamente.");
+                JOptionPane.showMessageDialog(null, "La cuenta bancaria ha sido actualizada correctamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se encontró un socio con el nombre y apellidos especificados", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar la cuenta bancaria del socio: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -356,10 +356,10 @@ public class SocioModelo {
             if (confirm == JOptionPane.YES_OPTION) {
                 actualizarEstadoPagoEnBD(idSocio, nuevoEstado);
                 consultar.getTablaSocios().setValueAt(nuevoEstado, row, 8);
-                JOptionPane.showMessageDialog(null, "Estado de Pago actualizado.");
+                JOptionPane.showMessageDialog(null, "Estado de Pago actualizado");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Por favor, selecciona un socio.");
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un socio");
         }
     }
 
@@ -371,7 +371,7 @@ public class SocioModelo {
             parametro.setString(2, idSocio);
             int filasAfectadas = parametro.executeUpdate();
             if (filasAfectadas == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo.");
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar el estado. Por favor, intente de nuevo");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
