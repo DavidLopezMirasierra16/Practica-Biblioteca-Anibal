@@ -38,6 +38,7 @@ public class ControlLibros extends javax.swing.JFrame {
         btn_registrar_librosbiblio = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btn_registroPrestamo = new javax.swing.JButton();
+        btn_registro_sanciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,13 @@ public class ControlLibros extends javax.swing.JFrame {
             }
         });
 
+        btn_registro_sanciones.setText("Registrar Sanciones");
+        btn_registro_sanciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registro_sancionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +123,8 @@ public class ControlLibros extends javax.swing.JFrame {
                                 .addComponent(btn_registrar_librosbiblio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_registrar_autor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_consultar_prestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_registroPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_registroPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_registro_sanciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(118, 118, 118))))
         );
         layout.setVerticalGroup(
@@ -131,6 +140,8 @@ public class ControlLibros extends javax.swing.JFrame {
                 .addComponent(btn_consulta_libros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_consulta_sanciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_registro_sanciones)
                 .addGap(12, 12, 12)
                 .addComponent(btn_registrar_autor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -172,6 +183,10 @@ public class ControlLibros extends javax.swing.JFrame {
     private void btn_registroPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroPrestamoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_registroPrestamoActionPerformed
+
+    private void btn_registro_sancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registro_sancionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_registro_sancionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +267,14 @@ public class ControlLibros extends javax.swing.JFrame {
         this.btn_registroPrestamo = btn_registroPrestamo;
     }
 
+    public JButton getBtn_registro_sanciones() {
+        return btn_registro_sanciones;
+    }
+
+    public void setBtn_registro_sanciones(JButton btn_registro_sanciones) {
+        this.btn_registro_sanciones = btn_registro_sanciones;
+    }
+
     
 
     
@@ -265,6 +288,7 @@ public class ControlLibros extends javax.swing.JFrame {
     private javax.swing.JButton btn_registrar_libros;
     private javax.swing.JButton btn_registrar_librosbiblio;
     private javax.swing.JButton btn_registroPrestamo;
+    private javax.swing.JButton btn_registro_sanciones;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -118,9 +118,9 @@ public class SancionesModelo {
         try {
             //this.bd_controller.conectarBd();
 
-            String sentencia_slq = "INSERT INTO bd_biblioteca.socios (ID_Socio_FK, ID_Prestamo_FK, Tipo_Sancion)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String sentencia_slq = "INSERT INTO bd_biblioteca.sanciones (ID_Socio_FK, ID_Prestamo_FK, Tipo_Sancion)" + "VALUES (?, ?, ?);";
             prepare = conexion.prepareStatement(sentencia_slq);          
-            prepare.setInt(1, sancion.getID_Socio_FK());
+            prepare.setString(1, sancion.getID_Socio_FK());
             prepare.setInt(2, sancion.getID_Prestamo_FK());
             prepare.setString(3, sancion.getTipo_Sancion());            
             int ejecutar = prepare.executeUpdate();            

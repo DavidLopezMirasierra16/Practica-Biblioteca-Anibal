@@ -45,14 +45,14 @@ public class RegistroSancionesController implements ActionListener {
         if (validarDatos()) {
             try {
                 Sanciones sancion = new Sanciones(
-                        Integer.parseInt(this.registro_sancion_vista.getTxt_Socio().getText()),
+                        this.registro_sancion_vista.getTxt_Socio().getText(),
                         Integer.parseInt(this.registro_sancion_vista.getTxt_Prestamo().getText()),
                         this.registro_sancion_vista.getTxt_Sancion().getText()
                 );
                 this.sancion_modelo.ingresarSancionBD(sancion);
                 JOptionPane.showMessageDialog(registro_sancion_vista, "Sanción registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
             }catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(registro_sancion_vista, "ID de Socio y ID de Préstamo deben ser numéricos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(registro_sancion_vista, "ID de Préstamo debe ser numérico.", "Error de formato", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

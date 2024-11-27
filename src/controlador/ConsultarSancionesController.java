@@ -21,8 +21,6 @@ public class ConsultarSancionesController implements ActionListener {
         this.consultarSancionesVista.getBtnReestablecer().addActionListener(this);
         this.consultarSancionesVista.getBtnResolver().addActionListener(this);
         this.consultarSancionesVista.setVisible(true);
-
-        // Inicializar la tabla con todas las sanciones
         SancionesModelo sancionesModelo = new SancionesModelo();
         sancionesModelo.consultarSanciones(consultarSancionesVista.getTablaSanciones());
     }

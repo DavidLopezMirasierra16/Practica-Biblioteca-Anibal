@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Sanciones {
     private int ID_Sancion;
-    private int ID_Socio_FK;
+    private String ID_Socio_FK;
     private int ID_Prestamo_FK;
     private String Tipo_Sancion;
 
@@ -23,7 +23,7 @@ public class Sanciones {
      * @param ID_Prestamo_FK
      * @param Tipo_Sancion 
      */
-    public Sanciones(int ID_Sancion, int ID_Socio_FK, int ID_Prestamo_FK, String Tipo_Sancion) {
+    public Sanciones(int ID_Sancion, String ID_Socio_FK, int ID_Prestamo_FK, String Tipo_Sancion) {
         this.ID_Sancion = ID_Sancion;
         this.ID_Socio_FK = ID_Socio_FK;
         this.ID_Prestamo_FK = ID_Prestamo_FK;
@@ -36,7 +36,7 @@ public class Sanciones {
      * @param ID_Prestamo_FK
      * @param Tipo_Sancion 
      */
-    public Sanciones(int ID_Socio_FK, int ID_Prestamo_FK, String Tipo_Sancion) {
+    public Sanciones(String ID_Socio_FK, int ID_Prestamo_FK, String Tipo_Sancion) {
         this.ID_Socio_FK = ID_Socio_FK;
         this.ID_Prestamo_FK = ID_Prestamo_FK;
         this.Tipo_Sancion = Tipo_Sancion;
@@ -50,11 +50,11 @@ public class Sanciones {
         this.ID_Sancion = ID_Sancion;
     }
 
-    public int getID_Socio_FK() {
+    public String getID_Socio_FK() {
         return ID_Socio_FK;
     }
 
-    public void setID_Socio_FK(int ID_Socio_FK) {
+    public void setID_Socio_FK(String ID_Socio_FK) {
         this.ID_Socio_FK = ID_Socio_FK;
     }
 
